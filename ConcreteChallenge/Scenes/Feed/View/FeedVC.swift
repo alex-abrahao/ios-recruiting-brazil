@@ -20,10 +20,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }
     
     /// Collection view's current delegate
-    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = GridCollectionViewDelegate()
+    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = ListCollectionViewDelegate()
     
     /// Collection view's current data source
-    var collectionDataSource: FeedCollectionViewDataSource = GridCollectionViewDataSource()
+    var collectionDataSource: FeedCollectionViewDataSource = ListCollectionViewDataSource()
     
     // MARK: View
     let feedCollectionView: UICollectionView = {
@@ -71,11 +71,8 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         super.setupUI()
 
         view.backgroundColor = .white
-
-        collectionDelegate.feedPresenter = feedPresenter
-        collectionDataSource.feedPresenter = feedPresenter
-        feedCollectionView.dataSource = collectionDataSource
-        feedCollectionView.delegate = collectionDelegate
+        
+        setDataSourceAndDelegate(dataSource: collectionDataSource, delegate: collectionDelegate)
     }
     
     override func startLoading() {
@@ -100,6 +97,16 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
             return
         }
         cell.isFavorite = isFavorite
+    }
+    
+    func setDataSourceAndDelegate(dataSource: FeedCollectionViewDataSource, delegate: FeedCollectionViewDelegateFlowLayout) {
+        
+        collectionDelegate = delegate
+        collectionDataSource = dataSource
+        collectionDelegate.feedPresenter = feedPresenter
+        collectionDataSource.feedPresenter = feedPresenter
+        feedCollectionView.dataSource = dataSource
+        feedCollectionView.delegate = delegate
     }
     
     // MARK: Button methods

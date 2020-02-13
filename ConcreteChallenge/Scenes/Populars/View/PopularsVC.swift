@@ -74,12 +74,14 @@ final class PopularsVC: FeedVC {
     override func setupUI() {
         super.setupUI()
         
+        // FIXME: Header not scrolling because of delegate of the collectionview
         scrollView.delegate = self
         searchBar.delegate = self
         
         let headerData = popularsPresenter?.getHeaderData()
         headerView.callToActionLabel.text = headerData?.title
         headerView.headlineLabel.text = headerData?.greeting
+        headerView.gridButton.addTarget(self, action: #selector(gridTapped), for: .touchUpInside)
         searchBar.placeholder = headerData?.searchBarPlaceholder
     }
     
@@ -147,6 +149,27 @@ final class PopularsVC: FeedVC {
         super.viewDidAppear(animated)
         
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    // MARK: Button methods
+    @objc func gridTapped() {
+        let newDataSource: FeedCollectionViewDataSource
+        let newDelegate: FeedCollectionViewDelegateFlowLayout
+        switch collectionDataSource {
+        case is ListCollectionViewDataSource:
+            newDataSource = GridCollectionViewDataSource()
+            newDelegate = GridCollectionViewDelegate()
+            headerView.gridButton.imageView?.tintColor = Colors.tmdbGreen
+        case is GridCollectionViewDataSource:
+            newDataSource = ListCollectionViewDataSource()
+            newDelegate = ListCollectionViewDelegate()
+            headerView.gridButton.imageView?.tintColor = .white
+        default:
+            os_log("❌ - Feed Data Source of wrong type %@", log: Logger.appLog(), type: .fault, String(describing: collectionDataSource))
+            fatalError()
+        }
+        setDataSourceAndDelegate(dataSource: newDataSource, delegate: newDelegate)
+        reloadFeed()
     }
 }
 

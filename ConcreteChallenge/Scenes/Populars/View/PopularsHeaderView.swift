@@ -36,6 +36,15 @@ class PopularsHeaderView: UIView {
         return label
     }()
     
+    internal var gridButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "grid")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.imageView?.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return button
+    }()
+    
     // MARK: - Init -
     override init(frame: CGRect) {
 
@@ -53,6 +62,7 @@ class PopularsHeaderView: UIView {
     func setupUI() {
         self.addSubview(headlineLabel)
         self.addSubview(callToActionLabel)
+        self.addSubview(gridButton)
     }
 
     /// Setup the view's Constraints
@@ -61,13 +71,19 @@ class PopularsHeaderView: UIView {
 
         headlineLabel.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().offset(20.0)
-            make.trailing.equalTo(self.snp.trailing).offset(-20.0)
+            make.trailing.equalTo(gridButton.snp.leading)
             make.bottom.equalTo(callToActionLabel.snp.top)
         }
 
         callToActionLabel.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview()
             make.leading.trailing.equalTo(headlineLabel)
+        }
+        
+        gridButton.snp.makeConstraints { (make) in
+            make.width.height.equalTo(44)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalToSuperview()
         }
     }
 }
