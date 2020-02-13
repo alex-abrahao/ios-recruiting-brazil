@@ -151,7 +151,7 @@ final class PopularsVC: FeedVC {
 }
 
 // MARK: - ScrollView Delegate -
-extension PopularsVC {
+extension PopularsVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y: CGFloat = scrollView.contentOffset.y

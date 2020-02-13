@@ -19,14 +19,16 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         return presenter as? FeedPresenter
     }
     
+    /// Collection view's current delegate
+    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = ListCollectionViewDelegate()
+    
+    /// Collection view's current data source
+    var collectionDataSource: FeedCollectionViewDataSource = ListCollectionViewDataSource()
+    
     // MARK: View
     let feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 20.0
-        layout.minimumInteritemSpacing = 20.0
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 15, right: 0)
-        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width - 40) * ItemCollectionViewCell.imageAspect)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .white
@@ -69,8 +71,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
 
         view.backgroundColor = .white
 
-        feedCollectionView.dataSource = self
-        feedCollectionView.delegate = self
+        collectionDelegate.feedPresenter = feedPresenter
+        collectionDataSource.feedPresenter = feedPresenter
+        feedCollectionView.dataSource = collectionDataSource
+        feedCollectionView.delegate = collectionDelegate
     }
     
     override func startLoading() {
@@ -116,54 +120,5 @@ extension FeedVC: FeedViewDelegate {
         self.feedCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
               at: .top,
         animated: true)
-    }
-}
-
-// MARK: - CollectionView Data Source -
-extension FeedVC: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return feedPresenter?.numberOfItems ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard
-            let cell = feedCollectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as? ItemCollectionViewCell,
-            let itemData = feedPresenter?.getItemData(item: indexPath.item)
-        else {
-            os_log("❌ - Unknown cell identifier %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
-            fatalError("Unknown identifier")
-        }
-        cell.hideError()
-        cell.favoriteButton.tag = indexPath.item
-        cell.favoriteButton.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
-        cell.titleLabel.text = itemData.title
-        cell.filmImageView.kf.indicatorType = .activity
-        if let imageURL = itemData.imageUrl {
-            cell.filmImageView.kf.setImage(with: imageURL) { [weak cell] (result) in
-                switch result {
-                case .failure(let error):
-                    cell?.displayError(.info("Image could not be downloaded"))
-                    os_log("❌ - Image not downloaded %@", log: Logger.appLog(), type: .error, error.localizedDescription)
-                default:
-                    break
-                }
-            }
-        } else {
-            cell.filmImageView.kf.setImage(with: itemData.imageUrl)
-            cell.displayError(.missing("No backdrop available 😭"))
-        }
-        cell.isFavorite = itemData.isFavorite
-        
-        return cell
-    }
-}
-
-// MARK: - CollectionView Delegate -
-extension FeedVC: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        feedPresenter?.selectItem(item: indexPath.item)
     }
 }
