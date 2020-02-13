@@ -33,6 +33,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .white
         view.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
+        view.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
         return view
     }()
     

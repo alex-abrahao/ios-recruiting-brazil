@@ -11,10 +11,11 @@ import Foundation
 struct ItemViewData {
     
     let title: String
-    let imageUrl: URL?
+    let backdropURL: URL?
+    let posterURL: URL?
     let isFavorite: Bool
     
     static var mockData: ItemViewData {
-        return ItemViewData(title: "Loading...", imageUrl: nil, isFavorite: false)
+        return ItemViewData(title: "Loading...", backdropURL: nil, posterURL: nil, isFavorite: false)
     }
 }

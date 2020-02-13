@@ -71,15 +71,13 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         
         // Building the view data
         let movie = movies[item]
-        let imageURL: URL?
-        if let path = movie.backdropPath {
-            imageURL = ImageEndpoint.image(width: 780, path: path).completeURL
-        } else {
-            imageURL = nil
-        }
+        let backdropURL = ImageEndpoint.image(width: 780, path: movie.backdropPath).completeURL
+        
+        let posterURL = ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL
         
         return ItemViewData(title: movie.title,
-                            imageUrl: imageURL,
+                            backdropURL: backdropURL,
+                            posterURL: posterURL,
                             isFavorite: movie.isFavorite)
     }
     

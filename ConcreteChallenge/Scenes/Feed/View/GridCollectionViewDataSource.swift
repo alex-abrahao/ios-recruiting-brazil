@@ -1,5 +1,5 @@
 //
-//  ListCollectionViewDataSource.swift
+//  GridCollectionViewDataSource.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 13/02/20.
@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import Kingfisher
 
-class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
+class GridCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
     
     weak var feedPresenter: FeedPresenter?
     
@@ -21,7 +21,7 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as? ItemCollectionViewCell,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCollectionViewCell.identifier, for: indexPath) as? GridCollectionViewCell,
             let itemData = feedPresenter?.getItemData(item: indexPath.item)
         else {
             os_log("❌ - Unknown cell identifier %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
@@ -32,7 +32,7 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         cell.favoriteButton.addTarget(self, action: #selector(FeedVC.favoriteTapped(_:)), for: .touchUpInside)
         cell.titleLabel.text = itemData.title
         cell.filmImageView.kf.indicatorType = .activity
-        if let imageURL = itemData.backdropURL {
+        if let imageURL = itemData.posterURL {
             cell.filmImageView.kf.setImage(with: imageURL) { [weak cell] (result) in
                 switch result {
                 case .failure(let error):
@@ -43,7 +43,7 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
                 }
             }
         } else {
-            cell.filmImageView.kf.setImage(with: itemData.backdropURL)
+            cell.filmImageView.kf.setImage(with: itemData.posterURL)
             cell.displayError(.missing("No backdrop available 😭"))
         }
         cell.isFavorite = itemData.isFavorite
@@ -51,3 +51,4 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         return cell
     }
 }
+

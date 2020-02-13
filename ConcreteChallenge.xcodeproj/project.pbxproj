@@ -14,6 +14,8 @@
 		1D6DC7A023F59D3E00ED0F06 /* GridCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC79F23F59D3E00ED0F06 /* GridCollectionViewDelegate.swift */; };
 		1D6DC7A223F5BCCC00ED0F06 /* FeedCollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A123F5BCCC00ED0F06 /* FeedCollectionViewDelegateFlowLayout.swift */; };
 		1D6DC7A423F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A323F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift */; };
+		1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */; };
+		1D6DC7A823F5CC1400ED0F06 /* GridCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -99,6 +101,8 @@
 		1D6DC79F23F59D3E00ED0F06 /* GridCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		1D6DC7A123F5BCCC00ED0F06 /* FeedCollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewDelegateFlowLayout.swift; sourceTree = "<group>"; };
 		1D6DC7A323F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -405,7 +409,9 @@
 				5E6AAD48239CA8D300564F6A /* FeedVC.swift */,
 				5E6AAD4C239CAD1F00564F6A /* FeedViewDelegate.swift */,
 				5E6AAD50239CBFFA00564F6A /* ItemCollectionViewCell.swift */,
+				1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */,
 				1D6DC79B23F59CFA00ED0F06 /* ListCollectionViewDataSource.swift */,
+				1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */,
 				1D6DC79D23F59D1E00ED0F06 /* ListCollectionViewDelegate.swift */,
 				1D6DC79F23F59D3E00ED0F06 /* GridCollectionViewDelegate.swift */,
 			);
@@ -861,6 +867,7 @@
 				5EFC3EE623A81AD600FDE1F8 /* ErrorDelegate.swift in Sources */,
 				5E6FC73123A6BD6300BA5DEF /* PopularsVC.swift in Sources */,
 				5E6AAD53239CC02B00564F6A /* BaseCollectionViewCell.swift in Sources */,
+				1D6DC7A823F5CC1400ED0F06 /* GridCollectionViewDataSource.swift in Sources */,
 				5E6AAD4F239CAFFB00564F6A /* ItemViewData.swift in Sources */,
 				1D6DC7A223F5BCCC00ED0F06 /* FeedCollectionViewDelegateFlowLayout.swift in Sources */,
 				5E6AAD3D239C91E900564F6A /* MovieClient.swift in Sources */,
@@ -869,6 +876,7 @@
 				5E6AAD35239C714A00564F6A /* NetworkInfo.swift in Sources */,
 				5EFC3EE923A81C6E00FDE1F8 /* ErrorMessageType.swift in Sources */,
 				5E6AAD76239DAC3D00564F6A /* DefaultInfoTableCell.swift in Sources */,
+				1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */,
 				5E6AAD5A239D6EFB00564F6A /* UIFont+Extensions.swift in Sources */,
 				5E6FC71F23A697DF00BA5DEF /* TabBarController.swift in Sources */,
 				1D6DC7A423F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift in Sources */,
