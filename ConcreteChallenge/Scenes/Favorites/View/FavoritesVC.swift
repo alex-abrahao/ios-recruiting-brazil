@@ -42,7 +42,7 @@ final class FavoritesVC: FeedVC {
     }
     
     override func setFavorite(_ isFavorite: Bool, tag: Int?) {
-        guard let item = tag, let cell = feedCollectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? ItemCollectionViewCell else {
+        guard let item = tag, let cell = feedCollectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? ListCollectionViewCell else {
             os_log("❌ - Unknown cell type %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
             return
         }

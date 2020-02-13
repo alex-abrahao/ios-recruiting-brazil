@@ -1,20 +1,17 @@
 //
-//  ItemCollectionViewCell.swift
+//  FeedCollectionViewCell.swift
 //  ConcreteChallenge
 //
-//  Created by Alexandre Abrahão on 08/12/19.
-//  Copyright © 2019 Concrete. All rights reserved.
+//  Created by alexandre.c.ferreira on 13/02/20.
+//  Copyright © 2020 Concrete. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-final class ItemCollectionViewCell: BaseCollectionViewCell {
+class FeedCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Properties -
-    /// Height / Width
-    static let imageAspect: CGFloat = (1080/1920)
-    
     // MARK: View
     let filmImageView: GradientImageView = {
         let view = GradientImageView(frame: .zero)
@@ -56,27 +53,6 @@ final class ItemCollectionViewCell: BaseCollectionViewCell {
         filmImageView.addSubview(favoriteButton)
     }
     
-    override func setupConstraints() {
-        
-        filmImageView.snp.makeConstraints { (make) in
-            let imageWidth = UIScreen.main.bounds.width - 40
-            make.center.equalToSuperview()
-            make.width.equalTo(imageWidth)
-            make.height.equalTo(imageWidth * ItemCollectionViewCell.imageAspect)
-        }
-        
-        favoriteButton.snp.makeConstraints { (make) in
-            make.trailing.bottom.equalToSuperview()
-            make.height.width.equalTo(44)
-        }
-        
-        titleLabel.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().inset(10)
-            make.trailing.equalTo(favoriteButton.snp.leading)
-        }
-    }
-    
     func makeErrorConstraints() {
         errorView.snp.makeConstraints { (make) in
             make.edges.equalTo(filmImageView)
@@ -85,7 +61,7 @@ final class ItemCollectionViewCell: BaseCollectionViewCell {
 }
 
 // MARK: - ErrorDelegate -
-extension ItemCollectionViewCell: ErrorDelegate {
+extension FeedCollectionViewCell: ErrorDelegate {
     func displayError(_ type: ErrorMessageType) {
         
         errorView.displayMessage(type)
@@ -93,7 +69,6 @@ extension ItemCollectionViewCell: ErrorDelegate {
         guard errorView.superview == nil else { return }
         
         contentView.insertSubview(errorView, at: 0)
-//        contentView.addSubview(errorView)
         
         makeErrorConstraints()
     }

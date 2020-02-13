@@ -21,7 +21,7 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as? ItemCollectionViewCell,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.identifier, for: indexPath) as? ListCollectionViewCell,
             let itemData = feedPresenter?.getItemData(item: indexPath.item)
         else {
             os_log("❌ - Unknown cell identifier %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
@@ -29,7 +29,7 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         }
         cell.hideError()
         cell.favoriteButton.tag = indexPath.item
-        cell.favoriteButton.addTarget(self, action: #selector(FeedVC.favoriteTapped(_:)), for: .touchUpInside)
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
         cell.titleLabel.text = itemData.title
         cell.filmImageView.kf.indicatorType = .activity
         if let imageURL = itemData.backdropURL {
@@ -49,5 +49,10 @@ class ListCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         cell.isFavorite = itemData.isFavorite
         
         return cell
+    }
+    
+    // MARK: Button methods
+    @objc func favoriteTapped(_ sender: UIButton) {
+        feedPresenter?.favoriteStateChanged(tag: sender.tag)
     }
 }

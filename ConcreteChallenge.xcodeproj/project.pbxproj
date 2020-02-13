@@ -16,6 +16,7 @@
 		1D6DC7A423F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A323F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift */; };
 		1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */; };
 		1D6DC7A823F5CC1400ED0F06 /* GridCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */; };
+		1D6DC7AA23F5D74B00ED0F06 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A923F5D74B00ED0F06 /* FeedCollectionViewCell.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -43,7 +44,7 @@
 		5E6AAD4B239CA8DF00564F6A /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD4A239CA8DF00564F6A /* FeedPresenter.swift */; };
 		5E6AAD4D239CAD1F00564F6A /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD4C239CAD1F00564F6A /* FeedViewDelegate.swift */; };
 		5E6AAD4F239CAFFB00564F6A /* ItemViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD4E239CAFFB00564F6A /* ItemViewData.swift */; };
-		5E6AAD51239CBFFA00564F6A /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD50239CBFFA00564F6A /* ItemCollectionViewCell.swift */; };
+		5E6AAD51239CBFFA00564F6A /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD50239CBFFA00564F6A /* ListCollectionViewCell.swift */; };
 		5E6AAD53239CC02B00564F6A /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD52239CC02B00564F6A /* BaseCollectionViewCell.swift */; };
 		5E6AAD55239D6B2100564F6A /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD54239D6B2100564F6A /* GradientImageView.swift */; };
 		5E6AAD57239D6E6D00564F6A /* PopularsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD56239D6E6D00564F6A /* PopularsHeaderView.swift */; };
@@ -103,6 +104,7 @@
 		1D6DC7A323F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		1D6DC7A923F5D74B00ED0F06 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +138,7 @@
 		5E6AAD4A239CA8DF00564F6A /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		5E6AAD4C239CAD1F00564F6A /* FeedViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
 		5E6AAD4E239CAFFB00564F6A /* ItemViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewData.swift; sourceTree = "<group>"; };
-		5E6AAD50239CBFFA00564F6A /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		5E6AAD50239CBFFA00564F6A /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E6AAD52239CC02B00564F6A /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E6AAD54239D6B2100564F6A /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
 		5E6AAD56239D6E6D00564F6A /* PopularsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularsHeaderView.swift; sourceTree = "<group>"; };
@@ -408,12 +410,13 @@
 			children = (
 				5E6AAD48239CA8D300564F6A /* FeedVC.swift */,
 				5E6AAD4C239CAD1F00564F6A /* FeedViewDelegate.swift */,
-				5E6AAD50239CBFFA00564F6A /* ItemCollectionViewCell.swift */,
+				5E6AAD50239CBFFA00564F6A /* ListCollectionViewCell.swift */,
 				1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */,
 				1D6DC79B23F59CFA00ED0F06 /* ListCollectionViewDataSource.swift */,
 				1D6DC7A723F5CC1400ED0F06 /* GridCollectionViewDataSource.swift */,
 				1D6DC79D23F59D1E00ED0F06 /* ListCollectionViewDelegate.swift */,
 				1D6DC79F23F59D3E00ED0F06 /* GridCollectionViewDelegate.swift */,
+				1D6DC7A923F5D74B00ED0F06 /* FeedCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -834,7 +837,7 @@
 				5E6AAD49239CA8D300564F6A /* FeedVC.swift in Sources */,
 				5E6AAD78239DC32600564F6A /* Factory.swift in Sources */,
 				1D6DC7A023F59D3E00ED0F06 /* GridCollectionViewDelegate.swift in Sources */,
-				5E6AAD51239CBFFA00564F6A /* ItemCollectionViewCell.swift in Sources */,
+				5E6AAD51239CBFFA00564F6A /* ListCollectionViewCell.swift in Sources */,
 				5E6AAD4D239CAD1F00564F6A /* FeedViewDelegate.swift in Sources */,
 				5E6AAD55239D6B2100564F6A /* GradientImageView.swift in Sources */,
 				5E6AAD57239D6E6D00564F6A /* PopularsHeaderView.swift in Sources */,
@@ -879,6 +882,7 @@
 				1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */,
 				5E6AAD5A239D6EFB00564F6A /* UIFont+Extensions.swift in Sources */,
 				5E6FC71F23A697DF00BA5DEF /* TabBarController.swift in Sources */,
+				1D6DC7AA23F5D74B00ED0F06 /* FeedCollectionViewCell.swift in Sources */,
 				1D6DC7A423F5BDF000ED0F06 /* FeedCollectionViewDataSource.swift in Sources */,
 				5E6FC71B23A6002600BA5DEF /* FavoriteHandler.swift in Sources */,
 				5E6AAD62239D781000564F6A /* ImageEndpoint.swift in Sources */,

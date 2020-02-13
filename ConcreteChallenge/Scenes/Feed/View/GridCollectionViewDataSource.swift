@@ -29,7 +29,7 @@ class GridCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         }
         cell.hideError()
         cell.favoriteButton.tag = indexPath.item
-        cell.favoriteButton.addTarget(self, action: #selector(FeedVC.favoriteTapped(_:)), for: .touchUpInside)
+        cell.favoriteButton.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
         cell.titleLabel.text = itemData.title
         cell.filmImageView.kf.indicatorType = .activity
         if let imageURL = itemData.posterURL {
@@ -49,6 +49,11 @@ class GridCollectionViewDataSource: NSObject, FeedCollectionViewDataSource {
         cell.isFavorite = itemData.isFavorite
         
         return cell
+    }
+    
+    // MARK: Button methods
+    @objc func favoriteTapped(_ sender: UIButton) {
+        feedPresenter?.favoriteStateChanged(tag: sender.tag)
     }
 }
 

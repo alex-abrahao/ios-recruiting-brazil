@@ -20,10 +20,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }
     
     /// Collection view's current delegate
-    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = ListCollectionViewDelegate()
+    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = GridCollectionViewDelegate()
     
     /// Collection view's current data source
-    var collectionDataSource: FeedCollectionViewDataSource = ListCollectionViewDataSource()
+    var collectionDataSource: FeedCollectionViewDataSource = GridCollectionViewDataSource()
     
     // MARK: View
     let feedCollectionView: UICollectionView = {
@@ -32,7 +32,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .white
-        view.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
+        view.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
         view.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
         return view
     }()
@@ -95,7 +95,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }
     
     func setFavorite(_ isFavorite: Bool, tag: Int?) {
-        guard let item = tag, let cell = feedCollectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? ItemCollectionViewCell else {
+        guard let item = tag, let cell = feedCollectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? FeedCollectionViewCell else {
             os_log("❌ - Unknown cell type %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
             return
         }

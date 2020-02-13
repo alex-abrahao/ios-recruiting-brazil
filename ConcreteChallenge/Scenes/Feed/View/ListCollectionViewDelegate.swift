@@ -18,7 +18,7 @@ class ListCollectionViewDelegate: NSObject, FeedCollectionViewDelegateFlowLayout
     
     // MARK: Flow Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width - 40) * ItemCollectionViewCell.imageAspect)
+        return CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width - 40) * ListCollectionViewCell.imageAspect)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
