@@ -108,11 +108,6 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         feedCollectionView.dataSource = dataSource
         feedCollectionView.delegate = delegate
     }
-    
-    // MARK: Button methods
-    @objc func favoriteTapped(_ sender: UIButton) {
-        feedPresenter?.favoriteStateChanged(tag: sender.tag)
-    }
 }
 
 // MARK: - Feed View Delegate -
