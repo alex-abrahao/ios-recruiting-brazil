@@ -31,7 +31,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
         didSet {
-            feedView.reloadFeed()
+            feedView.moveData(movies: movies)
         }
     }
     
@@ -61,25 +61,6 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
      Override to do the necessary steps to load the feed data.
      */
     func loadFeed() {}
-    
-    func getItemData(item: Int) -> ItemViewData {
-        
-        guard item < self.numberOfItems else {
-            os_log("❌ - Number of items > number of movies", log: Logger.appLog(), type: .fault)
-            return ItemViewData.mockData
-        }
-        
-        // Building the view data
-        let movie = movies[item]
-        let backdropURL = ImageEndpoint.image(width: 780, path: movie.backdropPath).completeURL
-        
-        let posterURL = ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL
-        
-        return ItemViewData(title: movie.title,
-                            backdropURL: backdropURL,
-                            posterURL: posterURL,
-                            isFavorite: movie.isFavorite)
-    }
     
     func selectItem(item: Int) {
         guard item < self.numberOfItems else {

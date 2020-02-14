@@ -20,10 +20,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }
     
     /// Collection view's current delegate
-    var collectionDelegate: FeedCollectionViewDelegateFlowLayout = ListCollectionViewDelegate()
+    var collectionDelegate = FeedCollectionViewDelegate()
     
     /// Collection view's current data source
-    var collectionDataSource: FeedCollectionViewDataSource = ListCollectionViewDataSource()
+    var collectionDataSource = FeedCollectionViewDataSource()
     
     // MARK: View
     let feedCollectionView: UICollectionView = {
@@ -72,7 +72,16 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
 
         view.backgroundColor = .white
         
-        setDataSourceAndDelegate(dataSource: collectionDataSource, delegate: collectionDelegate)
+        feedCollectionView.dataSource = collectionDataSource
+        feedCollectionView.delegate = collectionDelegate
+        
+        collectionDataSource.favoritePressed = { [weak self] tag in
+            self?.feedPresenter?.favoriteStateChanged(tag: tag)
+        }
+        
+        collectionDelegate.didSelectItem = { [weak self] item in
+            self?.feedPresenter?.selectItem(item: item)
+        }
     }
     
     override func startLoading() {
@@ -98,16 +107,6 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         }
         cell.isFavorite = isFavorite
     }
-    
-    func setDataSourceAndDelegate(dataSource: FeedCollectionViewDataSource, delegate: FeedCollectionViewDelegateFlowLayout) {
-        
-        collectionDelegate = delegate
-        collectionDataSource = dataSource
-        collectionDelegate.feedPresenter = feedPresenter
-        collectionDataSource.feedPresenter = feedPresenter
-        feedCollectionView.dataSource = dataSource
-        feedCollectionView.delegate = delegate
-    }
 }
 
 // MARK: - Feed View Delegate -
@@ -123,5 +122,10 @@ extension FeedVC: FeedViewDelegate {
         self.feedCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
               at: .top,
         animated: true)
+    }
+    
+    func moveData(movies: [Movie]) {
+        collectionDataSource.movies = movies
+        reloadFeed()
     }
 }

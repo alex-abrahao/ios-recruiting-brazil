@@ -78,6 +78,10 @@ final class PopularsVC: FeedVC {
         scrollView.delegate = self
         searchBar.delegate = self
         
+        collectionDataSource.prefetch = { [weak self] in
+            self?.popularsPresenter?.loadMoreItems()
+        }
+        
         let headerData = popularsPresenter?.getHeaderData()
         headerView.callToActionLabel.text = headerData?.title
         headerView.headlineLabel.text = headerData?.greeting
@@ -153,22 +157,15 @@ final class PopularsVC: FeedVC {
     
     // MARK: Button methods
     @objc func gridTapped() {
-        let newDataSource: FeedCollectionViewDataSource
-        let newDelegate: FeedCollectionViewDelegateFlowLayout
-        switch collectionDataSource {
-        case is ListCollectionViewDataSource:
-            newDataSource = GridCollectionViewDataSource()
-            newDelegate = GridCollectionViewDelegate()
-            headerView.gridButton.imageView?.tintColor = Colors.tmdbGreen
-        case is GridCollectionViewDataSource:
-            newDataSource = ListCollectionViewDataSource()
-            newDelegate = ListCollectionViewDelegate()
-            headerView.gridButton.imageView?.tintColor = .white
-        default:
-            os_log("❌ - Feed Data Source of wrong type %@", log: Logger.appLog(), type: .fault, String(describing: collectionDataSource))
-            fatalError()
+        
+        switch collectionDataSource.displayType {
+        case .grid:
+            collectionDataSource.displayType = .list
+            collectionDelegate.displayType = .list
+        case .list:
+            collectionDataSource.displayType = .grid
+            collectionDelegate.displayType = .grid
         }
-        setDataSourceAndDelegate(dataSource: newDataSource, delegate: newDelegate)
         reloadFeed()
     }
 }

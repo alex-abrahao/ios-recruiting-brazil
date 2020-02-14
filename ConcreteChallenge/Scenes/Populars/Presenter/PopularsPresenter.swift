@@ -42,7 +42,7 @@ final class PopularsPresenter: FeedPresenter {
     /// Load more items for the infinite scrolling feed.
     func loadMoreItems() {
         
-        guard pagesLoaded <= maxPages else { return }
+        guard !isSearching, pagesLoaded <= maxPages else { return }
         pagesLoaded += 1
         view?.startLoading()
         
@@ -58,18 +58,6 @@ final class PopularsPresenter: FeedPresenter {
                 self?.movies.append(contentsOf: movies)
             }
         }
-    }
-    
-    override func getItemData(item: Int) -> ItemViewData {
-        
-        let itemData = super.getItemData(item: item)
-        
-        // Prefetching if necessary
-        if !isSearching && item > numberOfItems - 5 {
-            loadMoreItems()
-        }
-        
-        return itemData
     }
     
     func getHeaderData() -> PopularHeaderViewData {

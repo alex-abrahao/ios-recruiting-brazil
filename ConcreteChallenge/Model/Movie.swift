@@ -28,6 +28,14 @@ class Movie: Codable {
         self.backdropPath = backdropPath
         self.releaseDate = releaseDate
     }
+    
+    var completePosterURL: URL? {
+        return ImageEndpoint.image(width: 500, path: posterPath).completeURL
+    }
+    
+    var completeBackdropURL: URL? {
+        return ImageEndpoint.image(width: 780, path: backdropPath).completeURL
+    }
 }
 
 extension Movie {
