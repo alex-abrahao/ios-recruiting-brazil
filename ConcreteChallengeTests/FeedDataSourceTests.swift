@@ -1,5 +1,5 @@
 //
-//  ListDataSourceTests.swift
+//  FeedDataSourceTests.swift
 //  ConcreteChallengeTests
 //
 //  Created by alexandre.c.ferreira on 13/02/20.
@@ -9,13 +9,11 @@
 import XCTest
 @testable import Movs
 
-class ListDataSourceTests: XCTestCase {
+class FeedDataSourceTests: XCTestCase {
     
     var movieListMock: [Movie]!
-    var sut: ListCollectionViewDataSource!
-    var feedPresenter: FeedPresenterMock!
+    var sut: FeedCollectionViewDataSource!
     var feedCollectionView: UICollectionView!
-    var feedView: FeedViewDelegateMock!
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,23 +25,20 @@ class ListDataSourceTests: XCTestCase {
                           backdropPath: "/xJWPZIYOEFIjZpBL7SVBGnzRYXp.jpg",
                           releaseDate: "2019-11-20")
         movieListMock = [movie, movie, movie, movie, movie]
-        feedView = FeedViewDelegateMock()
-        sut = ListCollectionViewDataSource()
-        feedPresenter = FeedPresenterMock()
-        feedPresenter.attachView(feedView)
-        feedPresenter.mockLoad(movies: movieListMock)
+        
+        sut = FeedCollectionViewDataSource()
+        sut.movies = movieListMock
+        
         feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         feedCollectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
         feedCollectionView.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
         feedCollectionView.dataSource = sut
-        sut.feedPresenter = feedPresenter
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         movieListMock = nil
         sut = nil
-        feedPresenter = nil
         feedCollectionView = nil
     }
 
@@ -53,9 +48,9 @@ class ListDataSourceTests: XCTestCase {
         let numberOfItems = movieListMock.count
         
         // when
-        let numberFound = sut.collectionView(feedCollectionView, numberOfItemsInSection: 0)
+        feedCollectionView.reloadData()
         
         // then
-        XCTAssertTrue(numberOfItems == numberFound)
+        XCTAssertTrue(numberOfItems == sut.collectionView(feedCollectionView, numberOfItemsInSection: 0))
     }
 }

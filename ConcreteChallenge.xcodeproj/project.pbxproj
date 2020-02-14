@@ -13,7 +13,7 @@
 		1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */; };
 		1D6DC7A823F5CC1400ED0F06 /* FeedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A723F5CC1400ED0F06 /* FeedCollectionViewDataSource.swift */; };
 		1D6DC7AA23F5D74B00ED0F06 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A923F5D74B00ED0F06 /* FeedCollectionViewCell.swift */; };
-		1D6DC7AC23F5FBD000ED0F06 /* ListDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7AB23F5FBD000ED0F06 /* ListDataSourceTests.swift */; };
+		1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7AB23F5FBD000ED0F06 /* FeedDataSourceTests.swift */; };
 		1D6DC7AE23F6031C00ED0F06 /* FeedPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7AD23F6031C00ED0F06 /* FeedPresenterMock.swift */; };
 		1D6DC7B023F6047900ED0F06 /* FeedViewDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7AF23F6047900ED0F06 /* FeedViewDelegateMock.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
@@ -100,7 +100,7 @@
 		1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6DC7A723F5CC1400ED0F06 /* FeedCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		1D6DC7A923F5D74B00ED0F06 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
-		1D6DC7AB23F5FBD000ED0F06 /* ListDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSourceTests.swift; sourceTree = "<group>"; };
+		1D6DC7AB23F5FBD000ED0F06 /* FeedDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSourceTests.swift; sourceTree = "<group>"; };
 		1D6DC7AD23F6031C00ED0F06 /* FeedPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterMock.swift; sourceTree = "<group>"; };
 		1D6DC7AF23F6047900ED0F06 /* FeedViewDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewDelegateMock.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				5E6AACF7239C3DB300564F6A /* NetworkLayerTests.swift */,
 				5EFC3EEA23A870DF00FDE1F8 /* DetailPresenterTests.swift */,
 				5EFC3EEC23A875A900FDE1F8 /* DetailViewDelegateMock.swift */,
-				1D6DC7AB23F5FBD000ED0F06 /* ListDataSourceTests.swift */,
+				1D6DC7AB23F5FBD000ED0F06 /* FeedDataSourceTests.swift */,
 				1D6DC7AD23F6031C00ED0F06 /* FeedPresenterMock.swift */,
 				1D6DC7AF23F6047900ED0F06 /* FeedViewDelegateMock.swift */,
 			);
@@ -898,7 +898,7 @@
 				1D6DC7B023F6047900ED0F06 /* FeedViewDelegateMock.swift in Sources */,
 				5E6AACF8239C3DB300564F6A /* NetworkLayerTests.swift in Sources */,
 				5EFC3EED23A875A900FDE1F8 /* DetailViewDelegateMock.swift in Sources */,
-				1D6DC7AC23F5FBD000ED0F06 /* ListDataSourceTests.swift in Sources */,
+				1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceTests.swift in Sources */,
 				5EFC3EEB23A870DF00FDE1F8 /* DetailPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

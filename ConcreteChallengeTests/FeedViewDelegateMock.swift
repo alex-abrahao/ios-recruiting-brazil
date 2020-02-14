@@ -18,6 +18,7 @@ class FeedViewDelegateMock: NSObject, FeedViewDelegate {
     var calledHideError = false
     var calledReloadFeed = false
     var calledResetFeedPosition = false
+    var calledMoveData = false
     
     func reloadFeed() {
         calledReloadFeed = true
@@ -25,6 +26,10 @@ class FeedViewDelegateMock: NSObject, FeedViewDelegate {
     
     func resetFeedPosition() {
         calledResetFeedPosition = true
+    }
+    
+    func moveData(movies: [Movie]) {
+        calledMoveData = true
     }
     
     func startLoading() {
