@@ -17,6 +17,7 @@ class FeedDataSourceTests: QuickSpec {
         var sut: FeedCollectionViewDataSource!
         var feedCollectionView: UICollectionView!
         var moviesList: [Movie]!
+        var didPrefetch: Bool!
         
         beforeEach {
             
@@ -30,24 +31,104 @@ class FeedDataSourceTests: QuickSpec {
             moviesList = MovieStub.getMovieList()
             sut.movies = moviesList
             feedCollectionView.reloadData()
+            didPrefetch = false
             
             sut.favoritePressed = { tag in
                 moviesList[tag].isFavorite = true
                 feedCollectionView.reloadData()
             }
+            
+            sut.prefetch = {
+                didPrefetch = true
+            }
         }
         
-        describe("loading") {
+        describe("displaying movies") {
             
-            context("movies") {
                 
-                it("should display the correct number of items") {
+            it("should display the correct number of items") {
+                
+                expect(sut.collectionView(feedCollectionView, numberOfItemsInSection: 0)) == sut.movies.count
+            }
+            
+            context("in cells") {
+                
+                it("should load correctly first cell") {
                     
-                    expect(sut.collectionView(feedCollectionView, numberOfItemsInSection: 0)) == sut.movies.count
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    let cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! FeedCollectionViewCell
+                    
+                    expect(cell.titleLabel.text) == moviesList.first!.title
+                    expect(cell.isFavorite) == moviesList.first!.isFavorite
+                }
+                
+                it("should load correctly middle cell") {
+                    
+                    let item: Int = moviesList.count/2
+                    let indexPath = IndexPath(item: item, section: 0)
+                    let cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! FeedCollectionViewCell
+                    
+                    expect(cell.titleLabel.text) == moviesList[item].title
+                    expect(cell.isFavorite) == moviesList[item].isFavorite
+                }
+                
+                it("should load correctly last cell") {
+                    
+                    let indexPath = IndexPath(item: moviesList.count - 1, section: 0)
+                    let cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! FeedCollectionViewCell
+                    
+                    expect(cell.titleLabel.text) == moviesList.last!.title
+                    expect(cell.isFavorite) == moviesList.last!.isFavorite
                 }
             }
             
-            context("list cells") {
+            context("when reaching end of content") {
+                it("should prefetch new data") {
+                    
+                    let indexPath = IndexPath(item: moviesList.count - 4, section: 0)
+                    let _ = sut.collectionView(feedCollectionView, cellForItemAt: indexPath)
+                    
+                    expect(didPrefetch) == true
+                }
+            }
+            
+            context("with no backdrop image on list view mode") {
+                it("should display an error message in the cell") {
+                    
+                    // Arrange
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    moviesList = MovieStub.getMovieWithNoImageList()
+                    sut.movies = moviesList
+                    sut.displayType = .list
+                    
+                    // Act
+                    feedCollectionView.reloadData()
+                    let cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! ListCollectionViewCell
+                    
+                    // Assert
+                    expect(cell.errorView.superview).toNot(beNil())
+                }
+            }
+            
+            context("with no backdrop image on grid view mode") {
+                it("should display an error message in the cell") {
+                    
+                    // Arrange
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    moviesList = MovieStub.getMovieWithNoImageList()
+                    sut.movies = moviesList
+                    sut.displayType = .grid
+                    
+                    // Act
+                    feedCollectionView.reloadData()
+                    let cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! GridCollectionViewCell
+                    
+                    // Assert
+                    expect(cell.errorView.superview).toNot(beNil())
+                }
+            }
+            
+            context("on list cells") {
                 
                 it("should load the correct cell type") {
                     
@@ -58,7 +139,7 @@ class FeedDataSourceTests: QuickSpec {
                 }
             }
             
-            context("grid cells") {
+            context("on grid cells") {
                 
                 it("should load the correct cell type") {
                     

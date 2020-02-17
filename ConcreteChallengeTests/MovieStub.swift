@@ -22,4 +22,16 @@ class MovieStub {
         
         return decodedJson.results
     }
+    
+    static func getMovieWithNoImageList() -> [Movie] {
+        
+        let bundle = Bundle(for: self)
+        let path = bundle.path(forResource: "MoviesResponseNoImageStub", ofType: "json")!
+        let jsonData = NSData(contentsOfFile: path)! as Data
+        
+        let decoder = JSONDecoder()
+        let decodedJson = try! decoder.decode(PopularResponse.self, from: jsonData)
+        
+        return decodedJson.results
+    }
 }
