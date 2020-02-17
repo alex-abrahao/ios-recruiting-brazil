@@ -18,6 +18,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         view.layer.cornerRadius = 15.0
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
+        view.kf.indicatorType = .activity
         return view
     }()
     

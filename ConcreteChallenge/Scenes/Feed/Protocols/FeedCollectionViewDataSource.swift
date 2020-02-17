@@ -20,7 +20,9 @@ class FeedCollectionViewDataSource: NSObject {
     // MARK: Properties
     var displayType: DisplayType = .list
     var movies: [Movie] = []
+    /// Function block to be called when the user taps the favorite button
     var favoritePressed: ((_ tag: Int) -> Void)?
+    /// Function block to be called whenever prefetching is needed
     var prefetch: (() -> Void)?
     
     fileprivate func checkPrefetching(item: Int) {
@@ -57,8 +59,8 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
             }
             
             feedCell = gridCell
+            feedCell.hideError()
             
-            gridCell.filmImageView.kf.indicatorType = .activity
             if let imageURL = movie.completePosterURL {
                 gridCell.filmImageView.kf.setImage(with: imageURL) { [weak gridCell] (result) in
                     switch result {
@@ -71,7 +73,7 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
                 }
             } else {
                 gridCell.filmImageView.kf.setImage(with: movie.completePosterURL)
-                gridCell.displayError(.missing("No backdrop available 😭"))
+                gridCell.displayError(.missing("No poster available 😭"))
             }
                         
         case .list:
@@ -83,8 +85,8 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
             }
             
             feedCell = listCell
+            feedCell.hideError()
             
-            listCell.filmImageView.kf.indicatorType = .activity
             if let imageURL = movie.completeBackdropURL {
                 listCell.filmImageView.kf.setImage(with: imageURL) { [weak listCell] (result) in
                     switch result {
@@ -101,7 +103,6 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
             }
         }
         
-        feedCell.hideError()
         feedCell.favoriteButton.tag = indexPath.item
         feedCell.favoriteButton.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
         feedCell.titleLabel.text = movie.title
