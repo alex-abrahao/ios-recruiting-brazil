@@ -23,6 +23,8 @@ final class DetailPresenter: BasePresenter {
         return view
     }
     
+    private var service: MovieService = MovieClient()
+    
     private lazy var displayData: [DetailInfoType] = [
         .poster(imageURL: ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL),
         .title(movie.title),
@@ -80,7 +82,7 @@ final class DetailPresenter: BasePresenter {
         } else {
             // Had one or more genres not locally found.
             // Needs to update the local list.
-            MovieClient.getGenreList { [weak self] (genreList, error) in
+            service.getGenreList { [weak self] (genreList, error) in
                 guard let self = self else { return }
                 if let genreList = genreList {
                     let matchingGenres = genreList.filter { self.movie.genreIDs.contains($0.id) }
