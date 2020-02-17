@@ -13,11 +13,15 @@ target 'ConcreteChallenge' do
   target 'ConcreteChallengeTests' do
     inherit! :complete
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'ConcreteChallengeUITests' do
     # Pods for testing
     inherit! :complete
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end
