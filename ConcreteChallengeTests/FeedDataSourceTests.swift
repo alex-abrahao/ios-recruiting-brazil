@@ -6,51 +6,87 @@
 //  Copyright © 2020 Concrete. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
 @testable import Movs
 
-class FeedDataSourceTests: XCTestCase {
+class FeedDataSourceTests: QuickSpec {
     
-    var movieListMock: [Movie]!
-    var sut: FeedCollectionViewDataSource!
-    var feedCollectionView: UICollectionView!
-    
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        let movie = Movie(id: 330457,
-                          title: "Frozen II",
-                          overview: "Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.",
-                          genreIDs: [12, 16, 10402, 10751],
-                          posterPath: "/pjeMs3yqRmFL3giJy4PMXWZTTPa.jpg",
-                          backdropPath: "/xJWPZIYOEFIjZpBL7SVBGnzRYXp.jpg",
-                          releaseDate: "2019-11-20")
-        movieListMock = [movie, movie, movie, movie, movie]
+    override func spec() {
         
-        sut = FeedCollectionViewDataSource()
-        sut.movies = movieListMock
+        var sut: FeedCollectionViewDataSource!
+        var feedCollectionView: UICollectionView!
+        var moviesList: [Movie]!
         
-        feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        feedCollectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
-        feedCollectionView.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
-        feedCollectionView.dataSource = sut
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        movieListMock = nil
-        sut = nil
-        feedCollectionView = nil
-    }
-
-    func testNumberOfItems() {
+        beforeEach {
+            
+            sut = FeedCollectionViewDataSource()
+            
+            feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+            feedCollectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
+            feedCollectionView.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
+            feedCollectionView.dataSource = sut
+            
+            moviesList = MovieStub.getMovieList()
+            sut.movies = moviesList
+            feedCollectionView.reloadData()
+            
+            sut.favoritePressed = { tag in
+                moviesList[tag].isFavorite = true
+                feedCollectionView.reloadData()
+            }
+        }
         
-        // given
-        let numberOfItems = movieListMock.count
+        describe("loading") {
+            
+            context("movies") {
+                
+                it("should display the correct number of items") {
+                    
+                    expect(sut.collectionView(feedCollectionView, numberOfItemsInSection: 0)) == sut.movies.count
+                }
+            }
+            
+            context("list cells") {
+                
+                it("should load the correct cell type") {
+                    
+                    sut.displayType = .list
+                    feedCollectionView.reloadData()
+                    
+                    expect(sut.collectionView(feedCollectionView, cellForItemAt: IndexPath(item: 0, section: 0)) is ListCollectionViewCell) == true
+                }
+            }
+            
+            context("grid cells") {
+                
+                it("should load the correct cell type") {
+                    
+                    sut.displayType = .grid
+                    feedCollectionView.reloadData()
+                    
+                    expect(sut.collectionView(feedCollectionView, cellForItemAt: IndexPath(item: 0, section: 0)) is GridCollectionViewCell) == true
+                }
+            }
+        }
         
-        // when
-        feedCollectionView.reloadData()
-        
-        // then
-        XCTAssertTrue(numberOfItems == sut.collectionView(feedCollectionView, numberOfItemsInSection: 0))
+        describe("interacting") {
+            
+            context("with favorite button") {
+                it("should update the correct cell") {
+                    
+                    // Arrange
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    var cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! FeedCollectionViewCell
+                    
+                    // Act
+                    cell.favoriteButton.sendActions(for: .touchUpInside)
+                    
+                    // Assert
+                    cell = sut.collectionView(feedCollectionView, cellForItemAt: indexPath) as! FeedCollectionViewCell
+                    expect(cell.isFavorite) == true
+                }
+            }
+        }
     }
 }
