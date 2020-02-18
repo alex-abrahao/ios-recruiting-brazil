@@ -82,12 +82,14 @@ final class DetailPresenter: BasePresenter {
         } else {
             // Had one or more genres not locally found.
             // Needs to update the local list.
-            service.getGenreList { [weak self] (genreList, error) in
+            service.getGenreList { [weak self] (result: Result<[Genre], Error>) in
                 guard let self = self else { return }
-                if let genreList = genreList {
+                
+                switch result {
+                case .success(let genreList):
                     let matchingGenres = genreList.filter { self.movie.genreIDs.contains($0.id) }
                     self.genres = matchingGenres
-                } else if let error = error {
+                case .failure(let error):
                     os_log("❌ - Error loading genres: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
                 }
             }

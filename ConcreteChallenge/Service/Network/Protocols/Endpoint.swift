@@ -12,6 +12,8 @@ protocol Endpoint: APIConfiguration {
 
     typealias APIHTTPMethod = HTTPMethod
     typealias APIParameters = Parameters
+    
+    var completeURL: URL? { get }
 }
 
 extension APIConfiguration where Self: Endpoint {

@@ -10,9 +10,14 @@ import Foundation
 
 protocol MovieService {
     
-    func getPopular(page: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    /// Controls which page to load next on
+    var currentPage: Int { get }
+    /// Max number of pages, usually comes from the server
+    var totalPages: Int { get }
     
-    func getGenreList(completion: @escaping ([Genre]?, Error?) -> Void)
+    func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void)
     
-    func search(_ text: String, completion: @escaping ([Movie]?, Error?) -> Void)
+    func getGenreList(completion: @escaping (Result<[Genre], Error>) -> Void)
+    
+    func search(_ text: String, completion: @escaping (Result<[Movie], Error>) -> Void)
 }

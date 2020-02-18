@@ -9,24 +9,32 @@
 class MovieClient: MovieService {
     
     var service = NetworkService()
+    
+    private(set) var currentPage: Int = 0
+    private(set) var totalPages: Int = 500
 
-    func getPopular(page: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
+    func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
-        service.performRequest(route: MovieEndpoint.popular(page: page)) { (result: Result<PopularResponse, Error>) in
-            
+        guard page <= totalPages else { return }
+        
+        currentPage = page
+        
+        service.performRequest(route: MovieEndpoint.popular(page: page)) { [weak self] (result: Result<PopularResponse, Error>) in
+                        
             switch result {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
                 LocalService.instance.checkFavorites(on: returnedMovies)
-                completion(returnedMovies, nil)
+                self?.totalPages = movieResponse.totalPages
+                completion(.success(returnedMovies))
             case .failure(let error):
-                completion(nil, error)
+                completion(.failure(error))
             }
         }
     }
     
-    func getGenreList(completion: @escaping ([Genre]?, Error?) -> Void) {
+    func getGenreList(completion: @escaping (Result<[Genre], Error>) -> Void) {
         
         service.performRequest(route: MovieEndpoint.genreList) { (result: Result<GenreListResponse, Error>) in
             
@@ -35,14 +43,14 @@ class MovieClient: MovieService {
                 
                 let genreList = genreResponse.genres
                 LocalService.instance.setGenres(list: genreList)
-                completion(genreList, nil)
+                completion(.success(genreList))
             case .failure(let error):
-                completion(nil, error)
+                completion(.failure(error))
             }
         }
     }
     
-    func search(_ text: String, completion: @escaping ([Movie]?, Error?) -> Void) {
+    func search(_ text: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
         service.performRequest(route: MovieEndpoint.search(text)) { (result: Result<PopularResponse, Error>) in
             
@@ -51,9 +59,9 @@ class MovieClient: MovieService {
                 
                 let returnedMovies = movieResponse.results
                 LocalService.instance.checkFavorites(on: returnedMovies)
-                completion(returnedMovies, nil)
+                completion(.success(returnedMovies))
             case .failure(let error):
-                completion(nil, error)
+                completion(.failure(error))
             }
         }
     }

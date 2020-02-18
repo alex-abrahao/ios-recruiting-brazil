@@ -11,53 +11,44 @@ import os.log
 
 final class PopularsPresenter: FeedPresenter {
     
-    // MARK: - Properties -    
-    /// Controls which page to load next on
-    private var pagesLoaded: Int = 0
-    
-    private var maxPages: Int = 500
-    
+    // MARK: - Properties -
     private var isSearching: Bool = false
     
-    private var service: MovieService = MovieClient()
+    private var client: MovieService = MovieClient()
     
     // MARK: - Methods -
     override func loadFeed() {
         view?.startLoading()
-        service.getPopular(page: 1) { [weak self] (movies, error) in
+        client.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
-            if let error = error {
+            switch result {
+            case .success(let movies):
+                self?.movies = movies
+            case .failure(let error):
                 os_log("❌ - Error loading movie feed: %@", log: Logger.appLog(), type: .fault, error.localizedDescription)
                 self?.view?.displayError(.generic)
-                return
-            }
-            
-            if let movies = movies {
-                self?.movies = movies
             }
         }
-        pagesLoaded = 1
     }
     
     /// Load more items for the infinite scrolling feed.
     func loadMoreItems() {
         
-        guard !isSearching, pagesLoaded <= maxPages else { return }
-        pagesLoaded += 1
+        guard !isSearching else { return }
         view?.startLoading()
         
-        service.getPopular(page: pagesLoaded) { [weak self] (movies, error) in
+        client.getPopular(page: client.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
-            if let error = error {
-                os_log("❌ - Error loading movie feed: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
-                return
-            }
             
-            if let movies = movies {
+            switch result {
+            case .success(let movies):
                 self?.movies.append(contentsOf: movies)
+            case .failure(let error):
+                os_log("❌ - Error loading movie feed: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
+                self?.view?.displayError(.generic)
             }
         }
     }
@@ -103,22 +94,20 @@ final class PopularsPresenter: FeedPresenter {
         
         view?.startLoading()
         
-        service.search(text) { [weak self] (movies, error) in
+        client.search(text) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
-            if let error = error {
-                os_log("❌ - Error searching movies: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
-                self?.view?.displayError(.info("Error loading search results"))
-                return
-            }
-            
-            if let movies = movies {
+            switch result {
+            case .success(let movies):
                 self?.movies = movies
                 self?.feedView.resetFeedPosition()
                 if movies.isEmpty {
                     self?.view?.displayError(.missing("Your search of \"\(text)\" found nothing"))
                 }
+            case .failure(let error):
+                os_log("❌ - Error searching movies: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
+                self?.view?.displayError(.info("Error loading search results"))
             }
         }
     }
