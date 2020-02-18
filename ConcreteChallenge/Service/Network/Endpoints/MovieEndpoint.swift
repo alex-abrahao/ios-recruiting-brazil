@@ -6,14 +6,14 @@
 //  Copyright © 2019 Concrete. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
 /**
 Provides requests for movie operations
  
  - Returns: The request for a determinated operation
  */
-enum MovieEndpoint: APIConfiguration {
+enum MovieEndpoint: Endpoint {
     /**
      Get the popular movies
      
@@ -34,7 +34,7 @@ enum MovieEndpoint: APIConfiguration {
     case search(_ text: String)
     
     // MARK: - HTTPMethod
-    var method: HTTPMethod {
+    var method: APIHTTPMethod {
         switch self {
         case .popular, .genreList, .search:
             return .get
@@ -55,34 +55,16 @@ enum MovieEndpoint: APIConfiguration {
     }
     
     // MARK: - Parameters
-    var parameters: Parameters? {
+    var parameters: APIParameters? {
         switch self {
         case .popular, .genreList, .search:
             return nil
         }
     }
     
-    // MARK: - URLRequestConvertible
-    func asURLRequest() throws -> URLRequest {
-        let url = NetworkInfo.ProductionServer.baseURL + path
-        
-        var urlRequest = URLRequest(url: URL(string: url)!)
-        // HTTP Method
-        urlRequest.httpMethod = method.rawValue
-        
-        // Common Headers
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        
-        // Parameters
-        if let parameters = parameters {
-            do {
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            } catch {
-                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
-            }
-        }
-        
-        return urlRequest
+    var completeURL: URL? {
+        guard path != "" else { return nil }
+        let completePath = NetworkInfo.ProductionServer.baseURL + path
+        return URL(string: completePath)
     }
 }
