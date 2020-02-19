@@ -17,9 +17,10 @@ class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
     var calledDisplayError = false
     var calledHideError = false
     var calledSetGenres = false
+    var calledReloadData = false
     
-    func setGenres(data: GenreViewData) {
-        calledSetGenres = true
+    func reloadData(info: [DetailInfoType]) {
+        calledReloadData = true
     }
     
     func startLoading() {

@@ -27,7 +27,6 @@
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
 		5E6AACED239C3DB200564F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACEB239C3DB200564F6A /* LaunchScreen.storyboard */; };
-		5E6AACF8239C3DB300564F6A /* NetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACF7239C3DB300564F6A /* NetworkLayerTests.swift */; };
 		5E6AAD03239C3DB300564F6A /* ConcreteChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD02239C3DB300564F6A /* ConcreteChallengeUITests.swift */; };
 		5E6AAD16239C423700564F6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD15239C423700564F6A /* BaseViewController.swift */; };
 		5E6AAD1C239C436A00564F6A /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1B239C436A00564F6A /* Presenter.swift */; };
@@ -124,7 +123,6 @@
 		5E6AACEC239C3DB200564F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E6AACEE239C3DB200564F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6AACF3239C3DB300564F6A /* ConcreteChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcreteChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E6AACF7239C3DB300564F6A /* NetworkLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayerTests.swift; sourceTree = "<group>"; };
 		5E6AACF9239C3DB300564F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6AACFE239C3DB300564F6A /* ConcreteChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcreteChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AAD02239C3DB300564F6A /* ConcreteChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteChallengeUITests.swift; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 			children = (
 				1D2DFE0023FB13F200D7BD37 /* Stubs */,
 				5E6AACF9239C3DB300564F6A /* Info.plist */,
-				5E6AACF7239C3DB300564F6A /* NetworkLayerTests.swift */,
 				5EFC3EEA23A870DF00FDE1F8 /* DetailPresenterTests.swift */,
 				5EFC3EEC23A875A900FDE1F8 /* DetailViewDelegateMock.swift */,
 				1D6DC7AB23F5FBD000ED0F06 /* FeedDataSourceTests.swift */,
@@ -956,7 +953,6 @@
 				1D6DC7AE23F6031C00ED0F06 /* FeedPresenterMock.swift in Sources */,
 				1D2DFDFD23FAF45C00D7BD37 /* MovieStub.swift in Sources */,
 				1D6DC7B023F6047900ED0F06 /* FeedViewDelegateMock.swift in Sources */,
-				5E6AACF8239C3DB300564F6A /* NetworkLayerTests.swift in Sources */,
 				5EFC3EED23A875A900FDE1F8 /* DetailViewDelegateMock.swift in Sources */,
 				1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceTests.swift in Sources */,
 				5EFC3EEB23A870DF00FDE1F8 /* DetailPresenterTests.swift in Sources */,

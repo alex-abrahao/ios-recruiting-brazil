@@ -14,14 +14,14 @@ class FeedDataSourceTests: QuickSpec {
     
     override func spec() {
         
-        var sut: FeedCollectionViewDataSource!
+        var sut: FeedCollectionDataSource!
         var feedCollectionView: UICollectionView!
         var moviesList: [Movie]!
         var didPrefetch: Bool!
         
         beforeEach {
             
-            sut = FeedCollectionViewDataSource()
+            sut = FeedCollectionDataSource()
             
             feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
             feedCollectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)

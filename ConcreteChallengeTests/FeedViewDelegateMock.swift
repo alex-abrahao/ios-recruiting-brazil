@@ -19,6 +19,9 @@ class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     var calledReloadFeed = false
     var calledResetFeedPosition = false
     var calledMoveData = false
+    var calledNavigateToDetail = false
+    var calledDatasource = false
+    var calledExitView = false
     
     func reloadFeed() {
         calledReloadFeed = true
@@ -32,6 +35,14 @@ class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
         calledMoveData = true
     }
     
+    func dataSource(movies: [Movie]) {
+        calledDatasource = true
+    }
+    
+    func navigateToDetail(movie: Movie) {
+        calledNavigateToDetail = true
+    }
+    
     func startLoading() {
         calledStartLoading = true
     }
@@ -41,11 +52,7 @@ class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     }
     
     func exitView() {
-        
-    }
-    
-    func navigateToView(presenter: Presenter) {
-        
+        calledExitView = false
     }
     
     func displayError(_ type: ErrorMessageType) {

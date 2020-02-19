@@ -28,21 +28,4 @@ class DetailPresenterTests: XCTestCase {
         sut = nil
         delegate = nil
     }
-
-    func testViewData() {
-        
-        // given
-        let infoType: DetailInfoType
-        
-        // when
-        infoType = sut.getDetailInfo(row: 1)
-        
-        // then
-        switch infoType {
-        case .title(let title):
-            XCTAssertTrue(title == movieMock.title)
-        default:
-            XCTFail("Error: Wrong info type")
-        }
-    }
 }
