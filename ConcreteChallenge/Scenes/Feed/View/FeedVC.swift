@@ -15,9 +15,7 @@ import SnapKit
 class FeedVC: BaseViewController, FavoriteViewDelegate {
     
     // MARK: - Properties -
-    var feedPresenter: FeedPresenter? {
-        return presenter as? FeedPresenter
-    }
+    var feedPresenter: FeedPresenter
     
     /// Collection view's current delegate
     var collectionDelegate = FeedCollectionViewDelegate()
@@ -52,14 +50,23 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }()
     
     // MARK: - Init -
-    override init(presenter: Presenter) {
+    init(presenter: FeedPresenter? = nil) {
         guard type(of: self) != FeedVC.self else {
             os_log("❌ - FeedVC instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
                 "Creating `FeedVC` instances directly is not supported. This class is meant to be subclassed."
             )
         }
-        super.init(presenter: presenter)
+        
+        if let presenter = presenter {
+            self.feedPresenter = presenter
+        } else {
+            self.feedPresenter = FeedPresenter()
+        }
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        feedPresenter.view = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,17 +78,6 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         super.setupUI()
 
         view.backgroundColor = .white
-        
-        feedCollectionView.dataSource = collectionDataSource
-        feedCollectionView.delegate = collectionDelegate
-        
-        collectionDataSource.favoritePressed = { [weak self] tag in
-            self?.feedPresenter?.favoriteStateChanged(tag: tag)
-        }
-        
-        collectionDelegate.didSelectItem = { [weak self] item in
-            self?.feedPresenter?.selectItem(item: item)
-        }
     }
     
     override func startLoading() {
@@ -94,10 +90,27 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         feedCollectionView.backgroundColor = .white
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        feedCollectionView.dataSource = collectionDataSource
+        feedCollectionView.delegate = collectionDelegate
+        
+        collectionDataSource.favoritePressed = { [weak self] tag in
+            self?.feedPresenter.favoriteStateChanged(tag: tag)
+        }
+        
+        collectionDelegate.didSelectItem = { [weak self] item in
+            self?.feedPresenter.selectItem(item: item)
+        }
+        
+        feedPresenter.loadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        feedPresenter?.updateData()
+        feedPresenter.updateData()
     }
     
     func setFavorite(_ isFavorite: Bool, tag: Int?) {
@@ -124,8 +137,14 @@ extension FeedVC: FeedViewDelegate {
         animated: true)
     }
     
-    func moveData(movies: [Movie]) {
+    func dataSource(movies: [Movie]) {
         collectionDataSource.movies = movies
         reloadFeed()
+    }
+    
+    func navigateToDetail(movie: Movie) {
+        let vc = DetailVC(movie: movie)
+        
+        navigateTo(viewController: vc)
     }
 }

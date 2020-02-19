@@ -31,7 +31,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
         didSet {
-            feedView.moveData(movies: movies)
+            feedView.dataSource(movies: movies)
         }
     }
     
@@ -52,9 +52,13 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     // MARK: - Methods -
-    override func attachView(_ view: ViewDelegate) {
-        super.attachView(view)
+    override func loadData() {
         loadFeed()
+    }
+    
+    override func updateData() {
+        LocalService.instance.checkFavorites(on: movies)
+        feedView.reloadFeed()
     }
     
     /**
@@ -69,14 +73,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         }
         
         let movie = movies[item]
-        let detailPresenter = DetailPresenter(movie: movie)
-        feedView.navigateToView(presenter: detailPresenter)
-    }
-    
-    /// Do any steps to update the displayed data
-    func updateData() {
-        LocalService.instance.checkFavorites(on: movies)
-        feedView.reloadFeed()
+        feedView.navigateToDetail(movie: movie)
     }
     
     // MARK: - Favorite handler

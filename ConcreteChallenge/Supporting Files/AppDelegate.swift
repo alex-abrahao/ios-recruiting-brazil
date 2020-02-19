@@ -19,10 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         // Set the the main VC
-        let popularNavigationController = NavigationController(rootViewController: Factory.getViewController(using: PopularsPresenter()))
+        let popularNavigationController = NavigationController(rootViewController: PopularsVC())
+        
         popularNavigationController.tabBarItem = UITabBarItem(title: "Popular", image: #imageLiteral(resourceName: "star"), tag: 0)
 
-        let favoritesNavigationController = NavigationController(rootViewController: Factory.getViewController(using: FavoritesPresenter()))
+        let favoritesNavigationController = NavigationController(rootViewController: FavoritesVC())
         favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "favoriteFull"), tag: 1)
         
         let tabBarController = TabBarController()

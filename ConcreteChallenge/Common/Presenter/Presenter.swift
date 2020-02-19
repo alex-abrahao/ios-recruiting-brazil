@@ -8,24 +8,26 @@
 
 import Foundation
 
-protocol Presenter {
+protocol Presenter: class {
     
     /**
      The view object that conforms to a `ViewDelegate` protocol.
      
      Send the updates to the view using this property.
      */
-    var view: ViewDelegate? { get }
+    var view: ViewDelegate? { get set }
     
     /**
-     Attaches a view to be currently controlled by the presenter.
+     Do any steps to load the data.
      
-     - Parameter view: The view to be attached.
+     To be called by the view.
      */
-    func attachView(_ view: ViewDelegate)
+    func loadData()
     
     /**
-     Detaches the view being controlled by the presenter.
-     */
-    func detachView()
+    Do any steps to update the data.
+    
+    To be called by the view.
+    */
+    func updateData()
 }

@@ -35,7 +35,8 @@ final class DetailPresenter: BasePresenter {
     
     private var genres: [Genre] = [] {
         didSet {
-            detailView.setGenres(data: GenreViewData(genres: self.genresText))
+//            detailView.setGenres(data: GenreViewData(genres: self.genresText))
+            detailView.reloadData()
         }
     }
     
@@ -70,8 +71,7 @@ final class DetailPresenter: BasePresenter {
     }
     
     // MARK: - Methods -
-    override func attachView(_ view: ViewDelegate) {
-        super.attachView(view)
+    override func loadData() {
         getGenres()
     }
     

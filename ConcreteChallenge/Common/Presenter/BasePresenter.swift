@@ -12,7 +12,7 @@ import os.log
 class BasePresenter: Presenter {
     
     // MARK: - Properties -
-    private(set) weak var view: ViewDelegate?
+    weak var view: ViewDelegate?
     
     /// Variable to enable or disable presenter's logs
     static var logEnabled: Bool = true
@@ -38,11 +38,7 @@ class BasePresenter: Presenter {
     }
     
     // MARK: - Methods -
-    func attachView(_ view: ViewDelegate) {
-        self.view = view
-    }
+    func loadData() {}
     
-    func detachView() {
-        self.view = nil
-    }
+    func updateData() {}
 }

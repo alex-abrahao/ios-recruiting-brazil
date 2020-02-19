@@ -13,9 +13,6 @@ class BaseViewController: UIViewController, ViewDelegate {
     
     
     // MARK: - Properties -
-    /// The presenter for this view. The use of a typecast is recommended whenever used.
-    let presenter: Presenter
-    
     /// Variable to enable or disable view's logs
     static var logEnabled: Bool = true
     
@@ -23,16 +20,15 @@ class BaseViewController: UIViewController, ViewDelegate {
     var errorView: ErrorView = ErrorView()
     
     // MARK: - Init -
-    init(presenter: Presenter) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         guard type(of: self) != BaseViewController.self else {
             os_log("❌ - BaseViewController instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
                 "Creating `BaseViewController` instances directly is not supported. This class is meant to be subclassed."
             )
         }
-        self.presenter = presenter
+        
         super.init(nibName: nil, bundle: nil)
-        self.presenter.attachView(self)
         
         if BaseViewController.logEnabled {
             os_log("🎮 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
@@ -44,7 +40,6 @@ class BaseViewController: UIViewController, ViewDelegate {
     }
     
     deinit {
-        presenter.detachView()
         if BaseViewController.logEnabled {
             os_log("🎮 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
@@ -97,14 +92,12 @@ class BaseViewController: UIViewController, ViewDelegate {
         }
     }
     
-    func navigateToView(presenter: Presenter) {
-        
-        let newVC: BaseViewController = Factory.getViewController(using: presenter)
-        
+    func navigateTo(viewController: UIViewController) {
+                
         if let navigationController = self.navigationController {
-            navigationController.pushViewController(newVC, animated: true)
+            navigationController.pushViewController(viewController, animated: true)
         } else {
-            self.present(newVC, animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     

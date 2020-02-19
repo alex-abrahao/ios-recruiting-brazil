@@ -10,6 +10,6 @@ import Foundation
 
 protocol DetailViewDelegate: ViewDelegate, FavoriteViewDelegate {
     
-    /// Set the movie genres whenever it has loaded
-    func setGenres(data: GenreViewData)
+    /// Called whenever the data displayed must be reloaded
+    func reloadData()
 }

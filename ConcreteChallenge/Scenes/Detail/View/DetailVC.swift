@@ -14,12 +14,7 @@ import SnapKit
 final class DetailVC: BaseViewController {
     
     // MARK: - Properties -
-    var detailPresenter: DetailPresenter? {
-        return presenter as? DetailPresenter
-    }
-    
-    /// Cell that displays the genres info, to be updated when necessary
-    weak var genresCell: DefaultInfoTableCell?
+    var detailPresenter: DetailPresenter
     
     // MARK: View
     let detailTableView: UITableView = {
@@ -43,7 +38,7 @@ final class DetailVC: BaseViewController {
     
     lazy var favoriteButton: UIBarButtonItem = {
         
-        let button = UIBarButtonItem(image: UIImage(named: (detailPresenter?.isFavorite ?? false) ? "favoriteFull" : "favoriteEmpty"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(favoriteTapped(_:)))
+        let button = UIBarButtonItem(image: UIImage(named: detailPresenter.isFavorite ? "favoriteFull" : "favoriteEmpty"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(favoriteTapped(_:)))
         return button
     }()
     
@@ -51,16 +46,31 @@ final class DetailVC: BaseViewController {
         return .lightContent
     }
     
+    // MARK: - Init -
+    init(movie: Movie, presenter: DetailPresenter? = nil) {
+        
+        if let presenter = presenter {
+            self.detailPresenter = presenter
+        } else {
+            self.detailPresenter = DetailPresenter(movie: movie)
+        }
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        detailPresenter.view = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Methods -
     override func setupUI() {
         super.setupUI()
         
         view.backgroundColor = .white
-        self.title = detailPresenter?.getBarTitle()
+        self.title = detailPresenter.getBarTitle()
         self.navigationItem.rightBarButtonItem = favoriteButton
-        
-        detailTableView.dataSource = self
-        detailTableView.delegate = self
     }
     
     override func addSubviews() {
@@ -74,6 +84,14 @@ final class DetailVC: BaseViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        detailTableView.dataSource = self
+        
+        detailPresenter.loadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -82,37 +100,32 @@ final class DetailVC: BaseViewController {
     
     @objc func favoriteTapped(_ sender: UIBarButtonItem) {
         
-        detailPresenter?.favoriteStateChanged()
+        detailPresenter.favoriteStateChanged()
     }
 }
 
 // MARK: - Detail View Delegate -
-extension DetailVC: DetailViewDelegate {
-    func setGenres(data: GenreViewData) {
-        DispatchQueue.main.async { [weak self] in
-            self?.genresCell?.textLabel?.text = data.genres
-        }
-    }
-    
+extension DetailVC: DetailViewDelegate {    
     func setFavorite(_ isFavorite: Bool, tag: Int? = nil) {
         let image = UIImage(named: isFavorite ? "favoriteFull" : "favoriteEmpty")
         favoriteButton = UIBarButtonItem(image: image, style: UIBarButtonItem.Style.plain, target: self, action: #selector(favoriteTapped(_:)))
         self.navigationItem.rightBarButtonItem = favoriteButton
+    }
+    
+    func reloadData() {
+        detailTableView.reloadData()
     }
 }
 
 // MARK: - TableView Data Source -
 extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailPresenter?.numberOfRows ?? 0
+        return detailPresenter.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let info = detailPresenter?.getDetailInfo(row: indexPath.row) else {
-            os_log("❌ - Unknown presenter %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
-            fatalError("Unknown Presenter")
-        }
+        let info = detailPresenter.getDetailInfo(row: indexPath.row)
         
         switch info {
         case .poster(let imageURL):
@@ -159,7 +172,6 @@ extension DetailVC: UITableViewDataSource {
             }
             
             cell.textLabel?.text = genres
-            self.genresCell = cell
             return cell
             
         case .overview(let text):
@@ -172,8 +184,4 @@ extension DetailVC: UITableViewDataSource {
             return cell
         }
     }
-}
-
-extension DetailVC: UITableViewDelegate {
-    
 }

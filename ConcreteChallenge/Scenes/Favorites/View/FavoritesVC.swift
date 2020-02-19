@@ -15,12 +15,21 @@ final class FavoritesVC: FeedVC {
     
     // MARK: - Properties -
     var favoritesPresenter: FavoritesPresenter? {
-        return presenter as? FavoritesPresenter
+        return feedPresenter as? FavoritesPresenter
     }
     
     // MARK: View
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    // MARK: - Init -
+    init(presenter: FavoritesPresenter = FavoritesPresenter()) {
+        super.init(presenter: presenter)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Methods -

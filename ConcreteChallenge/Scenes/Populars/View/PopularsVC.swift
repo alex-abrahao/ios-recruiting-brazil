@@ -16,7 +16,7 @@ final class PopularsVC: FeedVC {
     
     // MARK: - Properties -
     var popularsPresenter: PopularsPresenter? {
-        return presenter as? PopularsPresenter
+        return feedPresenter as? PopularsPresenter
     }
     
     // MARK: Header
@@ -70,17 +70,19 @@ final class PopularsVC: FeedVC {
         return .lightContent
     }
     
+    // MARK: - Init -
+    init(presenter: PopularsPresenter = PopularsPresenter()) {
+        
+        super.init(presenter: presenter)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Methods -
     override func setupUI() {
         super.setupUI()
-        
-        // FIXME: Header not scrolling because of delegate of the collectionview
-        scrollView.delegate = self
-        searchBar.delegate = self
-        
-        collectionDataSource.prefetch = { [weak self] in
-            self?.popularsPresenter?.loadMoreItems()
-        }
         
         let headerData = popularsPresenter?.getHeaderData()
         headerView.callToActionLabel.text = headerData?.title
@@ -147,6 +149,18 @@ final class PopularsVC: FeedVC {
     override func finishLoading() {
         super.finishLoading()
         auxiliarView.backgroundColor = feedCollectionView.backgroundColor
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // FIXME: Header not scrolling because of delegate of the collectionview
+        scrollView.delegate = self
+        searchBar.delegate = self
+        
+        collectionDataSource.prefetch = { [weak self] in
+            self?.popularsPresenter?.loadMoreItems()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

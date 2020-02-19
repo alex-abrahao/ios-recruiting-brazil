@@ -16,7 +16,11 @@ protocol FeedViewDelegate: ViewDelegate {
     /// Called when the feed needs to be at the first position.
     func resetFeedPosition()
     
-    /// Pass the movies data to the responsible
+    /// Pass the movies data source to the responsible
     /// - Parameter movies: The movies to pass
-    func moveData(movies: [Movie])
+    func dataSource(movies: [Movie])
+    
+    /// Pass a `Movie` To open its details
+    /// - Parameter movie: The movie to be detailed
+    func navigateToDetail(movie: Movie)
 }
