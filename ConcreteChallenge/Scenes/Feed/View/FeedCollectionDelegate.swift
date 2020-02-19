@@ -1,5 +1,5 @@
 //
-//  FeedCollectionViewDelegate.swift
+//  FeedCollectionDelegate.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 13/02/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCollectionViewDelegate: NSObject {
+class FeedCollectionDelegate: NSObject {
     
     enum DisplayType {
         case list
@@ -20,7 +20,7 @@ class FeedCollectionViewDelegate: NSObject {
     var didSelectItem: ((Int) -> Void)?
 }
 
-extension FeedCollectionViewDelegate: UICollectionViewDelegate {
+extension FeedCollectionDelegate: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItem?(indexPath.item)
@@ -28,7 +28,7 @@ extension FeedCollectionViewDelegate: UICollectionViewDelegate {
 }
 
 // MARK: Flow Layout
-extension FeedCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
+extension FeedCollectionDelegate: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

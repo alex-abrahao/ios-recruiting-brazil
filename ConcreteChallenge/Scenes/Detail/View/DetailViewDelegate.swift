@@ -11,5 +11,5 @@ import Foundation
 protocol DetailViewDelegate: ViewDelegate, FavoriteViewDelegate {
     
     /// Called whenever the data displayed must be reloaded
-    func reloadData()
+    func reloadData(info: [DetailInfoType])
 }

@@ -18,10 +18,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     var feedPresenter: FeedPresenter
     
     /// Collection view's current delegate
-    var collectionDelegate = FeedCollectionViewDelegate()
+    var collectionDelegate: FeedCollectionDelegate
     
     /// Collection view's current data source
-    var collectionDataSource = FeedCollectionViewDataSource()
+    var collectionDataSource: FeedCollectionDataSource
     
     // MARK: View
     let feedCollectionView: UICollectionView = {
@@ -50,7 +50,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }()
     
     // MARK: - Init -
-    init(presenter: FeedPresenter? = nil) {
+    init(presenter: FeedPresenter? = nil, dataSource: FeedCollectionDataSource = FeedCollectionDataSource(), delegate: FeedCollectionDelegate = FeedCollectionDelegate()) {
         guard type(of: self) != FeedVC.self else {
             os_log("❌ - FeedVC instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
@@ -63,6 +63,9 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         } else {
             self.feedPresenter = FeedPresenter()
         }
+        
+        self.collectionDataSource = dataSource
+        self.collectionDelegate = delegate
         
         super.init(nibName: nil, bundle: nil)
         

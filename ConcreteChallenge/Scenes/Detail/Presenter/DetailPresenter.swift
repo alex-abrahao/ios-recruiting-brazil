@@ -35,8 +35,7 @@ final class DetailPresenter: BasePresenter {
     
     private var genres: [Genre] = [] {
         didSet {
-//            detailView.setGenres(data: GenreViewData(genres: self.genresText))
-            detailView.reloadData()
+            detailView.reloadData(info: displayData)
         }
     }
     
@@ -94,16 +93,6 @@ final class DetailPresenter: BasePresenter {
                 }
             }
         }
-    }
-    
-    func getDetailInfo(row: Int) -> DetailInfoType {
-        guard row < self.numberOfRows else {
-            os_log("❌ - Number of rows > number of info", log: Logger.appLog(), type: .error)
-            // Return anything so as not to just crash
-            return .overview(text: "")
-        }
-        
-        return displayData[row]
     }
     
     func getBarTitle() -> String {

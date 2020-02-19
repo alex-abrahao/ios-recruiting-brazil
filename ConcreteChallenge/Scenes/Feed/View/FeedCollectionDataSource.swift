@@ -1,5 +1,5 @@
 //
-//  FeedCollectionViewDataSource.swift
+//  FeedCollectionDataSource.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 13/02/20.
@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import Kingfisher
 
-class FeedCollectionViewDataSource: NSObject {
+class FeedCollectionDataSource: NSObject {
     
     enum DisplayType {
         case list
@@ -32,7 +32,7 @@ class FeedCollectionViewDataSource: NSObject {
     }
 }
 
-extension FeedCollectionViewDataSource: UICollectionViewDataSource {
+extension FeedCollectionDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
