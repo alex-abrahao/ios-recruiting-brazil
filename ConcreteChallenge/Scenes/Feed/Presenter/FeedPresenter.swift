@@ -28,7 +28,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         return view
     }
     
-    var favoriteClient: FavoritesClient = FavoritesClient()
+    var favoriteService: FavoriteService = FavoriteClient()
     
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
@@ -59,7 +59,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     override func updateData() {
-        favoriteClient.checkFavorites(on: movies)
+        favoriteService.checkFavorites(on: movies)
         feedView.reloadFeed()
     }
     
@@ -94,9 +94,9 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         favoritesView.setFavorite(movie.isFavorite, tag: item)
         if movie.isFavorite {
-            favoriteClient.setFavorite(movie: movie)
+            favoriteService.setFavorite(movie: movie)
         } else {
-            favoriteClient.removeFavorite(movie: movie)
+            favoriteService.removeFavorite(movie: movie)
         }
     }
 }

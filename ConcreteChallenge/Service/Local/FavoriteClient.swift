@@ -1,5 +1,5 @@
 //
-//  FavoritesClient.swift
+//  FavoriteClient.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 19/02/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FavoritesClient {
+class FavoriteClient {
     
     var service: DocumentsSaverService
     
@@ -19,7 +19,7 @@ class FavoritesClient {
     }
 }
 
-extension FavoritesClient: FavoriteService {
+extension FavoriteClient: FavoriteService {
     
     func setFavorite(movie: Movie) {
         

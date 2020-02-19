@@ -8,18 +8,18 @@
 
 class MovieClient: MovieService {
     
-    var service: NetworkService
-    var favoriteClient: FavoritesClient
-    var genreClient: GenreClient
+    var networkService: NetworkService
+    var favoriteService: FavoriteService
+    var genreService: GenreService
     
     private(set) var currentPage: Int = 0
     private(set) var totalPages: Int = 500
     
-    init(service: NetworkService = NetworkService(), favoriteClient: FavoritesClient = FavoritesClient(), genreClient: GenreClient = GenreClient()) {
+    init(networkService: NetworkService = NetworkService(), favoriteService: FavoriteService = FavoriteClient(), genreService: GenreService = GenreClient()) {
         
-        self.service = service
-        self.favoriteClient = favoriteClient
-        self.genreClient = genreClient
+        self.networkService = networkService
+        self.favoriteService = favoriteService
+        self.genreService = genreService
     }
 
     func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -28,13 +28,13 @@ class MovieClient: MovieService {
         
         currentPage = page
         
-        service.performRequest(route: MovieEndpoint.popular(page: page)) { [weak self] (result: Result<PopularResponse, Error>) in
+        networkService.performRequest(route: MovieEndpoint.popular(page: page)) { [weak self] (result: Result<PopularResponse, Error>) in
                         
             switch result {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
-                self?.favoriteClient.checkFavorites(on: returnedMovies)
+                self?.favoriteService.checkFavorites(on: returnedMovies)
                 self?.totalPages = movieResponse.totalPages
                 completion(.success(returnedMovies))
             case .failure(let error):
@@ -45,13 +45,13 @@ class MovieClient: MovieService {
     
     func getGenreList(completion: @escaping (Result<[Genre], Error>) -> Void) {
         
-        service.performRequest(route: MovieEndpoint.genreList) { [weak self] (result: Result<GenreListResponse, Error>) in
+        networkService.performRequest(route: MovieEndpoint.genreList) { [weak self] (result: Result<GenreListResponse, Error>) in
             
             switch result {
             case .success(let genreResponse):
                 
                 let genreList = genreResponse.genres
-                self?.genreClient.setGenres(list: genreList)
+                self?.genreService.setGenres(list: genreList)
                 completion(.success(genreList))
             case .failure(let error):
                 completion(.failure(error))
@@ -61,13 +61,13 @@ class MovieClient: MovieService {
     
     func search(_ text: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
-        service.performRequest(route: MovieEndpoint.search(text)) { [weak self] (result: Result<PopularResponse, Error>) in
+        networkService.performRequest(route: MovieEndpoint.search(text)) { [weak self] (result: Result<PopularResponse, Error>) in
             
             switch result {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
-                self?.favoriteClient.checkFavorites(on: returnedMovies)
+                self?.favoriteService.checkFavorites(on: returnedMovies)
                 completion(.success(returnedMovies))
             case .failure(let error):
                 completion(.failure(error))

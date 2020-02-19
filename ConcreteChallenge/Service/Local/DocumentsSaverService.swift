@@ -19,8 +19,8 @@ class DocumentsSaverService {
         return URL(fileURLWithPath: documentsDir.appendingPathComponent(file + ".json"))
     }
     
-    /// Save any object as a JSON of a dictionary
-    func save<T: Codable>(_ object: [Int : T], fileName: String) {
+    /// Save any object as a JSON
+    func save<T: Codable>(_ object: T, fileName: String) {
         
         let url = getURLInDocumentDir(for: fileName)
         
@@ -32,12 +32,12 @@ class DocumentsSaverService {
         }
     }
     
-    /// Get the objects dictionary for any `Codable` type
-    func get<T: Codable>(fileName: String) -> [Int : T]? {
+    /// Get the object for any `Codable` type
+    func get<T: Codable>(fileName: String) -> T? {
         let url = getURLInDocumentDir(for: fileName)
         do {
             let readData = try Data(contentsOf: url)
-            let dictionary = try JSONDecoder().decode([Int : T].self, from: readData)
+            let dictionary = try JSONDecoder().decode(T.self, from: readData)
             return dictionary
         } catch {
             os_log("Could not read from %@", log: Logger.appLog(), type: .info, String(describing: url))

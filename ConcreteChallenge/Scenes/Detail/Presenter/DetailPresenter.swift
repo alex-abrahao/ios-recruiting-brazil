@@ -25,8 +25,8 @@ final class DetailPresenter: BasePresenter {
     
     private var movieClient: MovieService = MovieClient()
     
-    private var favoriteClient: FavoritesClient = FavoritesClient()
-    private var genreClient: GenreClient = GenreClient()
+    private var favoriteService: FavoriteService = FavoriteClient()
+    private var genreClient: GenreService = GenreClient()
     
     private lazy var displayData: [DetailInfoType] = [
         .poster(imageURL: ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL),
@@ -109,9 +109,9 @@ extension DetailPresenter: FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         detailView.setFavorite(movie.isFavorite, tag: nil)
         if movie.isFavorite {
-            favoriteClient.setFavorite(movie: movie)
+            favoriteService.setFavorite(movie: movie)
         } else {
-            favoriteClient.removeFavorite(movie: movie)
+            favoriteService.removeFavorite(movie: movie)
         }
     }
 }
