@@ -63,7 +63,7 @@ final class PopularsPresenter: FeedPresenter {
     
     /// Do any steps to update the displayed data
     override func updateData() {
-        LocalService.instance.checkFavorites(on: movies)
+        favoriteClient.checkFavorites(on: movies)
         feedView.reloadFeed()
     }
     

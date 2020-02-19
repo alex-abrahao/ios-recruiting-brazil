@@ -23,7 +23,10 @@ final class DetailPresenter: BasePresenter {
         return view
     }
     
-    private var service: MovieService = MovieClient()
+    private var movieClient: MovieService = MovieClient()
+    
+    private var favoriteClient: FavoritesClient = FavoritesClient()
+    private var genreClient: GenreClient = GenreClient()
     
     private lazy var displayData: [DetailInfoType] = [
         .poster(imageURL: ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL),
@@ -76,12 +79,12 @@ final class DetailPresenter: BasePresenter {
     
     private func getGenres() {
         // Searchs locally before
-        if let genreList = LocalService.instance.getGenreList(from: movie.genreIDs) {
+        if let genreList = genreClient.getGenreList(from: movie.genreIDs) {
             self.genres = genreList
         } else {
             // Had one or more genres not locally found.
             // Needs to update the local list.
-            service.getGenreList { [weak self] (result: Result<[Genre], Error>) in
+            movieClient.getGenreList { [weak self] (result: Result<[Genre], Error>) in
                 guard let self = self else { return }
                 
                 switch result {
@@ -106,9 +109,9 @@ extension DetailPresenter: FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         detailView.setFavorite(movie.isFavorite, tag: nil)
         if movie.isFavorite {
-            LocalService.instance.setFavorite(movie: movie)
+            favoriteClient.setFavorite(movie: movie)
         } else {
-            LocalService.instance.removeFavorite(movie: movie)
+            favoriteClient.removeFavorite(movie: movie)
         }
     }
 }

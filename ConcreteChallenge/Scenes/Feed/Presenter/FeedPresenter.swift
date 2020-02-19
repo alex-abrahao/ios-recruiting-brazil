@@ -28,6 +28,8 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         return view
     }
     
+    var favoriteClient: FavoritesClient = FavoritesClient()
+    
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
         didSet {
@@ -57,7 +59,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     override func updateData() {
-        LocalService.instance.checkFavorites(on: movies)
+        favoriteClient.checkFavorites(on: movies)
         feedView.reloadFeed()
     }
     
@@ -92,9 +94,9 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         favoritesView.setFavorite(movie.isFavorite, tag: item)
         if movie.isFavorite {
-            LocalService.instance.setFavorite(movie: movie)
+            favoriteClient.setFavorite(movie: movie)
         } else {
-            LocalService.instance.removeFavorite(movie: movie)
+            favoriteClient.removeFavorite(movie: movie)
         }
     }
 }

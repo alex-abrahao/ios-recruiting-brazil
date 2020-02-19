@@ -18,7 +18,7 @@ final class FavoritesPresenter: FeedPresenter {
     override func loadFeed() {
         
         view?.hideError()
-        let moviesList = LocalService.instance.getFavoritesList()
+        let moviesList = favoriteClient.getFavoritesList()
         if moviesList.isEmpty {
             view?.displayError(noFavoritesMessage)
         }
@@ -44,9 +44,9 @@ final class FavoritesPresenter: FeedPresenter {
         movie.isFavorite = !movie.isFavorite
         
         if movie.isFavorite {
-            LocalService.instance.setFavorite(movie: movie)
+            favoriteClient.setFavorite(movie: movie)
         } else {
-            LocalService.instance.removeFavorite(movie: movie)
+            favoriteClient.removeFavorite(movie: movie)
             movies.remove(at: item)
         }
         
