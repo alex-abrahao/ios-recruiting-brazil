@@ -28,7 +28,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         return view
     }
     
-    var favoriteService: FavoriteService = FavoriteClient()
+    var favoriteService: FavoriteService
     
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
@@ -43,13 +43,14 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     // MARK: - Init -
-    override init() {
+    init(favoriteService: FavoriteService = FavoriteClient()) {
         guard type(of: self) != FeedPresenter.self else {
             os_log("❌ - FeedPresenter instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
                 "Creating `FeedPresenter` instances directly is not supported. This class is meant to be subclassed."
             )
         }
+        self.favoriteService = favoriteService
         super.init()
     }
     

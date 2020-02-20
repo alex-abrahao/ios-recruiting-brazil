@@ -15,7 +15,9 @@ class MovieClient: MovieService {
     private(set) var currentPage: Int = 0
     private(set) var totalPages: Int = 500
     
-    init(networkService: NetworkService = NetworkService(), favoriteService: FavoriteService = FavoriteClient(), genreService: GenreService = GenreClient()) {
+    init(networkService: NetworkService = NetworkService(),
+         favoriteService: FavoriteService = FavoriteClient(),
+         genreService: GenreService = GenreClient()) {
         
         self.networkService = networkService
         self.favoriteService = favoriteService

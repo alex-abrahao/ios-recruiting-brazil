@@ -49,7 +49,9 @@ final class DetailVC: BaseViewController {
     }
     
     // MARK: - Init -
-    init(movie: Movie, presenter: DetailPresenter? = nil, dataSource: DetailTableDataSource = DetailTableDataSource()) {
+    init(movie: Movie,
+         presenter: DetailPresenter? = nil,
+         dataSource: DetailTableDataSource = DetailTableDataSource()) {
         
         if let presenter = presenter {
             self.detailPresenter = presenter

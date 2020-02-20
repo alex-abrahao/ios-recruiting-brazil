@@ -50,7 +50,9 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     }()
     
     // MARK: - Init -
-    init(presenter: FeedPresenter? = nil, dataSource: FeedCollectionDataSource = FeedCollectionDataSource(), delegate: FeedCollectionDelegate = FeedCollectionDelegate()) {
+    init(presenter: FeedPresenter = FeedPresenter(),
+         dataSource: FeedCollectionDataSource = FeedCollectionDataSource(),
+         delegate: FeedCollectionDelegate = FeedCollectionDelegate()) {
         guard type(of: self) != FeedVC.self else {
             os_log("❌ - FeedVC instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
@@ -58,11 +60,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
             )
         }
         
-        if let presenter = presenter {
-            self.feedPresenter = presenter
-        } else {
-            self.feedPresenter = FeedPresenter()
-        }
+        self.feedPresenter = presenter
         
         self.collectionDataSource = dataSource
         self.collectionDelegate = delegate

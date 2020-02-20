@@ -72,7 +72,6 @@ final class PopularsVC: FeedVC {
     
     // MARK: - Init -
     init(presenter: PopularsPresenter = PopularsPresenter()) {
-        
         super.init(presenter: presenter)
     }
     

@@ -14,12 +14,19 @@ final class PopularsPresenter: FeedPresenter {
     // MARK: - Properties -
     private var isSearching: Bool = false
     
-    private var client: MovieService = MovieClient()
+    private var movieService: MovieService = MovieClient()
+    
+    // MARK: - Init -
+    init(movieService: MovieService = MovieClient(),
+         favoriteService: FavoriteService = FavoriteClient()) {
+        self.movieService = movieService
+        super.init(favoriteService: favoriteService)
+    }
     
     // MARK: - Methods -
     override func loadFeed() {
         view?.startLoading()
-        client.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
+        movieService.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
@@ -39,7 +46,7 @@ final class PopularsPresenter: FeedPresenter {
         guard !isSearching else { return }
         view?.startLoading()
         
-        client.getPopular(page: client.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
+        movieService.getPopular(page: movieService.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
@@ -94,7 +101,7 @@ final class PopularsPresenter: FeedPresenter {
         
         view?.startLoading()
         
-        client.search(text) { [weak self] (result: Result<[Movie], Error>) in
+        movieService.search(text) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
