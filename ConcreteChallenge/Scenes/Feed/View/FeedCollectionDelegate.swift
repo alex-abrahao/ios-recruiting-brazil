@@ -18,12 +18,17 @@ class FeedCollectionDelegate: NSObject {
     // MARK: Properties
     var displayType: DisplayType = .list
     var didSelectItem: ((Int) -> Void)?
+    var didScroll: ((_ scrollView: UIScrollView) -> Void)?
 }
 
 extension FeedCollectionDelegate: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItem?(indexPath.item)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        didScroll?(scrollView)
     }
 }
 

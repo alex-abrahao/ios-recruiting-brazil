@@ -154,12 +154,15 @@ final class PopularsVC: FeedVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // FIXME: Header not scrolling because of delegate of the collectionview
         scrollView.delegate = self
         searchBar.delegate = self
         
         collectionDataSource.prefetch = { [weak self] in
             self?.popularsPresenter?.loadMoreItems()
+        }
+        
+        collectionDelegate.didScroll = { [weak self] (scrollView: UIScrollView) in
+            self?.scrollViewDidScroll(scrollView)
         }
     }
     
