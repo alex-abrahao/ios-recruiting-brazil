@@ -15,6 +15,7 @@ target 'ConcreteChallenge' do
     # Pods for testing
     pod 'Quick'
     pod 'Nimble'
+    pod 'KIF', :configurations => ['Debug']
   end
 
   target 'ConcreteChallengeUITests' do
