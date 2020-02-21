@@ -25,7 +25,7 @@ final class DetailPresenter: BasePresenter {
     
     private var movieClient: MovieClientProtocol
     private var favoriteClient: FavoriteClientProtocol
-    private var genreService: GenreClientProtocol
+    private var genreClient: GenreClientProtocol
     
     private lazy var displayData: [DetailInfoType] = [
         .poster(imageURL: ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL),
@@ -68,12 +68,27 @@ final class DetailPresenter: BasePresenter {
     // MARK: - Init -
     init(movie: Movie,
          movieClient: MovieClientProtocol = MovieClient(),
-         favoriteClient: FavoriteClientProtocol = FavoriteClient(),
-         genreService: GenreClientProtocol = GenreClient()) {
+         favoriteClient: FavoriteClientProtocol? = nil,
+         genreClient: GenreClientProtocol? = nil) {
         self.movie = movie
         self.movieClient = movieClient
-        self.favoriteClient = favoriteClient
-        self.genreService = genreService
+        
+        if let favoriteClient = favoriteClient {
+            self.favoriteClient = favoriteClient
+        } else if let movieClient = movieClient as? MovieClient {
+            self.favoriteClient = movieClient.favoriteClient
+        } else {
+            self.favoriteClient = FavoriteClient()
+        }
+        
+        if let genreClient = genreClient {
+            self.genreClient = genreClient
+        } else if let movieClient = movieClient as? MovieClient {
+            self.genreClient = movieClient.genreClient
+        } else {
+            self.genreClient = GenreClient()
+        }
+        
         super.init()
     }
     
@@ -84,7 +99,7 @@ final class DetailPresenter: BasePresenter {
     
     private func getGenres() {
         // Searchs locally before
-        if let genreList = genreService.getGenreList(from: movie.genreIDs) {
+        if let genreList = genreClient.getGenreList(from: movie.genreIDs) {
             self.genres = genreList
         } else {
             // Had one or more genres not locally found.

@@ -23,7 +23,7 @@ class FunctionalTest: QuickSpec {
             
             context("cells") {
                 it("should enter a detail view when tapped") {
-                    tester()
+                    
                 }
             }
         }

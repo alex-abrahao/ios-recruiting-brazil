@@ -17,11 +17,11 @@ class MovieClient: MovieClientProtocol {
     
     init(networkService: NetworkService = NetworkService(),
          favoriteClient: FavoriteClientProtocol = FavoriteClient(),
-         genreService: GenreClientProtocol = GenreClient()) {
+         genreClient: GenreClientProtocol = GenreClient()) {
         
         self.networkService = networkService
         self.favoriteClient = favoriteClient
-        self.genreClient = genreService
+        self.genreClient = genreClient
     }
 
     func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {

@@ -18,9 +18,16 @@ final class PopularsPresenter: FeedPresenter {
     
     // MARK: - Init -
     init(movieClient: MovieClientProtocol = MovieClient(),
-         favoriteClient: FavoriteClientProtocol = FavoriteClient()) {
+         favoriteClient: FavoriteClientProtocol? = nil) {
         self.movieClient = movieClient
-        super.init(favoriteClient: favoriteClient)
+        
+        if let favoriteClient = favoriteClient {
+            super.init(favoriteClient: favoriteClient)
+        } else if let movieClient = movieClient as? MovieClient {
+            super.init(favoriteClient: movieClient.favoriteClient)
+        } else {
+            super.init()
+        }
     }
     
     // MARK: - Methods -
