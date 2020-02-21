@@ -1,5 +1,5 @@
 //
-//  FavoriteService.swift
+//  FavoriteClientProtocol.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 19/02/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FavoriteService {
+protocol FavoriteClientProtocol {
     
     /// Set movie as favorite
     func setFavorite(movie: Movie)

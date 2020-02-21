@@ -23,9 +23,9 @@ final class DetailPresenter: BasePresenter {
         return view
     }
     
-    private var movieService: MovieService
-    private var favoriteService: FavoriteService
-    private var genreService: GenreService
+    private var movieClient: MovieClientProtocol
+    private var favoriteClient: FavoriteClientProtocol
+    private var genreService: GenreClientProtocol
     
     private lazy var displayData: [DetailInfoType] = [
         .poster(imageURL: ImageEndpoint.image(width: 500, path: movie.posterPath).completeURL),
@@ -67,12 +67,12 @@ final class DetailPresenter: BasePresenter {
     
     // MARK: - Init -
     init(movie: Movie,
-         movieService: MovieService = MovieClient(),
-         favoriteService: FavoriteService = FavoriteClient(),
-         genreService: GenreService = GenreClient()) {
+         movieClient: MovieClientProtocol = MovieClient(),
+         favoriteClient: FavoriteClientProtocol = FavoriteClient(),
+         genreService: GenreClientProtocol = GenreClient()) {
         self.movie = movie
-        self.movieService = movieService
-        self.favoriteService = favoriteService
+        self.movieClient = movieClient
+        self.favoriteClient = favoriteClient
         self.genreService = genreService
         super.init()
     }
@@ -89,7 +89,7 @@ final class DetailPresenter: BasePresenter {
         } else {
             // Had one or more genres not locally found.
             // Needs to update the local list.
-            movieService.getGenreList { [weak self] (result: Result<[Genre], Error>) in
+            movieClient.getGenreList { [weak self] (result: Result<[Genre], Error>) in
                 guard let self = self else { return }
                 
                 switch result {
@@ -114,9 +114,9 @@ extension DetailPresenter: FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         detailView.setFavorite(movie.isFavorite, tag: nil)
         if movie.isFavorite {
-            favoriteService.setFavorite(movie: movie)
+            favoriteClient.setFavorite(movie: movie)
         } else {
-            favoriteService.removeFavorite(movie: movie)
+            favoriteClient.removeFavorite(movie: movie)
         }
     }
 }

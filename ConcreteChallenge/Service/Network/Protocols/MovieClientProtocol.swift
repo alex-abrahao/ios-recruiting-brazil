@@ -1,5 +1,5 @@
 //
-//  MovieService.swift
+//  MovieClientProtocol.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 17/02/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MovieService {
+protocol MovieClientProtocol {
     
     /// Controls which page to load next on
     var currentPage: Int { get }

@@ -14,19 +14,19 @@ final class PopularsPresenter: FeedPresenter {
     // MARK: - Properties -
     private var isSearching: Bool = false
     
-    private var movieService: MovieService = MovieClient()
+    private var movieClient: MovieClientProtocol = MovieClient()
     
     // MARK: - Init -
-    init(movieService: MovieService = MovieClient(),
-         favoriteService: FavoriteService = FavoriteClient()) {
-        self.movieService = movieService
-        super.init(favoriteService: favoriteService)
+    init(movieClient: MovieClientProtocol = MovieClient(),
+         favoriteClient: FavoriteClientProtocol = FavoriteClient()) {
+        self.movieClient = movieClient
+        super.init(favoriteClient: favoriteClient)
     }
     
     // MARK: - Methods -
     override func loadFeed() {
         view?.startLoading()
-        movieService.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
+        movieClient.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
@@ -46,7 +46,7 @@ final class PopularsPresenter: FeedPresenter {
         guard !isSearching else { return }
         view?.startLoading()
         
-        movieService.getPopular(page: movieService.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
+        movieClient.getPopular(page: movieClient.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             
@@ -70,7 +70,7 @@ final class PopularsPresenter: FeedPresenter {
     
     /// Do any steps to update the displayed data
     override func updateData() {
-        favoriteService.checkFavorites(on: movies)
+        favoriteClient.checkFavorites(on: movies)
         feedView.reloadFeed()
     }
     
@@ -101,7 +101,7 @@ final class PopularsPresenter: FeedPresenter {
         
         view?.startLoading()
         
-        movieService.search(text) { [weak self] (result: Result<[Movie], Error>) in
+        movieClient.search(text) { [weak self] (result: Result<[Movie], Error>) in
             
             self?.view?.finishLoading()
             

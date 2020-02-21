@@ -6,22 +6,22 @@
 //  Copyright © 2019 Concrete. All rights reserved.
 //
 
-class MovieClient: MovieService {
+class MovieClient: MovieClientProtocol {
     
     var networkService: NetworkService
-    var favoriteService: FavoriteService
-    var genreService: GenreService
+    var favoriteClient: FavoriteClientProtocol
+    var genreClient: GenreClientProtocol
     
     private(set) var currentPage: Int = 0
     private(set) var totalPages: Int = 500
     
     init(networkService: NetworkService = NetworkService(),
-         favoriteService: FavoriteService = FavoriteClient(),
-         genreService: GenreService = GenreClient()) {
+         favoriteClient: FavoriteClientProtocol = FavoriteClient(),
+         genreService: GenreClientProtocol = GenreClient()) {
         
         self.networkService = networkService
-        self.favoriteService = favoriteService
-        self.genreService = genreService
+        self.favoriteClient = favoriteClient
+        self.genreClient = genreService
     }
 
     func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
@@ -36,7 +36,7 @@ class MovieClient: MovieService {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
-                self?.favoriteService.checkFavorites(on: returnedMovies)
+                self?.favoriteClient.checkFavorites(on: returnedMovies)
                 self?.totalPages = movieResponse.totalPages
                 completion(.success(returnedMovies))
             case .failure(let error):
@@ -53,7 +53,7 @@ class MovieClient: MovieService {
             case .success(let genreResponse):
                 
                 let genreList = genreResponse.genres
-                self?.genreService.setGenres(list: genreList)
+                self?.genreClient.setGenres(list: genreList)
                 completion(.success(genreList))
             case .failure(let error):
                 completion(.failure(error))
@@ -69,7 +69,7 @@ class MovieClient: MovieService {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
-                self?.favoriteService.checkFavorites(on: returnedMovies)
+                self?.favoriteClient.checkFavorites(on: returnedMovies)
                 completion(.success(returnedMovies))
             case .failure(let error):
                 completion(.failure(error))

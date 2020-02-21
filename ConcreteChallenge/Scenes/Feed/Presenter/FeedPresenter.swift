@@ -28,7 +28,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         return view
     }
     
-    var favoriteService: FavoriteService
+    var favoriteClient: FavoriteClientProtocol
     
     /// The movie data to be displayed
     internal var movies: [Movie] = [] {
@@ -43,14 +43,14 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     // MARK: - Init -
-    init(favoriteService: FavoriteService = FavoriteClient()) {
+    init(favoriteClient: FavoriteClientProtocol = FavoriteClient()) {
         guard type(of: self) != FeedPresenter.self else {
             os_log("❌ - FeedPresenter instanciated directly", log: Logger.appLog(), type: .fault)
             fatalError(
                 "Creating `FeedPresenter` instances directly is not supported. This class is meant to be subclassed."
             )
         }
-        self.favoriteService = favoriteService
+        self.favoriteClient = favoriteClient
         super.init()
     }
     
@@ -60,7 +60,7 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
     }
     
     override func updateData() {
-        favoriteService.checkFavorites(on: movies)
+        favoriteClient.checkFavorites(on: movies)
         feedView.reloadFeed()
     }
     
@@ -95,9 +95,9 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
         movie.isFavorite = !movie.isFavorite
         favoritesView.setFavorite(movie.isFavorite, tag: item)
         if movie.isFavorite {
-            favoriteService.setFavorite(movie: movie)
+            favoriteClient.setFavorite(movie: movie)
         } else {
-            favoriteService.removeFavorite(movie: movie)
+            favoriteClient.removeFavorite(movie: movie)
         }
     }
 }

@@ -19,7 +19,7 @@ class FavoriteClient {
     }
 }
 
-extension FavoriteClient: FavoriteService {
+extension FavoriteClient: FavoriteClientProtocol {
     
     func setFavorite(movie: Movie) {
         

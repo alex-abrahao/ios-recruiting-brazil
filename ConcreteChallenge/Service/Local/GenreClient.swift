@@ -19,7 +19,7 @@ class GenreClient {
     }
 }
 
-extension GenreClient: GenreService {
+extension GenreClient: GenreClientProtocol {
     
     func setGenres(list: [Genre]) {
         

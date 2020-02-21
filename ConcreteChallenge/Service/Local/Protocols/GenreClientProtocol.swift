@@ -1,5 +1,5 @@
 //
-//  GenreService.swift
+//  GenreClientProtocol.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 19/02/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GenreService {
+protocol GenreClientProtocol {
     
     /**
      Saves the genre list locally.
