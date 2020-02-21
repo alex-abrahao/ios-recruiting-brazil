@@ -27,7 +27,7 @@ final class DetailVC: BaseViewController {
         view.backgroundColor = .white
         view.estimatedSectionHeaderHeight = 0
         view.showsVerticalScrollIndicator = false
-        view.accessibilityIdentifier = "feedTableView"
+        view.accessibilityIdentifier = "detailTableView"
         view.rowHeight = UITableView.automaticDimension
         view.sectionHeaderHeight = 0
         view.showsVerticalScrollIndicator = false
@@ -41,6 +41,7 @@ final class DetailVC: BaseViewController {
     lazy var favoriteButton: UIBarButtonItem = {
         
         let button = UIBarButtonItem(image: UIImage(named: detailPresenter.isFavorite ? "favoriteFull" : "favoriteEmpty"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(favoriteTapped(_:)))
+        button.accessibilityIdentifier = "favoriteBarButtonItem"
         return button
     }()
     

@@ -22,5 +22,6 @@ final class DefaultInfoTableCell: BaseTableViewCell {
         }
         textLabel?.textColor = Colors.almostBlack
         textLabel?.numberOfLines = 0
+        self.accessibilityIdentifier = "DefaultInfoTableCell"
     }
 }

@@ -21,6 +21,7 @@ class PopularsHeaderView: UIView {
             // Fallback on earlier versions
             label.font = UIFont.bold(17)
         }
+        label.accessibilityIdentifier = "headlineLabel"
         return label
     }()
 
@@ -33,6 +34,7 @@ class PopularsHeaderView: UIView {
             // Fallback on earlier versions
             label.font = UIFont.bold(27)
         }
+        label.accessibilityIdentifier = "callToActionLabel"
         return label
     }()
     
@@ -42,6 +44,7 @@ class PopularsHeaderView: UIView {
         button.setImage(image, for: .normal)
         button.imageView?.tintColor = .white
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.accessibilityIdentifier = "gridButton"
         return button
     }()
     
@@ -51,6 +54,7 @@ class PopularsHeaderView: UIView {
         super.init(frame: .zero)
         setupUI()
         setupConstraints()
+        self.accessibilityIdentifier = "PopularsHeaderView"
     }
 
     required init?(coder: NSCoder) {

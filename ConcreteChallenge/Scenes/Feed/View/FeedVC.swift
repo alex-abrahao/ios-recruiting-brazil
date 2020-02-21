@@ -30,6 +30,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .white
+        view.accessibilityIdentifier = "feedCollectionView"
         view.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
         view.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
         return view
@@ -46,6 +47,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         }
         let view = UIActivityIndicatorView(style: style)
         view.hidesWhenStopped = true
+        view.accessibilityIdentifier = "activityIndicator"
         return view
     }()
     

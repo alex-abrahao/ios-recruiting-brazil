@@ -20,6 +20,7 @@ final class PosterDetailTableCell: BaseTableViewCell {
         view.layer.cornerRadius = 5.0
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
+        view.accessibilityIdentifier = "posterImageView"
         return view
     }()
         
@@ -28,6 +29,7 @@ final class PosterDetailTableCell: BaseTableViewCell {
         
         posterImageView.kf.indicatorType = .activity
         contentView.addSubview(posterImageView)
+        self.accessibilityIdentifier = "PosterDetailTableCell"
     }
     
     override func setupConstraints() {

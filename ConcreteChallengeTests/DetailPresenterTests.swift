@@ -17,7 +17,7 @@ class DetailPresenterTests: XCTestCase {
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        movieMock = MovieStub.getMovieList()[0]
+        movieMock = Stub.getMovieList()[0]
         sut = DetailPresenter(movie: movieMock)
         delegate = DetailViewDelegateSpy()
     }

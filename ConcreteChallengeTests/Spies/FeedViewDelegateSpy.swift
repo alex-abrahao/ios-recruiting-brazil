@@ -1,5 +1,5 @@
 //
-//  FeedViewDelegateMock.swift
+//  FeedViewDelegateSpy.swift
 //  ConcreteChallengeTests
 //
 //  Created by alexandre.c.ferreira on 13/02/20.

@@ -19,6 +19,7 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
         view.kf.indicatorType = .activity
+        view.accessibilityIdentifier = "filmImageViewFeedCell"
         return view
     }()
     
@@ -27,12 +28,14 @@ class FeedCollectionViewCell: BaseCollectionViewCell {
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.numberOfLines = 0
         label.textColor = .white
+        label.accessibilityIdentifier = "titleLabelFeedCell"
         return label
     }()
     
     let favoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "favoriteEmpty"), for: .normal)
+        button.accessibilityIdentifier = "favoriteButtonFeedCell"
         return button
     }()
     

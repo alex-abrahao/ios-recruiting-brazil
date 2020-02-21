@@ -1,5 +1,5 @@
 //
-//  DetailViewDelegateMock.swift
+//  DetailViewDelegateSpy.swift
 //  ConcreteChallengeTests
 //
 //  Created by Alexandre Abrahão on 16/12/19.

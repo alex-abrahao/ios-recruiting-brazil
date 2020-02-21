@@ -31,6 +31,7 @@ final class PopularsVC: FeedVC {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = Colors.almostBlack
+        view.accessibilityIdentifier = "backgroundScrollView"
         return view
     }()
 
@@ -41,6 +42,7 @@ final class PopularsVC: FeedVC {
         view.layer.masksToBounds = true
         view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         view.backgroundColor = Colors.almostBlack
+        view.accessibilityIdentifier = "headerBackgroundView"
         return view
     }()
 
@@ -49,6 +51,7 @@ final class PopularsVC: FeedVC {
     internal var auxiliarView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.accessibilityIdentifier = "auxiliarView"
         return view
     }()
     
@@ -63,6 +66,7 @@ final class PopularsVC: FeedVC {
         view.clipsToBounds = true
         view.searchTextField.textColor = .black
         view.searchTextField.tintColor = Colors.tmdbGreen
+        view.accessibilityIdentifier = "searchBar"
         return view
     }()
     

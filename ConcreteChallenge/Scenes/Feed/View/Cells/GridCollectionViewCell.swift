@@ -17,10 +17,10 @@ final class GridCollectionViewCell: FeedCollectionViewCell {
 
     // MARK: - Methods -
     override func setupUI() {
-        
         super.setupUI()
         
         titleLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        self.accessibilityIdentifier = "GridCollectionViewCell"
     }
     
     override func setupConstraints() {

@@ -28,7 +28,7 @@ class FeedDataSourceTests: QuickSpec {
             feedCollectionView.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
             feedCollectionView.dataSource = sut
             
-            moviesList = MovieStub.getMovieList()
+            moviesList = Stub.getMovieList()
             sut.movies = moviesList
             feedCollectionView.reloadData()
             didPrefetch = false
@@ -97,7 +97,7 @@ class FeedDataSourceTests: QuickSpec {
                     
                     // Arrange
                     let indexPath = IndexPath(item: 0, section: 0)
-                    moviesList = MovieStub.getMovieWithNoImageList()
+                    moviesList = Stub.getMovieWithNoImageList()
                     sut.movies = moviesList
                     sut.displayType = .list
                     
@@ -115,7 +115,7 @@ class FeedDataSourceTests: QuickSpec {
                     
                     // Arrange
                     let indexPath = IndexPath(item: 0, section: 0)
-                    moviesList = MovieStub.getMovieWithNoImageList()
+                    moviesList = Stub.getMovieWithNoImageList()
                     sut.movies = moviesList
                     sut.displayType = .grid
                     
