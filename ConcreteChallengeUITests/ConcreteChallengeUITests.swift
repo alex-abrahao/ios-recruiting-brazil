@@ -26,7 +26,6 @@ class ConcreteChallengeUITests: XCTestCase {
     func testExample() {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
-        XCUIApplication().tables["feedTableView"]/*@START_MENU_TOKEN@*/.staticTexts["Ad Astra"]/*[[".cells.staticTexts[\"Ad Astra\"]",".staticTexts[\"Ad Astra\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         app.launch()
 
         // Use recording to get started writing UI tests.
