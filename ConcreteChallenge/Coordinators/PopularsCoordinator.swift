@@ -28,8 +28,19 @@ class PopularsCoordinator: Coordinator {
     // MARK: - Methods -
     func start() {
         
-        let navController = NavigationController(rootViewController: PopularsVC())
+        let popularsVC = PopularsVC()
+        popularsVC.selectionDelegate = self
+        
+        let navController = NavigationController(rootViewController: popularsVC)
         navController.tabBarItem = UITabBarItem(title: "Popular", image: #imageLiteral(resourceName: "star"), tag: 0)
         self.rootViewController = navController
+    }
+}
+
+extension PopularsCoordinator: FeedSelectionDelegate {
+    
+    func select(movie: Movie) {
+        let detailVC = DetailVC(movie: movie)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -16,6 +16,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     
     // MARK: - Properties -
     var feedPresenter: FeedPresenter
+    weak var selectionDelegate: FeedSelectionDelegate?
     
     /// Collection view's current delegate
     var collectionDelegate: FeedCollectionDelegate
@@ -146,8 +147,6 @@ extension FeedVC: FeedViewDelegate {
     }
     
     func navigateToDetail(movie: Movie) {
-        let vc = DetailVC(movie: movie)
-        
-        navigateTo(viewController: vc)
+        selectionDelegate?.select(movie: movie)
     }
 }

@@ -28,8 +28,19 @@ class FavoritesCoordinator: Coordinator {
     // MARK: - Methods -
     func start() {
         
-        let navController = NavigationController(rootViewController: FavoritesVC())
+        let favoritesVC = FavoritesVC()
+        favoritesVC.selectionDelegate = self
+        
+        let navController = NavigationController(rootViewController: favoritesVC)
         navController.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "favoriteFull"), tag: 1)
         self.rootViewController = navController
+    }
+}
+
+extension FavoritesCoordinator: FeedSelectionDelegate {
+    
+    func select(movie: Movie) {
+        let detailVC = DetailVC(movie: movie)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
