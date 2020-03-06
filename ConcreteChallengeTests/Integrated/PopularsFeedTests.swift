@@ -20,16 +20,31 @@ class PopularsFeedTests: QuickSpec {
         var presenter: PopularsPresenter!
         var movieClient: MovieClientMock!
         var favoriteClient: FavoriteClientMock!
+        var coordinator: PopularsCoordinator!
         
         beforeEach {
             window = UIWindow(frame: UIScreen.main.bounds)
             movieClient = MovieClientMock()
             favoriteClient = FavoriteClientMock()
             presenter = PopularsPresenter(movieClient: movieClient, favoriteClient: favoriteClient)
+            coordinator = PopularsCoordinator()
             viewController = PopularsVC(presenter: presenter)
+            viewController.selectionDelegate = coordinator
+            coordinator.rootViewController = NavigationController(rootViewController: viewController)
             
-            window.rootViewController = viewController
+            window.rootViewController = coordinator.rootViewController
             window.makeKeyAndVisible()
+            
+            let _ = viewController.view
+        }
+        
+        afterEach {
+            window = nil
+            movieClient = nil
+            favoriteClient = nil
+            presenter = nil
+            coordinator = nil
+            viewController = nil
         }
         
         describe("movie") {
