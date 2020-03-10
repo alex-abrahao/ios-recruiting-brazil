@@ -8,7 +8,7 @@
 
 import Alamofire
 
-class NetworkService {
+final class NetworkService {
     
     func performRequest<T: Codable>(route: APIConfiguration, completion: @escaping (Result<T, Error>) -> Void) {
         

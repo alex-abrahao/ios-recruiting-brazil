@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import Movs
 
-class FeedDataSourceTests: QuickSpec {
+final class FeedDataSourceTests: QuickSpec {
     
     override func spec() {
         

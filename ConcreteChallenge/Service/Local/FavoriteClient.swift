@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FavoriteClient {
+final class FavoriteClient {
     
     var service: DocumentsSaverService
     

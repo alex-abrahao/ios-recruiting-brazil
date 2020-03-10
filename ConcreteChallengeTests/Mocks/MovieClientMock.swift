@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-class MovieClientMock: MovieClientProtocol {
+final class MovieClientMock: MovieClientProtocol {
     
     var currentPage: Int = 0
     

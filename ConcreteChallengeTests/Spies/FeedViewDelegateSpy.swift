@@ -10,7 +10,7 @@ import Foundation
 @testable import Movs
 
 
-class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
+final class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     
     var calledStartLoading = false
     var calledFinishLoading = false

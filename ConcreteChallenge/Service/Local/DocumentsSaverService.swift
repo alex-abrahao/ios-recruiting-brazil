@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-class DocumentsSaverService {
+final class DocumentsSaverService {
     
     /// System default Documents Directory
     private let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString

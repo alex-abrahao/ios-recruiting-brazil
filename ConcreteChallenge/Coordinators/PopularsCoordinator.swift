@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopularsCoordinator: Coordinator {
+final class PopularsCoordinator: Coordinator {
     
     // MARK: - Properties -
     var navigationController: UINavigationController? {
@@ -37,7 +37,7 @@ class PopularsCoordinator: Coordinator {
     }
 }
 
-extension PopularsCoordinator: FeedSelectionDelegate {
+extension PopularsCoordinator: MovieSelectionDelegate {
     
     func select(movie: Movie) {
         let detailVC = DetailVC(movie: movie)

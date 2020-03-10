@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
+final class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
     
     var calledStartLoading = false
     var calledFinishLoading = false

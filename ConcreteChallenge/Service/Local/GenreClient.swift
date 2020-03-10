@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GenreClient {
+final class GenreClient {
     
     var service: DocumentsSaverService
     

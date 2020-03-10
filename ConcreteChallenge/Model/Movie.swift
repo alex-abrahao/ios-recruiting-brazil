@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Movie: Codable {
+final class Movie: Codable {
     
     let id: Int
     let title: String

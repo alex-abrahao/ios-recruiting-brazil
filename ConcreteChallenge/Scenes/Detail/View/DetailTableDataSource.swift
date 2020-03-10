@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class DetailTableDataSource: NSObject {
+final class DetailTableDataSource: NSObject {
     
     var displayData: [DetailInfoType] = []
     

@@ -10,6 +10,10 @@ import XCTest
 import KIF
 
 extension XCTestCase {
+    
+    var tester: KIFUITestActor { return tester() }
+    var system: KIFSystemTestActor { return system() }
+    
     func tester(file : String = #file, _ line : Int = #line) -> KIFUITestActor {
         return KIFUITestActor(inFile: file, atLine: line, delegate: self)
     }
@@ -20,6 +24,10 @@ extension XCTestCase {
 }
 
 extension KIFTestActor {
+    
+    var tester: KIFUITestActor { return tester() }
+    var system: KIFSystemTestActor { return system() }
+    
     func tester(file : String = #file, _ line : Int = #line) -> KIFUITestActor {
         return KIFUITestActor(inFile: file, atLine: line, delegate: self)
     }

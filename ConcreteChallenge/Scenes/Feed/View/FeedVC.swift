@@ -16,7 +16,7 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
     
     // MARK: - Properties -
     var feedPresenter: FeedPresenter
-    weak var selectionDelegate: FeedSelectionDelegate?
+    weak var selectionDelegate: MovieSelectionDelegate?
     
     /// Collection view's current delegate
     var collectionDelegate: FeedCollectionDelegate

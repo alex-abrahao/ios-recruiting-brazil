@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopularsHeaderView: UIView {
+final class PopularsHeaderView: UIView {
     
     // MARK: - Properties -
     // MARK: View

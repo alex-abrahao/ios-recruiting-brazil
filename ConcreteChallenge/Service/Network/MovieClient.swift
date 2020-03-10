@@ -6,7 +6,7 @@
 //  Copyright © 2019 Concrete. All rights reserved.
 //
 
-class MovieClient: MovieClientProtocol {
+final class MovieClient: MovieClientProtocol {
     
     var networkService: NetworkService
     var favoriteClient: FavoriteClientProtocol

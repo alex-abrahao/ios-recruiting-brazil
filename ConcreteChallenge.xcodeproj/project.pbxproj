@@ -37,7 +37,7 @@
 		1DDC4A7A240EF71900C3018D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC4A79240EF71900C3018D /* AppCoordinator.swift */; };
 		1DDC4A7D240F03BC00C3018D /* PopularsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC4A7C240F03BC00C3018D /* PopularsCoordinator.swift */; };
 		1DDC4A7F240F18B700C3018D /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC4A7E240F18B700C3018D /* FavoritesCoordinator.swift */; };
-		1DDC4A82240F1E4300C3018D /* FeedSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC4A81240F1E4300C3018D /* FeedSelectionDelegate.swift */; };
+		1DDC4A82240F1E4300C3018D /* MovieSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDC4A81240F1E4300C3018D /* MovieSelectionDelegate.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -141,7 +141,7 @@
 		1DDC4A79240EF71900C3018D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1DDC4A7C240F03BC00C3018D /* PopularsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularsCoordinator.swift; sourceTree = "<group>"; };
 		1DDC4A7E240F18B700C3018D /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
-		1DDC4A81240F1E4300C3018D /* FeedSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSelectionDelegate.swift; sourceTree = "<group>"; };
+		1DDC4A81240F1E4300C3018D /* MovieSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSelectionDelegate.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 				1DDC4A79240EF71900C3018D /* AppCoordinator.swift */,
 				1DDC4A7C240F03BC00C3018D /* PopularsCoordinator.swift */,
 				1DDC4A7E240F18B700C3018D /* FavoritesCoordinator.swift */,
-				1DDC4A81240F1E4300C3018D /* FeedSelectionDelegate.swift */,
+				1DDC4A81240F1E4300C3018D /* MovieSelectionDelegate.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -980,7 +980,7 @@
 				1DDC4A78240ECB5700C3018D /* Coordinator.swift in Sources */,
 				5E6FC72523A69D7F00BA5DEF /* FavoritesVC.swift in Sources */,
 				5E6AAD7A239DDC6900564F6A /* NavigationController.swift in Sources */,
-				1DDC4A82240F1E4300C3018D /* FeedSelectionDelegate.swift in Sources */,
+				1DDC4A82240F1E4300C3018D /* MovieSelectionDelegate.swift in Sources */,
 				5E6AAD5E239D74F800564F6A /* PopularHeaderViewData.swift in Sources */,
 				5E6AAD5C239D740700564F6A /* UIView+Extensions.swift in Sources */,
 				1D2DFE0723FB29C200D7BD37 /* NetworkService.swift in Sources */,

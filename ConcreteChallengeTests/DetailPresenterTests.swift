@@ -9,7 +9,7 @@
 import XCTest
 @testable import Movs
 
-class DetailPresenterTests: XCTestCase {
+final class DetailPresenterTests: XCTestCase {
     
     var movieMock: Movie!
     var sut: DetailPresenter!

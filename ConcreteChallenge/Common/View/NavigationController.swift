@@ -9,7 +9,7 @@
 import UIKit
 
 /// Custom UINavigationController to use on this app
-class NavigationController: UINavigationController {
+final class NavigationController: UINavigationController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return topViewController?.preferredStatusBarStyle ?? .default

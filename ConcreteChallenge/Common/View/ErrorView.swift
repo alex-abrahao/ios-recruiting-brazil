@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 import SnapKit
 
-class ErrorView: UIView {
+final class ErrorView: UIView {
     
     // MARK: - Properties -
     let imageView: UIImageView = {

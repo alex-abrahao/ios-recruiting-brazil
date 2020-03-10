@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import Kingfisher
 
-class FeedCollectionDataSource: NSObject {
+final class FeedCollectionDataSource: NSObject {
     
     enum DisplayType {
         case list

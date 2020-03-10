@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-class Stub {
+final class Stub {
     
     static func getMovieList() -> [Movie] {
         

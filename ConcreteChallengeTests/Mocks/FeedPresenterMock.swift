@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-class FeedPresenterMock: FeedPresenter {
+final class FeedPresenterMock: FeedPresenter {
     
     func mockLoad(movies: [Movie]) {
         self.movies = movies

@@ -1,5 +1,5 @@
 //
-//  FeedSelectionDelegate.swift
+//  MovieSelectionDelegate.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 03/03/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FeedSelectionDelegate: AnyObject {
+protocol MovieSelectionDelegate: AnyObject {
     
     func select(movie: Movie)
 }

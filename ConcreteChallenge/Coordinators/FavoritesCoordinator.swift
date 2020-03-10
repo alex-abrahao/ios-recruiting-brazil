@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesCoordinator: Coordinator {
+final class FavoritesCoordinator: Coordinator {
     
     // MARK: - Properties -
     var navigationController: UINavigationController? {
@@ -37,7 +37,7 @@ class FavoritesCoordinator: Coordinator {
     }
 }
 
-extension FavoritesCoordinator: FeedSelectionDelegate {
+extension FavoritesCoordinator: MovieSelectionDelegate {
     
     func select(movie: Movie) {
         let detailVC = DetailVC(movie: movie)

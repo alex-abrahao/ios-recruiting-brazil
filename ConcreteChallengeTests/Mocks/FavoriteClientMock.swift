@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-class FavoriteClientMock: FavoriteClientProtocol {
+final class FavoriteClientMock: FavoriteClientProtocol {
     
     func setFavorite(movie: Movie) {
         movie.isFavorite = true

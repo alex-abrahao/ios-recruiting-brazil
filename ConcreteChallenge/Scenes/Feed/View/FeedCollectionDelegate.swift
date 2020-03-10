@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCollectionDelegate: NSObject {
+final class FeedCollectionDelegate: NSObject {
     
     enum DisplayType {
         case list
