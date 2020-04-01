@@ -16,16 +16,13 @@ Provides requests for image operations
 enum ImageEndpoint: Endpoint {
     
     /**
-     Get the genre list
+     Get an image.
      */
     case image(width: Int, path: String? = nil)
     
     // MARK: - HTTPMethod
-    var method: APIHTTPMethod {
-        switch self {
-        case .image:
-            return .get
-        }
+    var method: HTTPMethod {
+        return .get
     }
     
     // MARK: - Path
@@ -38,14 +35,19 @@ enum ImageEndpoint: Endpoint {
     }
     
     // MARK: - Parameters
-    var parameters: APIParameters? {
-        switch self {
-        case .image:
-            return nil
-        }
+    var parameters: Parameters? {
+        return nil
+    }
+    
+    var task: HTTPTask {
+        return .request
     }
     
     // MARK: - URL -
+    var baseURL: URL? {
+        return URL(string: NetworkInfo.ProductionServer.imageBaseURL)
+    }
+    
     var completeURL: URL? {
         guard path != "" else { return nil }
         let completePath = NetworkInfo.ProductionServer.imageBaseURL + path

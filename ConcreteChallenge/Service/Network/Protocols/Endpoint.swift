@@ -6,22 +6,23 @@
 //  Copyright © 2020 Concrete. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
-protocol Endpoint: APIConfiguration {
-
-    typealias APIHTTPMethod = HTTPMethod
-    typealias APIParameters = Parameters
-    
+protocol Endpoint {
+    var baseURL: URL? { get }
+    var method: HTTPMethod { get }
+    var path: String { get }
+    var parameters: Parameters? { get }
+    var task: HTTPTask { get }
     var completeURL: URL? { get }
 }
 
-extension APIConfiguration where Self: Endpoint {
+extension Endpoint {
     
     func asURLRequest() throws -> URLRequest {
         
         guard let url = completeURL else {
-            throw URLError(URLError.Code.badURL, userInfo: [:])
+            throw NetworkError.missingURL
         }
         
         var urlRequest = URLRequest(url: url)
@@ -37,7 +38,7 @@ extension APIConfiguration where Self: Endpoint {
             do {
                 urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
             } catch {
-                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+                throw NetworkError.parameterEncodingFailed
             }
         }
         

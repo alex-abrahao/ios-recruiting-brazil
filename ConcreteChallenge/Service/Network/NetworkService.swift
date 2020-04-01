@@ -6,36 +6,51 @@
 //  Copyright © 2020 Concrete. All rights reserved.
 //
 
-import Alamofire
+import Foundation
+
+
 
 final class NetworkService {
     
-    func performRequest<T: Codable>(route: APIConfiguration, completion: @escaping (Result<T, Error>) -> Void) {
+    private let session: URLSession
+    private var task: URLSessionTask?
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
+    func performRequest<T: Codable>(route: Endpoint, completion: @escaping (Result<T, Error>) -> Void) {
         
-        AF.request(route).validate().responseJSON { (response: DataResponse<Any, AFError>?) in
-            
-            switch response?.result {
-            case .success:
-                
-                guard let jsonData = response?.data else {
-                    completion(.failure(NSError(domain: "Response had no data", code: 3, userInfo: nil)))
+        do {
+            let request = try buildRequest(from: route)
+            task = session.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
                     return
                 }
-                
+
+                guard let data = data else {
+                    completion(.failure(NetworkError.missingData))
+                    return
+                }
+
                 do {
                     let decoder = JSONDecoder()
-                    let decodedJson = try decoder.decode(T.self, from: jsonData)
+                    let decodedJson = try decoder.decode(T.self, from: data)
                     completion(.success(decodedJson))
                 } catch {
                     completion(.failure(NSError(domain: "Value was not of type \(String(describing: T.self))", code: 4, userInfo: nil)))
                 }
-                
-            case .failure(let error):
-                completion(.failure(error))
-                
-            case .none:
-                completion(.failure(NSError(domain: "No data returned", code: 2, userInfo: nil)))
             }
+        } catch {
+            completion(.failure(error))
         }
+
+        task?.resume()
+    }
+    
+    fileprivate func buildRequest(from route: Endpoint) throws -> URLRequest {
+        
+        return try route.asURLRequest()
     }
 }

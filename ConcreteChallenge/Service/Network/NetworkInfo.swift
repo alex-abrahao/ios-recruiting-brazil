@@ -28,4 +28,5 @@ enum HTTPHeaderField: String {
 
 enum ContentType: String {
     case json = "application/json"
+    case url = "application/x-www-form-urlencoded; charset=utf8"
 }

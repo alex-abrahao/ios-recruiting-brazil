@@ -34,11 +34,8 @@ enum MovieEndpoint: Endpoint {
     case search(_ text: String)
     
     // MARK: - HTTPMethod
-    var method: APIHTTPMethod {
-        switch self {
-        case .popular, .genreList, .search:
-            return .get
-        }
+    var method: HTTPMethod {
+        return .get
     }
     
     // MARK: - Path
@@ -54,12 +51,36 @@ enum MovieEndpoint: Endpoint {
         }
     }
     
-    // MARK: - Parameters
-    var parameters: APIParameters? {
+    var task: HTTPTask {
         switch self {
-        case .popular, .genreList, .search:
-            return nil
+        case .popular(let page):
+            let urlParameters: Parameters = [
+                "api_key" : NetworkInfo.APIParameterKey.apiKey,
+                "page" : page
+            ]
+            return .requestParameters(bodyParameters: nil, urlParameters: urlParameters)
+        case .genreList:
+            let urlParameters: Parameters = [
+                "api_key" : NetworkInfo.APIParameterKey.apiKey
+            ]
+            return .requestParameters(bodyParameters: nil, urlParameters: urlParameters)
+        case .search(let text):
+            let safeText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let urlParameters: Parameters = [
+                "api_key" : NetworkInfo.APIParameterKey.apiKey,
+                "query" : safeText ?? "%20"
+            ]
+            return .requestParameters(bodyParameters: nil, urlParameters: urlParameters)
         }
+    }
+    
+    // MARK: - Parameters
+    var parameters: Parameters? {
+        return nil
+    }
+    
+    var baseURL: URL? {
+        return URL(string: NetworkInfo.ProductionServer.baseURL)
     }
     
     var completeURL: URL? {

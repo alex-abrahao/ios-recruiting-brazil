@@ -35,7 +35,9 @@ final class PopularsPresenter: FeedPresenter {
         view?.startLoading()
         movieClient.getPopular(page: 1) { [weak self] (result: Result<[Movie], Error>) in
             
-            self?.view?.finishLoading()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.finishLoading()
+            }
             
             switch result {
             case .success(let movies):
@@ -55,14 +57,18 @@ final class PopularsPresenter: FeedPresenter {
         
         movieClient.getPopular(page: movieClient.currentPage + 1) { [weak self] (result: Result<[Movie], Error>) in
             
-            self?.view?.finishLoading()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.finishLoading()
+            }
             
             switch result {
             case .success(let movies):
                 self?.movies.append(contentsOf: movies)
             case .failure(let error):
                 os_log("❌ - Error loading movie feed: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
-                self?.view?.displayError(.generic)
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.displayError(.generic)
+                }
             }
         }
     }
@@ -110,7 +116,9 @@ final class PopularsPresenter: FeedPresenter {
         
         movieClient.search(text) { [weak self] (result: Result<[Movie], Error>) in
             
-            self?.view?.finishLoading()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.finishLoading()
+            }
             
             switch result {
             case .success(let movies):
