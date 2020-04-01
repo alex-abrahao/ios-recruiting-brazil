@@ -18,6 +18,8 @@ final class Movie: Codable {
     let backdropPath: String?
     let releaseDate: String
     var isFavorite: Bool = false
+    var posterURL: URL?
+    var backdropURL: URL?
     
     init(id: Int, title: String, overview: String, genreIDs: [Int], posterPath: String?, backdropPath: String?, releaseDate: String) {
         self.id = id
@@ -27,14 +29,6 @@ final class Movie: Codable {
         self.posterPath = posterPath
         self.backdropPath = backdropPath
         self.releaseDate = releaseDate
-    }
-    
-    var completePosterURL: URL? {
-        return ImageEndpoint.image(width: 500, path: posterPath).completeURL
-    }
-    
-    var completeBackdropURL: URL? {
-        return ImageEndpoint.image(width: 780, path: backdropPath).completeURL
     }
 }
 

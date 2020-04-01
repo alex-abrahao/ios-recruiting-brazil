@@ -34,11 +34,7 @@ enum ImageEndpoint: Endpoint {
         }
     }
     
-    // MARK: - Parameters
-    var parameters: Parameters? {
-        return nil
-    }
-    
+    // MARK: - Task
     var task: HTTPTask {
         return .request
     }
@@ -46,11 +42,5 @@ enum ImageEndpoint: Endpoint {
     // MARK: - URL -
     var baseURL: URL? {
         return URL(string: NetworkInfo.ProductionServer.imageBaseURL)
-    }
-    
-    var completeURL: URL? {
-        guard path != "" else { return nil }
-        let completePath = NetworkInfo.ProductionServer.imageBaseURL + path
-        return URL(string: completePath)
     }
 }

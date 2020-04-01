@@ -6,6 +6,8 @@
 //  Copyright © 2019 Concrete. All rights reserved.
 //
 
+import Foundation
+
 final class MovieClient: MovieClientProtocol {
     
     var networkService: NetworkService
@@ -36,6 +38,7 @@ final class MovieClient: MovieClientProtocol {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
+                self?.fillImageURLs(movies: returnedMovies)
                 self?.favoriteClient.checkFavorites(on: returnedMovies)
                 self?.totalPages = movieResponse.totalPages
                 completion(.success(returnedMovies))
@@ -69,10 +72,22 @@ final class MovieClient: MovieClientProtocol {
             case .success(let movieResponse):
                 
                 let returnedMovies = movieResponse.results
+                self?.fillImageURLs(movies: returnedMovies)
                 self?.favoriteClient.checkFavorites(on: returnedMovies)
                 completion(.success(returnedMovies))
             case .failure(let error):
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    fileprivate func fillImageURLs(movies: [Movie]) {
+        movies.forEach { (movie) in
+            if let posterPath = movie.posterPath {
+                movie.posterURL = networkService.buildURL(from: ImageEndpoint.image(width: 500, path: posterPath))
+            }
+            if let backdropPath = movie.backdropPath {
+                movie.backdropURL = networkService.buildURL(from: ImageEndpoint.image(width: 780, path: backdropPath))
             }
         }
     }

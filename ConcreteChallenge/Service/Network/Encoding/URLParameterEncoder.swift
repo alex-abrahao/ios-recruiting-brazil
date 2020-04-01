@@ -23,6 +23,7 @@ struct URLParameterEncoder: ParameterEncoder {
                 let queryItem = URLQueryItem(name: key, value: itemValue)
                 urlComponents.queryItems?.append(queryItem)
             }
+            urlRequest.url = urlComponents.url
         }
         
         if urlRequest.value(forHTTPHeaderField: HTTPHeaderField.contentType.rawValue) == nil {

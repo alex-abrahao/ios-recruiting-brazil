@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 final class NetworkService {
     
     private let session: URLSession
@@ -49,8 +47,53 @@ final class NetworkService {
         task?.resume()
     }
     
+    func buildURL(from route: Endpoint) -> URL? {
+        do {
+            let url = try buildRequest(from: route).url
+            return url
+        } catch {
+            return nil
+        }
+    }
+    
     fileprivate func buildRequest(from route: Endpoint) throws -> URLRequest {
         
-        return try route.asURLRequest()
+        guard let baseURL = route.baseURL else {
+            throw NetworkError.missingURL
+        }
+        var request = URLRequest(url: baseURL.appendingPathComponent(route.path),
+                                 cachePolicy: .reloadIgnoringLocalCacheData,
+                                 timeoutInterval: 60.0)
+        request.httpMethod = route.method.rawValue
+        
+        switch route.task {
+        case .request:
+            request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        case .requestParameters(let bodyParameters, let urlParameters):
+            try configureParameters(request: &request, bodyParameters: bodyParameters, urlParameters: urlParameters)
+        case .requestParametersAndHeaders(let bodyParameters, let urlParameters, let additionHeaders):
+            addAdditionalHeaders(additionHeaders, request: &request)
+            try configureParameters(request: &request, bodyParameters: bodyParameters, urlParameters: urlParameters)
+        }
+        
+        return request
+    }
+    
+    fileprivate func configureParameters(request: inout URLRequest, bodyParameters: Parameters?, urlParameters: Parameters?) throws {
+        
+        if let bodyParameters = bodyParameters {
+            try JSONParameterEncoder.encode(urlRequest: &request, with: bodyParameters)
+        }
+        if let urlParameters = urlParameters {
+            try URLParameterEncoder.encode(urlRequest: &request, with: urlParameters)
+        }
+    }
+    
+    fileprivate func addAdditionalHeaders(_ headers: HTTPHeaders?, request: inout URLRequest) {
+        
+        guard let headers = headers else { return }
+        headers.forEach { (key, value) in
+            request.setValue(value, forHTTPHeaderField: key)
+        }
     }
 }
