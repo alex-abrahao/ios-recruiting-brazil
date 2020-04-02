@@ -46,7 +46,7 @@ enum MovieEndpoint: Endpoint {
         case .genreList:
             return "/genre/movie/list"
         case .search:
-            return "/search/movie?"
+            return "/search/movie"
         }
     }
     

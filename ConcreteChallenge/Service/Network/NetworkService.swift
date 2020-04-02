@@ -22,8 +22,19 @@ final class NetworkService {
         do {
             let request = try buildRequest(from: route)
             task = session.dataTask(with: request) { (data, response, error) in
+                
                 if let error = error {
                     completion(.failure(error))
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(NetworkError.noResponse))
+                    return
+                }
+                
+                guard 200...299 ~= httpResponse.statusCode else {
+                    completion(.failure(NetworkError.responseNot200(statusCode: httpResponse.statusCode)))
                     return
                 }
 

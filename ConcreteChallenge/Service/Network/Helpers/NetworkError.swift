@@ -8,9 +8,28 @@
 
 import Foundation
 
-enum NetworkError: String, Error {
-    case nilParameters = "Parameters were nil."
-    case parameterEncodingFailed = "Parameter encoding failed."
-    case missingURL = "URL is nil."
-    case missingData = "Data is nil"
+enum NetworkError: Error {
+    case nilParameters
+    case parameterEncodingFailed
+    case missingURL
+    case missingData
+    case noResponse
+    case responseNot200(statusCode: Int)
+    
+    var localizedDescription: String {
+        switch self {
+        case .nilParameters:
+            return "Parameters were nil."
+        case .parameterEncodingFailed:
+            return "Parameter encoding failed."
+        case .missingURL:
+            return "URL is nil."
+        case .missingData:
+            return "Data is nil"
+        case .noResponse:
+            return "No response from the request."
+        case .responseNot200(let code):
+            return "Response code was not 2xx. Status code: \(code)."
+        }
+    }
 }
