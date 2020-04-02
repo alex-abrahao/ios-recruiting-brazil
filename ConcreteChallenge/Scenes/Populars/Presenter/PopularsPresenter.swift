@@ -123,13 +123,17 @@ final class PopularsPresenter: FeedPresenter {
             switch result {
             case .success(let movies):
                 self?.movies = movies
-                self?.feedView.resetFeedPosition()
-                if movies.isEmpty {
-                    self?.view?.displayError(.missing("Your search of \"\(text)\" found nothing"))
+                DispatchQueue.main.async { [weak self] in
+                    self?.feedView.resetFeedPosition()
+                    if movies.isEmpty {
+                        self?.view?.displayError(.missing("Your search of \"\(text)\" found nothing"))
+                    }
                 }
             case .failure(let error):
                 os_log("❌ - Error searching movies: %@", log: Logger.appLog(), type: .error, error.localizedDescription)
-                self?.view?.displayError(.info("Error loading search results"))
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.displayError(.info("Error loading search results"))
+                }
             }
         }
     }
