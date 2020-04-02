@@ -8,6 +8,8 @@
 
 import Foundation
 
+fileprivate typealias GenresDict = [Int : Genre]
+
 final class GenreClient {
     
     var service: DocumentsSaverService
@@ -23,7 +25,7 @@ extension GenreClient: GenreClientProtocol {
     
     func setGenres(list: [Genre]) {
         
-        var genresToSave: [Int: Genre] = [:]
+        var genresToSave: GenresDict = [:]
         list.forEach { genresToSave[$0.id] = $0 }
         
         service.save(genresToSave, fileName: fileNameIdentifier)
@@ -32,7 +34,7 @@ extension GenreClient: GenreClientProtocol {
     func getGenreList(from genreIDs: [Int]) -> [Genre]? {
         
         var foundGenres = [Genre]()
-        guard let genreDict: [Int: Genre] = service.get(fileName: fileNameIdentifier) else {
+        guard let genreDict: GenresDict = service.get(fileName: fileNameIdentifier) else {
             // There's no genres saved locally
             return nil
         }

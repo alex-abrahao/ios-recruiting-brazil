@@ -39,8 +39,8 @@ extension FavoriteClient: FavoriteClientProtocol {
     func setFavorite(movie: Movie) {
         
         // Get the previous favorites to add if necessary
-        var favoritesToSave: [Int : Movie]
-        if let previousFavorites: [Int: Movie] = service.get(fileName: fileNameIdentifier) {
+        var favoritesToSave: MoviesDict
+        if let previousFavorites: MoviesDict = service.get(fileName: fileNameIdentifier) {
             favoritesToSave = previousFavorites
             favoritesToSave[movie.id] = movie
         } else {
@@ -53,7 +53,7 @@ extension FavoriteClient: FavoriteClientProtocol {
     func removeFavorite(movie: Movie) {
         
         // Get the current favorites to remove the movie if necessary
-        if var currentFavorites: [Int: Movie] = service.get(fileName: fileNameIdentifier) {
+        if var currentFavorites: MoviesDict = service.get(fileName: fileNameIdentifier) {
             currentFavorites[movie.id] = nil
             service.save(currentFavorites, fileName: fileNameIdentifier)
         }
@@ -61,14 +61,14 @@ extension FavoriteClient: FavoriteClientProtocol {
     }
     
     func isMovieFavorite(_ movie: Movie) -> Bool {
-        guard let currentFavorites: [Int: Movie] = service.get(fileName: fileNameIdentifier), let _ = currentFavorites[movie.id] else {
+        guard let currentFavorites: MoviesDict = service.get(fileName: fileNameIdentifier), let _ = currentFavorites[movie.id] else {
             return false
         }
         return true
     }
     
     func getFavoritesList() -> [Movie] {
-        guard let currentFavorites: [Int: Movie] = service.get(fileName: fileNameIdentifier) else {
+        guard let currentFavorites: MoviesDict = service.get(fileName: fileNameIdentifier) else {
             return []
         }
         var favoritesList = Array(currentFavorites.values)
@@ -80,7 +80,7 @@ extension FavoriteClient: FavoriteClientProtocol {
     }
     
     func checkFavorites(on movies: [Movie]) {
-        guard let currentFavorites: [Int: Movie] = service.get(fileName: fileNameIdentifier) else {
+        guard let currentFavorites: MoviesDict = service.get(fileName: fileNameIdentifier) else {
             return
         }
         // A movie is a favorite if it's contained in the local favorites list
