@@ -11,7 +11,7 @@ import Foundation
 /// A enum thats tells which type of info to display on the Detail Screen
 enum DetailInfoType {
     
-    case poster(imageURL: URL?)
+    case poster(imagePath: String?)
     case title(_ title: String)
     case year(_ year: String)
     case genres(_ text: String)

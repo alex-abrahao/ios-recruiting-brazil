@@ -19,19 +19,6 @@ final class FavoriteClient {
     init(service: DocumentsSaverService = DocumentsSaverService()) {
         self.service = service
     }
-    
-    fileprivate func fillImageURLs(movies: [Movie]) {
-        movies.forEach { (movie) in
-            if let posterPath = movie.posterPath {
-                let route = ImageEndpoint.image(width: 500, path: posterPath)
-                movie.posterURL = route.baseURL?.appendingPathComponent(route.path)
-            }
-            if let backdropPath = movie.backdropPath {
-                let route = ImageEndpoint.image(width: 780, path: backdropPath)
-                movie.backdropURL = route.baseURL?.appendingPathComponent(route.path)
-            }
-        }
-    }
 }
 
 extension FavoriteClient: FavoriteClientProtocol {
@@ -74,7 +61,6 @@ extension FavoriteClient: FavoriteClientProtocol {
         var favoritesList = Array(currentFavorites.values)
         favoritesList.sort(by: { $0.title < $1.title })
         favoritesList.forEach{ $0.isFavorite = true }
-        fillImageURLs(movies: favoritesList)
         
         return favoritesList
     }

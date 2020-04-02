@@ -26,13 +26,13 @@ extension DetailTableDataSource: UITableViewDataSource {
         let info = self.displayData[indexPath.row]
         
         switch info {
-        case .poster(let imageURL):
+        case .poster(let posterPath):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: info.identifier, for: indexPath) as? PosterDetailTableCell else {
                 os_log("❌ - Unknown cell identifier %@", log: Logger.appLog(), type: .fault, "\(String(describing: self))")
                 fatalError("Unknown identifier")
             }
             cell.posterImageView.kf.indicatorType = .activity
-            if let imageURL = imageURL {
+            if let imageURL = ImageURLBuilder.url(for: .poster, path: posterPath) {
                 cell.posterImageView.kf.setImage(with: imageURL) { [weak cell] (result) in
                     switch result {
                     case .failure(let error):
@@ -43,6 +43,7 @@ extension DetailTableDataSource: UITableViewDataSource {
                     }
                 }
             } else {
+                cell.posterImageView.image = nil
                 cell.displayError(.missing("No poster available 😭"))
             }
             return cell

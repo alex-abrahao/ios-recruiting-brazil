@@ -28,7 +28,7 @@ final class DetailPresenter: BasePresenter {
     private var genreClient: GenreClientProtocol
     
     private lazy var displayData: [DetailInfoType] = [
-        .poster(imageURL: movie.posterURL),
+        .poster(imagePath: movie.posterPath),
         .title(movie.title),
         .year(movieYear),
         .genres(self.genresText),
