@@ -12,11 +12,11 @@ fileprivate typealias GenresDict = [Int : Genre]
 
 final class GenreClient {
     
-    var service: DocumentsSaverService
+    var service: LocalService
     
     fileprivate let fileNameIdentifier: String = "GenreList"
     
-    init(service: DocumentsSaverService = DocumentsSaverService()) {
+    init(service: LocalService = JSONDocumentsSaverService()) {
         self.service = service
     }
 }

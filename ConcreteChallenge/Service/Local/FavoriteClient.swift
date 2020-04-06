@@ -12,11 +12,11 @@ fileprivate typealias MoviesDict = [Int : Movie]
 
 final class FavoriteClient {
     
-    var service: DocumentsSaverService
+    var service: LocalService
     
     fileprivate let fileNameIdentifier: String = "Favorites"
     
-    init(service: DocumentsSaverService = DocumentsSaverService()) {
+    init(service: LocalService = JSONDocumentsSaverService()) {
         self.service = service
     }
 }

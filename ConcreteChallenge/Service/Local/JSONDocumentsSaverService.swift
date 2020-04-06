@@ -1,5 +1,5 @@
 //
-//  DocumentsSaverService.swift
+//  JSONDocumentsSaverService.swift
 //  ConcreteChallenge
 //
 //  Created by alexandre.c.ferreira on 19/02/20.
@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-final class DocumentsSaverService {
+final class JSONDocumentsSaverService {
     
     /// System default Documents Directory
     private let documentsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
@@ -18,7 +18,9 @@ final class DocumentsSaverService {
     private func getURLInDocumentDir(for file: String) -> URL {
         return URL(fileURLWithPath: documentsDir.appendingPathComponent(file + ".json"))
     }
-    
+}
+
+extension JSONDocumentsSaverService: LocalService {
     /// Save any object as a JSON
     func save<T: Codable>(_ object: T, fileName: String) {
         
