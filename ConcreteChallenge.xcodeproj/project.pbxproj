@@ -398,6 +398,25 @@
 			path = Clients;
 			sourceTree = "<group>";
 		};
+		1DF35C16243BB2A700D1EC75 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1DF35C17243BB2B000D1EC75 /* Extensions */,
+				1D1A3FC2240070E6002B76A3 /* Mocks */,
+				1D1A3FC3240071DF002B76A3 /* Spies */,
+				1D2DFE0023FB13F200D7BD37 /* Stubs */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1DF35C17243BB2B000D1EC75 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D1A3FBB23FF0039002B76A3 /* TesterExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1DF7638523FC459D00A7B1A5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,11 +492,8 @@
 				5E6AACF9239C3DB300564F6A /* Info.plist */,
 				5EFC3EEA23A870DF00FDE1F8 /* DetailPresenterTests.swift */,
 				1D6DC7AB23F5FBD000ED0F06 /* FeedDataSourceTests.swift */,
-				1D1A3FBB23FF0039002B76A3 /* TesterExtension.swift */,
+				1DF35C16243BB2A700D1EC75 /* Helpers */,
 				1D1A3FC1240070CC002B76A3 /* Integrated */,
-				1D1A3FC2240070E6002B76A3 /* Mocks */,
-				1D1A3FC3240071DF002B76A3 /* Spies */,
-				1D2DFE0023FB13F200D7BD37 /* Stubs */,
 			);
 			path = ConcreteChallengeTests;
 			sourceTree = "<group>";
@@ -557,8 +573,8 @@
 		5E6AAD33239C6A6000564F6A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				1D2DFE0823FB3CA100D7BD37 /* Network */,
 				5E6AAD7B239DE96C00564F6A /* Local */,
+				1D2DFE0823FB3CA100D7BD37 /* Network */,
 			);
 			path = Service;
 			sourceTree = "<group>";

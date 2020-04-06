@@ -9,19 +9,18 @@
 import Foundation
 @testable import Movs
 
-
 final class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     
-    var calledStartLoading = false
-    var calledFinishLoading = false
-    var calledDisplayError = false
-    var calledHideError = false
-    var calledReloadFeed = false
-    var calledResetFeedPosition = false
-    var calledMoveData = false
-    var calledNavigateToDetail = false
-    var calledDatasource = false
-    var calledExitView = false
+    private(set) var calledStartLoading = false
+    private(set) var calledFinishLoading = false
+    private(set) var calledDisplayError = false
+    private(set) var calledHideError = false
+    private(set) var calledReloadFeed = false
+    private(set) var calledResetFeedPosition = false
+    private(set) var calledMoveData = false
+    private(set) var calledNavigateToDetail = false
+    private(set) var calledDatasource = false
+    private(set) var calledExitView = false
     
     func reloadFeed() {
         calledReloadFeed = true

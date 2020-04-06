@@ -11,13 +11,13 @@ import Foundation
 
 final class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
     
-    var calledStartLoading = false
-    var calledFinishLoading = false
-    var calledSetFavorite = false
-    var calledDisplayError = false
-    var calledHideError = false
-    var calledSetGenres = false
-    var calledReloadData = false
+    private(set) var calledStartLoading = false
+    private(set) var calledFinishLoading = false
+    private(set) var calledSetFavorite = false
+    private(set) var calledDisplayError = false
+    private(set) var calledHideError = false
+    private(set) var calledSetGenres = false
+    private(set) var calledReloadData = false
     
     func reloadData(info: [DetailInfoType]) {
         calledReloadData = true

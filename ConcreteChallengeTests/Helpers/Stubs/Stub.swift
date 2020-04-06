@@ -11,12 +11,27 @@ import Foundation
 
 final class Stub {
     
-    static func getMovieList() -> [Movie] {
-        
+    static var moviesResponseJson: Data {
         let bundle = Bundle(for: self)
         let path = bundle.path(forResource: "MoviesResponseStub", ofType: "json")!
-        let jsonData = NSData(contentsOfFile: path)! as Data
+        return NSData(contentsOfFile: path)! as Data
+    }
+    
+    static var moviesResponseNoImageJson: Data {
+        let bundle = Bundle(for: self)
+        let path = bundle.path(forResource: "MoviesResponseNoImageStub", ofType: "json")!
+        return NSData(contentsOfFile: path)! as Data
+    }
+    
+    static var genresResponseJson: Data {
+        let bundle = Bundle(for: self)
+        let path = bundle.path(forResource: "GenreListStub", ofType: "json")!
+        return NSData(contentsOfFile: path)! as Data
+    }
+    
+    static func getMovieList() -> [Movie] {
         
+        let jsonData = moviesResponseJson
         let decoder = JSONDecoder()
         let decodedJson = try! decoder.decode(PopularResponse.self, from: jsonData)
         
@@ -25,10 +40,7 @@ final class Stub {
     
     static func getMovieWithNoImageList() -> [Movie] {
         
-        let bundle = Bundle(for: self)
-        let path = bundle.path(forResource: "MoviesResponseNoImageStub", ofType: "json")!
-        let jsonData = NSData(contentsOfFile: path)! as Data
-        
+        let jsonData = moviesResponseNoImageJson
         let decoder = JSONDecoder()
         let decodedJson = try! decoder.decode(PopularResponse.self, from: jsonData)
         
@@ -37,10 +49,7 @@ final class Stub {
     
     static func getGenres() -> [Genre] {
         
-        let bundle = Bundle(for: self)
-        let path = bundle.path(forResource: "GenreListStub", ofType: "json")!
-        let jsonData = NSData(contentsOfFile: path)! as Data
-        
+        let jsonData = genresResponseJson
         let decoder = JSONDecoder()
         let decodedJson = try! decoder.decode(GenreListResponse.self, from: jsonData)
         
