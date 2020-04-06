@@ -55,7 +55,6 @@
 		5E6AAD16239C423700564F6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD15239C423700564F6A /* BaseViewController.swift */; };
 		5E6AAD1C239C436A00564F6A /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1B239C436A00564F6A /* Presenter.swift */; };
 		5E6AAD1E239C439400564F6A /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1D239C439400564F6A /* ViewDelegate.swift */; };
-		5E6AAD20239C468700564F6A /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1F239C468700564F6A /* BasePresenter.swift */; };
 		5E6AAD27239C4CC500564F6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AAD26239C4CC500564F6A /* Colors.xcassets */; };
 		5E6AAD29239C4CDA00564F6A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD28239C4CDA00564F6A /* Colors.swift */; };
 		5E6AAD2C239C4F3A00564F6A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD2B239C4F3A00564F6A /* Logger.swift */; };
@@ -172,7 +171,6 @@
 		5E6AAD15239C423700564F6A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5E6AAD1B239C436A00564F6A /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		5E6AAD1D239C439400564F6A /* ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegate.swift; sourceTree = "<group>"; };
-		5E6AAD1F239C468700564F6A /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		5E6AAD26239C4CC500564F6A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		5E6AAD28239C4CDA00564F6A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5E6AAD2B239C4F3A00564F6A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				5E6AAD52239CC02B00564F6A /* BaseCollectionViewCell.swift */,
-				5E6AAD1F239C468700564F6A /* BasePresenter.swift */,
 				5E6AAD6D239D8CDF00564F6A /* BaseTableViewCell.swift */,
 				5E6AAD15239C423700564F6A /* BaseViewController.swift */,
 			);
@@ -1008,7 +1005,6 @@
 				1D1A3FB023FDBB46002B76A3 /* JSONDocumentsSaverService.swift in Sources */,
 				5E6FC72F23A6BD3E00BA5DEF /* PopularsPresenter.swift in Sources */,
 				5E6AAD42239CA1BC00564F6A /* GenreListResponse.swift in Sources */,
-				5E6AAD20239C468700564F6A /* BasePresenter.swift in Sources */,
 				5E6AAD70239D8FCC00564F6A /* PosterDetailTableCell.swift in Sources */,
 				5E6AAD29239C4CDA00564F6A /* Colors.swift in Sources */,
 				1DF35C062433DEF200D1EC75 /* ParameterEncoder.swift in Sources */,

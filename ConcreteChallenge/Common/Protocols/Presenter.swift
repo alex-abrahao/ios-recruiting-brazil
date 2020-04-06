@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Presenter: class {
+protocol Presenter: AnyObject {
     
     /**
      The view object that conforms to a `ViewDelegate` protocol.
@@ -30,4 +30,8 @@ protocol Presenter: class {
     To be called by the view.
     */
     func updateData()
+}
+
+extension Presenter {
+    func updateData() {}
 }

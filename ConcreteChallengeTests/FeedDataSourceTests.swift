@@ -44,7 +44,6 @@ final class FeedDataSourceTests: QuickSpec {
         }
         
         describe("displaying movies") {
-            
                 
             it("should display the correct number of items") {
                 

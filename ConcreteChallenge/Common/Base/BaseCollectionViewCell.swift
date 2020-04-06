@@ -12,10 +12,6 @@ import os.log
 class BaseCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    static var logEnabled: Bool = true
-    static var identifier: String {
-        return String(describing: self)
-    }
     /// View to display many kinds of errors.
     var errorView = ErrorView()
 
@@ -23,7 +19,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        if BaseCollectionViewCell.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🏻 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
 
@@ -36,7 +32,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
 
     deinit {
-        if BaseCollectionViewCell.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🏻 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
     }

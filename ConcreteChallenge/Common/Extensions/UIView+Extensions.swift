@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIView {
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     // MARK: View animations
     /**
      Animate changes made to the constraints on the current view's superview.

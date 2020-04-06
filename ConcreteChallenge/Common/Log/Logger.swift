@@ -30,4 +30,7 @@ struct Logger {
     static func lifecycleLog() -> OSLog {
         return OSLog(subsystem: Bundle.main.bundleIdentifier ?? "-", category: LoggerCategory.lifecycle)
     }
+    
+    /// Variable to enable or disable logs
+    static var isLogEnabled: Bool = true
 }

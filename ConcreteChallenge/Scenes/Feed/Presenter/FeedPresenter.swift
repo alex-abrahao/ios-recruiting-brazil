@@ -9,9 +9,11 @@
 import Foundation
 import os.log
 
-class FeedPresenter: BasePresenter, FavoriteHandler {
+class FeedPresenter: Presenter, FavoriteHandler {
     
     // MARK: - Properties -
+    weak var view: ViewDelegate?
+    
     internal var feedView: FeedViewDelegate {
         guard let view = view as? FeedViewDelegate else {
             os_log("❌ - FeedPresenter was given to the wrong view", log: Logger.appLog(), type: .fault)
@@ -51,15 +53,24 @@ class FeedPresenter: BasePresenter, FavoriteHandler {
             )
         }
         self.favoriteClient = favoriteClient
-        super.init()
+        
+        if Logger.isLogEnabled {
+            os_log("🖥 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
+    }
+    
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🖥 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
     }
     
     // MARK: - Methods -
-    override func loadData() {
+    func loadData() {
         loadFeed()
     }
     
-    override func updateData() {
+    func updateData() {
         favoriteClient.checkFavorites(on: movies)
         feedView.reloadFeed()
     }

@@ -9,11 +9,13 @@
 import Foundation
 import os.log
 
-final class DetailPresenter: BasePresenter {
+final class DetailPresenter: Presenter {
     
     // MARK: - Properties -
     /// The movie to display the details
     private let movie: Movie
+    
+    weak var view: ViewDelegate?
     
     private var detailView: DetailViewDelegate {
         guard let view = view as? DetailViewDelegate else {
@@ -89,11 +91,19 @@ final class DetailPresenter: BasePresenter {
             self.genreClient = GenreClient()
         }
         
-        super.init()
+        if Logger.isLogEnabled {
+            os_log("🖥 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
+    }
+    
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🖥 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
     }
     
     // MARK: - Methods -
-    override func loadData() {
+    func loadData() {
         getGenres()
     }
     

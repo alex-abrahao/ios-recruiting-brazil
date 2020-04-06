@@ -11,12 +11,8 @@ import os.log
 
 /// Base class for all the project's Table View Cells
 class BaseTableViewCell: UITableViewCell {
+    
     // MARK: - Properties
-    static var logEnabled: Bool = true
-    static var identifier: String {
-        return String(describing: self)
-    }
-
     var isSelection = false
     var selectionColor: UIColor? {
         didSet {
@@ -30,7 +26,7 @@ class BaseTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        if BaseTableViewCell.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🔲 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
 
@@ -43,7 +39,7 @@ class BaseTableViewCell: UITableViewCell {
     }
 
     deinit {
-        if BaseTableViewCell.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🔲 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
     }

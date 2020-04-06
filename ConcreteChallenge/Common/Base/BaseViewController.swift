@@ -11,11 +11,7 @@ import os.log
 
 class BaseViewController: UIViewController, ViewDelegate {
     
-    
     // MARK: - Properties -
-    /// Variable to enable or disable view's logs
-    static var logEnabled: Bool = true
-    
     /// View to display many kinds of error. Add this as a subview when needed.
     var errorView: ErrorView = ErrorView()
     
@@ -30,7 +26,7 @@ class BaseViewController: UIViewController, ViewDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
-        if BaseViewController.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🎮 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
     }
@@ -40,7 +36,7 @@ class BaseViewController: UIViewController, ViewDelegate {
     }
     
     deinit {
-        if BaseViewController.logEnabled {
+        if Logger.isLogEnabled {
             os_log("🎮 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
     }
