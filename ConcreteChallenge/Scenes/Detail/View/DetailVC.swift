@@ -11,11 +11,10 @@ import os.log
 import Kingfisher
 import SnapKit
 
-final class DetailVC: BaseViewController {
+final class DetailVC: UIViewController {
     
     // MARK: - Properties -
     var detailPresenter: DetailPresenter
-    
     var tableDataSource: DetailTableDataSource
     
     // MARK: View
@@ -45,6 +44,8 @@ final class DetailVC: BaseViewController {
         return button
     }()
     
+    private(set) var errorView: ErrorView = ErrorView()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -64,6 +65,10 @@ final class DetailVC: BaseViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        if Logger.isLogEnabled {
+            os_log("🎮 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
+        
         detailPresenter.view = self
     }
     
@@ -71,28 +76,16 @@ final class DetailVC: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-        
-        view.backgroundColor = .white
-        self.title = detailPresenter.getBarTitle()
-        self.navigationItem.rightBarButtonItem = favoriteButton
-    }
-    
-    override func addSubviews() {
-        self.view.addSubview(detailTableView)
-    }
-    
-    override func setupConstraints() {
-        
-        detailTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🎮 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
     }
     
+    // MARK: - Methods -
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         
         detailTableView.dataSource = tableDataSource
         
@@ -108,6 +101,25 @@ final class DetailVC: BaseViewController {
     @objc func favoriteTapped(_ sender: UIBarButtonItem) {
         
         detailPresenter.favoriteStateChanged()
+    }
+}
+
+extension DetailVC: ViewCode {
+    func buildViewHierarchy() {
+        self.view.addSubview(detailTableView)
+    }
+    
+    func setupConstraints() {
+        
+        detailTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    func setupAdditionalConfiguration() {
+        view.backgroundColor = .white
+        self.title = detailPresenter.getBarTitle()
+        self.navigationItem.rightBarButtonItem = favoriteButton
     }
 }
 

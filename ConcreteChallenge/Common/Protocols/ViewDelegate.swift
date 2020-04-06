@@ -15,7 +15,9 @@ protocol ViewDelegate: AnyObject, ErrorDelegate {
     
     /// Do the necessary steps to inform the user that the view has stopped loading
     func finishLoading()
-    
-    /// Tells the view to back to the previous view
-    func exitView()
+}
+
+extension ViewDelegate {
+    func startLoading() {}
+    func finishLoading() {}
 }

@@ -47,12 +47,13 @@
 		1DF35C102436A79600D1EC75 /* ImageURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C0F2436A79600D1EC75 /* ImageURLBuilder.swift */; };
 		1DF35C122437A30100D1EC75 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C112437A30100D1EC75 /* NetworkService.swift */; };
 		1DF35C14243B9F3700D1EC75 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C13243B9F3700D1EC75 /* LocalService.swift */; };
+		1DF35C1A243BD46D00D1EC75 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C19243BD46D00D1EC75 /* ViewCode.swift */; };
+		1DF35C1C243BE5D300D1EC75 /* UIViewController+ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C1B243BE5D300D1EC75 /* UIViewController+ErrorDelegate.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
 		5E6AACED239C3DB200564F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACEB239C3DB200564F6A /* LaunchScreen.storyboard */; };
 		5E6AAD03239C3DB300564F6A /* ConcreteChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD02239C3DB300564F6A /* ConcreteChallengeUITests.swift */; };
-		5E6AAD16239C423700564F6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD15239C423700564F6A /* BaseViewController.swift */; };
 		5E6AAD1C239C436A00564F6A /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1B239C436A00564F6A /* Presenter.swift */; };
 		5E6AAD1E239C439400564F6A /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AAD1D239C439400564F6A /* ViewDelegate.swift */; };
 		5E6AAD27239C4CC500564F6A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AAD26239C4CC500564F6A /* Colors.xcassets */; };
@@ -157,6 +158,8 @@
 		1DF35C0F2436A79600D1EC75 /* ImageURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLBuilder.swift; sourceTree = "<group>"; };
 		1DF35C112437A30100D1EC75 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		1DF35C13243B9F3700D1EC75 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
+		1DF35C19243BD46D00D1EC75 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		1DF35C1B243BE5D300D1EC75 /* UIViewController+ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorDelegate.swift"; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +171,6 @@
 		5E6AACFE239C3DB300564F6A /* ConcreteChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcreteChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AAD02239C3DB300564F6A /* ConcreteChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteChallengeUITests.swift; sourceTree = "<group>"; };
 		5E6AAD04239C3DB300564F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E6AAD15239C423700564F6A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5E6AAD1B239C436A00564F6A /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		5E6AAD1D239C439400564F6A /* ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegate.swift; sourceTree = "<group>"; };
 		5E6AAD26239C4CC500564F6A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				5E6FC71C23A602DD00BA5DEF /* FavoriteViewDelegate.swift */,
 				5E6AAD1B239C436A00564F6A /* Presenter.swift */,
 				5E6AAD1D239C439400564F6A /* ViewDelegate.swift */,
+				1DF35C19243BD46D00D1EC75 /* ViewCode.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -350,7 +353,6 @@
 			children = (
 				5E6AAD52239CC02B00564F6A /* BaseCollectionViewCell.swift */,
 				5E6AAD6D239D8CDF00564F6A /* BaseTableViewCell.swift */,
-				5E6AAD15239C423700564F6A /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -630,6 +632,7 @@
 			children = (
 				5E6AAD59239D6EFB00564F6A /* UIFont+Extensions.swift */,
 				5E6AAD5B239D740700564F6A /* UIView+Extensions.swift */,
+				1DF35C1B243BE5D300D1EC75 /* UIViewController+ErrorDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1004,6 +1007,7 @@
 			files = (
 				1D1A3FB023FDBB46002B76A3 /* JSONDocumentsSaverService.swift in Sources */,
 				5E6FC72F23A6BD3E00BA5DEF /* PopularsPresenter.swift in Sources */,
+				1DF35C1C243BE5D300D1EC75 /* UIViewController+ErrorDelegate.swift in Sources */,
 				5E6AAD42239CA1BC00564F6A /* GenreListResponse.swift in Sources */,
 				5E6AAD70239D8FCC00564F6A /* PosterDetailTableCell.swift in Sources */,
 				5E6AAD29239C4CDA00564F6A /* Colors.swift in Sources */,
@@ -1019,7 +1023,6 @@
 				5E6AAD4D239CAD1F00564F6A /* FeedViewDelegate.swift in Sources */,
 				5E6AAD55239D6B2100564F6A /* GradientImageView.swift in Sources */,
 				5E6AAD57239D6E6D00564F6A /* PopularsHeaderView.swift in Sources */,
-				5E6AAD16239C423700564F6A /* BaseViewController.swift in Sources */,
 				5E6AAD2C239C4F3A00564F6A /* Logger.swift in Sources */,
 				5EFC3EE423A7ADDA00FDE1F8 /* ErrorView.swift in Sources */,
 				5E6FC71D23A602DD00BA5DEF /* FavoriteViewDelegate.swift in Sources */,
@@ -1033,6 +1036,7 @@
 				5E6AAD30239C50BE00564F6A /* Movie.swift in Sources */,
 				1DDC4A78240ECB5700C3018D /* Coordinator.swift in Sources */,
 				5E6FC72523A69D7F00BA5DEF /* FavoritesVC.swift in Sources */,
+				1DF35C1A243BD46D00D1EC75 /* ViewCode.swift in Sources */,
 				5E6AAD7A239DDC6900564F6A /* NavigationController.swift in Sources */,
 				1DF35C14243B9F3700D1EC75 /* LocalService.swift in Sources */,
 				1DDC4A82240F1E4300C3018D /* MovieSelectionDelegate.swift in Sources */,

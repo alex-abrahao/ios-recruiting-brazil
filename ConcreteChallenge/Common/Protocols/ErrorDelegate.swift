@@ -11,6 +11,9 @@ import Foundation
 /// Protocol to display error messages.
 protocol ErrorDelegate {
     
+    /// View to display many kinds of error. Add this as a subview when needed.
+    var errorView: ErrorView { get }
+    
     /**
      Inform the user something went wrong.
      - Parameter type: The message type to display.

@@ -54,10 +54,6 @@ final class DetailPresenter: Presenter {
         return completeGenres != "" ? completeGenres : "No known genres"
     }
     
-    var numberOfRows: Int {
-        return displayData.count
-    }
-    
     var isFavorite: Bool {
         return movie.isFavorite
     }

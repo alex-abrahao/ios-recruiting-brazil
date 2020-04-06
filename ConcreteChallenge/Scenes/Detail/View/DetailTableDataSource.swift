@@ -12,7 +12,6 @@ import os.log
 final class DetailTableDataSource: NSObject {
     
     var displayData: [DetailInfoType] = []
-    
 }
 
 extension DetailTableDataSource: UITableViewDataSource {

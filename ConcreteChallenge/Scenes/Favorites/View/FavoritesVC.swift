@@ -33,21 +33,9 @@ final class FavoritesVC: FeedVC {
     }
     
     // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-        
-        title = "Favorites"
-    }
-    
-    override func addSubviews() {
-        self.view.addSubview(feedCollectionView)
-    }
-    
-    override func setupConstraints() {
-        
-        feedCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
     }
     
     override func setFavorite(_ isFavorite: Bool, tag: Int?) {
@@ -64,5 +52,23 @@ final class FavoritesVC: FeedVC {
                 self?.reloadFeed()
             }
         }
+    }
+}
+
+extension FavoritesVC: ViewCode {
+    func buildViewHierarchy() {
+        self.view.addSubview(feedCollectionView)
+    }
+    
+    func setupConstraints() {
+        
+        feedCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
+    }
+    
+    func setupAdditionalConfiguration() {
+        view.backgroundColor = .white
+        title = "Favorites"
     }
 }

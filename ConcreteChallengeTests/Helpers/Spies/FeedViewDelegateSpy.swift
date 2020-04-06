@@ -11,6 +11,8 @@ import Foundation
 
 final class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     
+    var errorView: ErrorView = ErrorView()
+    
     private(set) var calledStartLoading = false
     private(set) var calledFinishLoading = false
     private(set) var calledDisplayError = false
@@ -20,7 +22,6 @@ final class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     private(set) var calledMoveData = false
     private(set) var calledNavigateToDetail = false
     private(set) var calledDatasource = false
-    private(set) var calledExitView = false
     
     func reloadFeed() {
         calledReloadFeed = true
@@ -48,10 +49,6 @@ final class FeedViewDelegateSpy: NSObject, FeedViewDelegate {
     
     func finishLoading() {
         calledFinishLoading = true
-    }
-    
-    func exitView() {
-        calledExitView = false
     }
     
     func displayError(_ type: ErrorMessageType) {

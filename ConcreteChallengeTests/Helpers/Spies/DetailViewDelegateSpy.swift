@@ -11,12 +11,13 @@ import Foundation
 
 final class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
     
+    var errorView: ErrorView = ErrorView()
+    
     private(set) var calledStartLoading = false
     private(set) var calledFinishLoading = false
     private(set) var calledSetFavorite = false
     private(set) var calledDisplayError = false
     private(set) var calledHideError = false
-    private(set) var calledSetGenres = false
     private(set) var calledReloadData = false
     
     func reloadData(info: [DetailInfoType]) {
@@ -29,14 +30,6 @@ final class DetailViewDelegateSpy: NSObject, DetailViewDelegate {
     
     func finishLoading() {
         calledFinishLoading = true
-    }
-    
-    func exitView() {
-        
-    }
-    
-    func navigateToView(presenter: Presenter) {
-        
     }
     
     func setFavorite(_ isFavorite: Bool, tag: Int?) {

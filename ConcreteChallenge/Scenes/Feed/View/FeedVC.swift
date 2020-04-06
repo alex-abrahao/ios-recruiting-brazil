@@ -12,7 +12,7 @@ import Kingfisher
 import SnapKit
 
 /// A basic View Controller to display a feed of movies
-class FeedVC: BaseViewController, FavoriteViewDelegate {
+class FeedVC: UIViewController, FavoriteViewDelegate {
     
     // MARK: - Properties -
     var feedPresenter: FeedPresenter
@@ -36,6 +36,8 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         view.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
         return view
     }()
+    
+    private(set) var errorView: ErrorView = ErrorView()
     
     /// An activity indicator to show when the view is loading
     let activityIndicator: UIActivityIndicatorView = {
@@ -70,6 +72,10 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
+        if Logger.isLogEnabled {
+            os_log("🎮 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
+        
         feedPresenter.view = self
     }
     
@@ -77,19 +83,19 @@ class FeedVC: BaseViewController, FavoriteViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-
-        view.backgroundColor = .white
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🎮 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
     }
     
-    override func startLoading() {
+    // MARK: - Methods -
+    func startLoading() {
         activityIndicator.startAnimating()
         feedCollectionView.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
     }
     
-    override func finishLoading() {
+    func finishLoading() {
         activityIndicator.stopAnimating()
         feedCollectionView.backgroundColor = .white
     }

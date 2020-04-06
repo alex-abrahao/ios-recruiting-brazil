@@ -84,17 +84,56 @@ final class PopularsVC: FeedVC {
     }
     
     // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-        
-        let headerData = popularsPresenter?.getHeaderData()
-        headerView.callToActionLabel.text = headerData?.title
-        headerView.headlineLabel.text = headerData?.greeting
-        headerView.gridButton.addTarget(self, action: #selector(gridTapped), for: .touchUpInside)
-        searchBar.placeholder = headerData?.searchBarPlaceholder
+    override func startLoading() {
+        super.startLoading()
+        auxiliarView.backgroundColor = feedCollectionView.backgroundColor
     }
     
-    override func addSubviews() {
+    override func finishLoading() {
+        super.finishLoading()
+        auxiliarView.backgroundColor = feedCollectionView.backgroundColor
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        
+        scrollView.delegate = self
+        searchBar.delegate = self
+        
+        collectionDataSource.prefetch = { [weak self] in
+            self?.popularsPresenter?.loadMoreItems()
+        }
+        
+        collectionDelegate.didScroll = { [weak self] (scrollView: UIScrollView) in
+            self?.scrollViewDidScroll(scrollView)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    // MARK: Button methods
+    @objc func gridTapped() {
+        
+        switch collectionDataSource.displayType {
+        case .grid:
+            collectionDataSource.displayType = .list
+            collectionDelegate.displayType = .list
+        case .list:
+            collectionDataSource.displayType = .grid
+            collectionDelegate.displayType = .grid
+        }
+        reloadFeed()
+    }
+}
+
+// MARK: - ViewCode -
+extension PopularsVC: ViewCode {
+    func buildViewHierarchy() {
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(auxiliarView)
         self.scrollView.addSubview(feedCollectionView)
@@ -104,7 +143,7 @@ final class PopularsVC: FeedVC {
         self.view.addSubview(activityIndicator)
     }
     
-    override func setupConstraints() {
+    func setupConstraints() {
         
         scrollView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalToSuperview()
@@ -144,49 +183,13 @@ final class PopularsVC: FeedVC {
         }
     }
     
-    override func startLoading() {
-        super.startLoading()
-        auxiliarView.backgroundColor = feedCollectionView.backgroundColor
-    }
-    
-    override func finishLoading() {
-        super.finishLoading()
-        auxiliarView.backgroundColor = feedCollectionView.backgroundColor
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        scrollView.delegate = self
-        searchBar.delegate = self
-        
-        collectionDataSource.prefetch = { [weak self] in
-            self?.popularsPresenter?.loadMoreItems()
-        }
-        
-        collectionDelegate.didScroll = { [weak self] (scrollView: UIScrollView) in
-            self?.scrollViewDidScroll(scrollView)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    // MARK: Button methods
-    @objc func gridTapped() {
-        
-        switch collectionDataSource.displayType {
-        case .grid:
-            collectionDataSource.displayType = .list
-            collectionDelegate.displayType = .list
-        case .list:
-            collectionDataSource.displayType = .grid
-            collectionDelegate.displayType = .grid
-        }
-        reloadFeed()
+    func setupAdditionalConfiguration() {
+        view.backgroundColor = .white
+        let headerData = popularsPresenter?.getHeaderData()
+        headerView.callToActionLabel.text = headerData?.title
+        headerView.headlineLabel.text = headerData?.greeting
+        headerView.gridButton.addTarget(self, action: #selector(gridTapped), for: .touchUpInside)
+        searchBar.placeholder = headerData?.searchBarPlaceholder
     }
 }
 
