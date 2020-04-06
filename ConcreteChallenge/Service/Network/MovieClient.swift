@@ -17,7 +17,7 @@ final class MovieClient: MovieClientProtocol {
     private(set) var currentPage: Int = 0
     private(set) var totalPages: Int = 500
     
-    init(networkService: NetworkService = NetworkService(),
+    init(networkService: NetworkService = APIService(),
          favoriteClient: FavoriteClientProtocol = FavoriteClient(),
          genreClient: GenreClientProtocol = GenreClient()) {
         

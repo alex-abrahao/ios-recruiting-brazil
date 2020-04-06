@@ -24,7 +24,7 @@
 		1D2DFDFD23FAF45C00D7BD37 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DFDFC23FAF45C00D7BD37 /* Stub.swift */; };
 		1D2DFDFF23FB13EE00D7BD37 /* MoviesResponseNoImageStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D2DFDFE23FB13EE00D7BD37 /* MoviesResponseNoImageStub.json */; };
 		1D2DFE0323FB272700D7BD37 /* MovieClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DFE0223FB272700D7BD37 /* MovieClientProtocol.swift */; };
-		1D2DFE0723FB29C200D7BD37 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DFE0623FB29C200D7BD37 /* NetworkService.swift */; };
+		1D2DFE0723FB29C200D7BD37 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DFE0623FB29C200D7BD37 /* APIService.swift */; };
 		1D2DFE0A23FC1EF300D7BD37 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2DFE0923FC1EF300D7BD37 /* Endpoint.swift */; };
 		1D6DC7A023F59D3E00ED0F06 /* FeedCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC79F23F59D3E00ED0F06 /* FeedCollectionDelegate.swift */; };
 		1D6DC7A623F5C93B00ED0F06 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */; };
@@ -45,6 +45,7 @@
 		1DF35C0A24352C3E00D1EC75 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C0924352C3E00D1EC75 /* URLParameterEncoder.swift */; };
 		1DF35C0C24352FC800D1EC75 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C0B24352FC800D1EC75 /* JSONParameterEncoder.swift */; };
 		1DF35C102436A79600D1EC75 /* ImageURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C0F2436A79600D1EC75 /* ImageURLBuilder.swift */; };
+		1DF35C122437A30100D1EC75 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C112437A30100D1EC75 /* NetworkService.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -133,7 +134,7 @@
 		1D2DFDFC23FAF45C00D7BD37 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		1D2DFDFE23FB13EE00D7BD37 /* MoviesResponseNoImageStub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoviesResponseNoImageStub.json; sourceTree = "<group>"; };
 		1D2DFE0223FB272700D7BD37 /* MovieClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClientProtocol.swift; sourceTree = "<group>"; };
-		1D2DFE0623FB29C200D7BD37 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1D2DFE0623FB29C200D7BD37 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1D2DFE0923FC1EF300D7BD37 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		1D6DC79F23F59D3E00ED0F06 /* FeedCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionDelegate.swift; sourceTree = "<group>"; };
 		1D6DC7A523F5C93B00ED0F06 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		1DF35C0924352C3E00D1EC75 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		1DF35C0B24352FC800D1EC75 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		1DF35C0F2436A79600D1EC75 /* ImageURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLBuilder.swift; sourceTree = "<group>"; };
+		1DF35C112437A30100D1EC75 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				1D2DFE0923FC1EF300D7BD37 /* Endpoint.swift */,
 				1D2DFE0223FB272700D7BD37 /* MovieClientProtocol.swift */,
+				1DF35C112437A30100D1EC75 /* NetworkService.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -321,7 +324,7 @@
 				5E6AAD60239D77C300564F6A /* Endpoints */,
 				1D2DFE0123FB26FB00D7BD37 /* Protocols */,
 				5E6AAD3C239C91E900564F6A /* MovieClient.swift */,
-				1D2DFE0623FB29C200D7BD37 /* NetworkService.swift */,
+				1D2DFE0623FB29C200D7BD37 /* APIService.swift */,
 				1DF35C0F2436A79600D1EC75 /* ImageURLBuilder.swift */,
 			);
 			path = Network;
@@ -445,7 +448,7 @@
 				5E6AAD21239C486900564F6A /* Resources */,
 				5E6AAD14239C411000564F6A /* Common */,
 				1DDC4A7B240F036500C3018D /* Coordinators */,
-				5E6AAD13239C40F200564F6A /* App Resources */,
+				5E6AAD13239C40F200564F6A /* Application */,
 				5E6AAD11239C40DA00564F6A /* Model */,
 				5E6AAD44239CA7F200564F6A /* Scenes */,
 			);
@@ -479,20 +482,20 @@
 		5E6AAD11239C40DA00564F6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5E6AAD40239CA17100564F6A /* Response */,
-				5E6AAD2F239C50BE00564F6A /* Movie.swift */,
 				5E6AAD3A239C8E2700564F6A /* Genre.swift */,
+				5E6AAD2F239C50BE00564F6A /* Movie.swift */,
+				5E6AAD40239CA17100564F6A /* Response */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5E6AAD13239C40F200564F6A /* App Resources */ = {
+		5E6AAD13239C40F200564F6A /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				5E6AACEE239C3DB200564F6A /* Info.plist */,
 				5E6AACE0239C3DB100564F6A /* AppDelegate.swift */,
 			);
-			path = "App Resources";
+			path = Application;
 			sourceTree = "<group>";
 		};
 		5E6AAD14239C411000564F6A /* Common */ = {
@@ -1009,6 +1012,7 @@
 				5E6AAD1E239C439400564F6A /* ViewDelegate.swift in Sources */,
 				5E6FC72723A69D9E00BA5DEF /* FavoritesPresenter.swift in Sources */,
 				5E6AAD6E239D8CDF00564F6A /* BaseTableViewCell.swift in Sources */,
+				1DF35C122437A30100D1EC75 /* NetworkService.swift in Sources */,
 				1DF35C102436A79600D1EC75 /* ImageURLBuilder.swift in Sources */,
 				5E6AAD3F239C941000564F6A /* PopularResponse.swift in Sources */,
 				5E6AAD30239C50BE00564F6A /* Movie.swift in Sources */,
@@ -1019,7 +1023,7 @@
 				5E6AAD5E239D74F800564F6A /* PopularHeaderViewData.swift in Sources */,
 				1DF35C032433DE5200D1EC75 /* HTTPTask.swift in Sources */,
 				5E6AAD5C239D740700564F6A /* UIView+Extensions.swift in Sources */,
-				1D2DFE0723FB29C200D7BD37 /* NetworkService.swift in Sources */,
+				1D2DFE0723FB29C200D7BD37 /* APIService.swift in Sources */,
 				5E6AAD4B239CA8DF00564F6A /* FeedPresenter.swift in Sources */,
 				5E6AAD74239DA9DD00564F6A /* DetailInfoType.swift in Sources */,
 				5E6AAD72239D900800564F6A /* DetailViewDelegate.swift in Sources */,
@@ -1228,7 +1232,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U97XLU4X35;
-				INFOPLIST_FILE = "$(SRCROOT)/ConcreteChallenge/App Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ConcreteChallenge/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1249,7 +1253,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U97XLU4X35;
-				INFOPLIST_FILE = "$(SRCROOT)/ConcreteChallenge/App Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ConcreteChallenge/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

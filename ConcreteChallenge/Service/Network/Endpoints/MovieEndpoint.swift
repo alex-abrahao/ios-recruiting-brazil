@@ -78,4 +78,9 @@ enum MovieEndpoint: Endpoint {
     var baseURL: URL? {
         return URL(string: NetworkInfo.ProductionServer.baseURL)
     }
+    
+    // MARK: - Headers
+    var headers: HTTPHeaders? {
+        return nil
+    }
 }

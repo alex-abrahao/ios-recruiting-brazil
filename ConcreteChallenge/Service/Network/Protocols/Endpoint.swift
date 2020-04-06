@@ -13,4 +13,5 @@ protocol Endpoint {
     var method: HTTPMethod { get }
     var path: String { get }
     var task: HTTPTask { get }
+    var headers: HTTPHeaders? { get }
 }
