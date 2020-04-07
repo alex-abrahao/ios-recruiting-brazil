@@ -10,10 +10,10 @@ import Foundation
 
 final class APIService {
     
-    private let session: URLSession
-    private var task: URLSessionTask?
+    private let session: NetworkSession
+    private var task: NetworkSessionTask?
     
-    init(session: URLSession = .shared) {
+    init(session: NetworkSession = URLSession.shared) {
         self.session = session
     }
     

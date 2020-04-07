@@ -1,5 +1,5 @@
 //
-//  Stub.swift
+//  ModelStub.swift
 //  ConcreteChallengeTests
 //
 //  Created by alexandre.c.ferreira on 17/02/20.
@@ -9,7 +9,7 @@
 import Foundation
 @testable import Movs
 
-final class Stub {
+final class ModelStub {
     
     static var moviesResponseJson: Data {
         let bundle = Bundle(for: self)
@@ -29,12 +29,15 @@ final class Stub {
         return NSData(contentsOfFile: path)! as Data
     }
     
-    static func getMovieList() -> [Movie] {
-        
+    static func getMovieResponse() -> PopularResponse {
         let jsonData = moviesResponseJson
         let decoder = JSONDecoder()
-        let decodedJson = try! decoder.decode(PopularResponse.self, from: jsonData)
+        return try! decoder.decode(PopularResponse.self, from: jsonData)
+    }
+    
+    static func getMovieList() -> [Movie] {
         
+        let decodedJson = getMovieResponse()
         return decodedJson.results
     }
     

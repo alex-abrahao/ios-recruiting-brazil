@@ -1,5 +1,5 @@
 //
-//  DetailPresenterTests.swift
+//  DetailPresenterSpec.swift
 //  ConcreteChallengeTests
 //
 //  Created by Alexandre Abrahão on 16/12/19.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Movs
 
-final class DetailPresenterTests: XCTestCase {
+final class DetailPresenterSpec: XCTestCase {
     
     var movieMock: Movie!
     var sut: DetailPresenter!
@@ -17,7 +17,7 @@ final class DetailPresenterTests: XCTestCase {
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        movieMock = Stub.getMovieList()[0]
+        movieMock = ModelStub.getMovieList()[0]
         sut = DetailPresenter(movie: movieMock)
         delegate = DetailViewDelegateSpy()
     }

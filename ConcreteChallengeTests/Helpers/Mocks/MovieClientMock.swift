@@ -19,14 +19,14 @@ final class MovieClientMock: MovieClientProtocol {
     
     func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
-        let movies = Stub.getMovieList()
+        let movies = ModelStub.getMovieList()
         FavoriteClientMock().checkFavorites(on: movies)
         self.movies = movies
         completion(.success(movies))
     }
     
     func getGenreList(completion: @escaping (Result<[Genre], Error>) -> Void) {
-        let genreList = Stub.getGenres()
+        let genreList = ModelStub.getGenres()
         completion(.success(genreList))
     }
     

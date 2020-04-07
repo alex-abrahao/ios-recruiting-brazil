@@ -25,7 +25,7 @@ final class FavoriteClientMock: FavoriteClientProtocol {
     
     func getFavoritesList() -> [Movie] {
         // Favorites the first movie
-        let movies = Stub.getMovieList()
+        let movies = ModelStub.getMovieList()
         movies[0].isFavorite = true
         return movies
     }

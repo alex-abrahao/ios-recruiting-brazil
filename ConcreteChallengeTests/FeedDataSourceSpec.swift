@@ -1,5 +1,5 @@
 //
-//  FeedDataSourceTests.swift
+//  FeedDataSourceSpec.swift
 //  ConcreteChallengeTests
 //
 //  Created by alexandre.c.ferreira on 13/02/20.
@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import Movs
 
-final class FeedDataSourceTests: QuickSpec {
+final class FeedDataSourceSpec: QuickSpec {
     
     override func spec() {
         
@@ -28,7 +28,7 @@ final class FeedDataSourceTests: QuickSpec {
             feedCollectionView.register(GridCollectionViewCell.self, forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
             feedCollectionView.dataSource = sut
             
-            moviesList = Stub.getMovieList()
+            moviesList = ModelStub.getMovieList()
             sut.movies = moviesList
             feedCollectionView.reloadData()
             didPrefetch = false
@@ -96,7 +96,7 @@ final class FeedDataSourceTests: QuickSpec {
                     
                     // Arrange
                     let indexPath = IndexPath(item: 0, section: 0)
-                    moviesList = Stub.getMovieWithNoImageList()
+                    moviesList = ModelStub.getMovieWithNoImageList()
                     sut.movies = moviesList
                     sut.displayType = .list
                     
@@ -114,7 +114,7 @@ final class FeedDataSourceTests: QuickSpec {
                     
                     // Arrange
                     let indexPath = IndexPath(item: 0, section: 0)
-                    moviesList = Stub.getMovieWithNoImageList()
+                    moviesList = ModelStub.getMovieWithNoImageList()
                     sut.movies = moviesList
                     sut.displayType = .grid
                     
