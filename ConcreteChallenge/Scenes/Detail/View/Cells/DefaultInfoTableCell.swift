@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import os.log
 
-final class DefaultInfoTableCell: BaseTableViewCell {
+final class DefaultInfoTableCell: UITableViewCell {
     
-    // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
+    // MARK: - Init -
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        if Logger.isLogEnabled {
+            os_log("🔲 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
         
         let fontSize: CGFloat = 15
         if #available(iOS 13.0, *) {
@@ -22,6 +27,17 @@ final class DefaultInfoTableCell: BaseTableViewCell {
         }
         textLabel?.textColor = Colors.almostBlack
         textLabel?.numberOfLines = 0
-        self.accessibilityIdentifier = "DefaultInfoTableCell"
+        accessibilityIdentifier = "DefaultInfoTableCell"
+        backgroundColor = .clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🔲 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
     }
 }

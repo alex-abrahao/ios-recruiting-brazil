@@ -44,7 +44,7 @@ final class DetailVC: UIViewController {
         return button
     }()
     
-    private(set) var errorView: ErrorView = ErrorView()
+    private(set) lazy var errorView: ErrorView = ErrorView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

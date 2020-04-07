@@ -37,7 +37,7 @@ class FeedVC: UIViewController, FavoriteViewDelegate {
         return view
     }()
     
-    private(set) var errorView: ErrorView = ErrorView()
+    private(set) lazy var errorView: ErrorView = ErrorView()
     
     /// An activity indicator to show when the view is loading
     let activityIndicator: UIActivityIndicatorView = {

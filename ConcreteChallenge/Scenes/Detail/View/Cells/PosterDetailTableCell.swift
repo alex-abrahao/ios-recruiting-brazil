@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import os.log
 
-final class PosterDetailTableCell: BaseTableViewCell {
+final class PosterDetailTableCell: UITableViewCell {
     
     // MARK: - Properties -
     /// Height / Width
@@ -23,29 +24,30 @@ final class PosterDetailTableCell: BaseTableViewCell {
         view.accessibilityIdentifier = "posterImageView"
         return view
     }()
-        
-    // MARK: - Methods -
-    override func setupUI() {
-        
-        posterImageView.kf.indicatorType = .activity
-        contentView.addSubview(posterImageView)
-        self.accessibilityIdentifier = "PosterDetailTableCell"
-    }
     
-    override func setupConstraints() {
+    private(set) lazy var errorView: ErrorView = ErrorView()
+    
+    // MARK: - Init -
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        posterImageView.snp.makeConstraints { (make) in
-            let imageWidth = UIScreen.main.bounds.width - 60
-            make.center.equalToSuperview()
-            make.width.equalTo(imageWidth)
-            make.height.equalTo(imageWidth * PosterDetailTableCell.imageAspect)
-            make.top.equalToSuperview().offset(20).priority(999)
-            make.bottom.equalToSuperview().inset(20).priority(999)
+        if Logger.isLogEnabled {
+            os_log("🔲 👶 %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
         }
-        
-        contentView.sizeToFit()
+        setupView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        if Logger.isLogEnabled {
+            os_log("🔲 ⚰️ %@", log: Logger.lifecycleLog(), type: .info, "\(self)")
+        }
+    }
+    
+    // MARK: - Methods -
     func makeErrorConstraints() {
         errorView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
@@ -56,16 +58,39 @@ final class PosterDetailTableCell: BaseTableViewCell {
     }
 }
 
+// MARK: - VireCode -
+extension PosterDetailTableCell: ViewCode {
+    func buildViewHierarchy() {
+        contentView.addSubview(posterImageView)
+    }
+    
+    func setupConstraints() {
+        
+        posterImageView.snp.makeConstraints { (make) in
+            let imageWidth = UIScreen.main.bounds.width - 60
+            make.center.equalToSuperview()
+            make.width.equalTo(imageWidth)
+            make.height.equalTo(imageWidth * PosterDetailTableCell.imageAspect)
+            make.top.equalToSuperview().offset(20).priority(999)
+            make.bottom.equalToSuperview().inset(20).priority(999)
+        }
+    }
+    
+    func setupAdditionalConfiguration() {
+        contentView.sizeToFit()
+        posterImageView.kf.indicatorType = .activity
+        accessibilityIdentifier = "PosterDetailTableCell"
+        backgroundColor = .clear
+    }
+}
+
 // MARK: - ErrorDelegate -
 extension PosterDetailTableCell: ErrorDelegate {
     func displayError(_ type: ErrorMessageType) {
         
         errorView.displayMessage(type)
-        
         guard errorView.superview == nil else { return }
-        
         contentView.addSubview(errorView)
-        
         makeErrorConstraints()
     }
     
