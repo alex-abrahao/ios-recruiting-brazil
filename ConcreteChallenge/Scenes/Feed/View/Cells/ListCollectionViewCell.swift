@@ -16,11 +16,6 @@ final class ListCollectionViewCell: FeedCollectionViewCell {
     static let imageAspect: CGFloat = (1080/1920)
     
     // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-        self.accessibilityIdentifier = "ListCollectionViewCell"
-    }
-    
     override func setupConstraints() {
         
         filmImageView.snp.makeConstraints { (make) in
@@ -40,5 +35,10 @@ final class ListCollectionViewCell: FeedCollectionViewCell {
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalTo(favoriteButton.snp.leading)
         }
+    }
+    
+    override func setupAdditionalConfiguration() {
+        super.setupAdditionalConfiguration()
+        accessibilityIdentifier = "ListCollectionViewCell"
     }
 }

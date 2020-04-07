@@ -16,13 +16,6 @@ final class GridCollectionViewCell: FeedCollectionViewCell {
     static let imageAspect: CGFloat = (1920/1280)
 
     // MARK: - Methods -
-    override func setupUI() {
-        super.setupUI()
-        
-        titleLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        self.accessibilityIdentifier = "GridCollectionViewCell"
-    }
-    
     override func setupConstraints() {
         
         filmImageView.snp.makeConstraints { (make) in
@@ -42,5 +35,11 @@ final class GridCollectionViewCell: FeedCollectionViewCell {
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalTo(favoriteButton.snp.leading)
         }
+    }
+    
+    override func setupAdditionalConfiguration() {
+        super.setupAdditionalConfiguration()
+        titleLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        accessibilityIdentifier = "GridCollectionViewCell"
     }
 }
