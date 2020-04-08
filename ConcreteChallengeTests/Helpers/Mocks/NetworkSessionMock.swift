@@ -13,30 +13,39 @@ final class NetworkSessionMock: NetworkSession {
     
     enum Response {
         case success
+        case errorFromAPI
         case failure
     }
     
     var expectedResponse: Response = .success
+    var returnsModelMock: Bool = false
     var task: NetworkSessionTaskSpy = NetworkSessionTaskSpy()
     var lastRequest: URLRequest?
+    var lastError: NetworkErrorMock?
+    var modelMock: ModelMock = ModelMock(name: "Name", id: 123)
     
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionTask {
         lastRequest = request
         
         let response: HTTPURLResponse?
         let data: Data?
-        let error: Error?
+        let error: NetworkErrorMock?
         switch expectedResponse {
         case .success:
             response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)
-            data = ModelStub.moviesResponseJson
+            data = returnsModelMock ? modelMock.getJsonData() : ModelStub.moviesResponseJson
+            error = nil
+        case .errorFromAPI:
+            response = HTTPURLResponse(url: request.url!, statusCode: 400, httpVersion: nil, headerFields: nil)
+            data = returnsModelMock ? modelMock.getJsonData() : ModelStub.moviesResponseJson
             error = nil
         case .failure:
-            response = HTTPURLResponse(url: request.url!, statusCode: 400, httpVersion: nil, headerFields: nil)
+            response = nil
             data = nil
-            error = NSError(domain: "Error", code: 0, userInfo: nil)
+            error = NetworkErrorMock.generic
         }
         
+        lastError = error
         completionHandler(data, response, error)
         
         return task

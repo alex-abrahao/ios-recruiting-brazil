@@ -54,6 +54,8 @@
 		1DF35C23243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C22243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift */; };
 		1DF35C25243D183A00D1EC75 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C24243D183A00D1EC75 /* NetworkSession.swift */; };
 		1DF35C27243D283500D1EC75 /* NetworkSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C26243D283500D1EC75 /* NetworkSessionDataTask.swift */; };
+		1DF35C29243E65F000D1EC75 /* ModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C28243E65F000D1EC75 /* ModelMock.swift */; };
+		1DF35C2B243E690200D1EC75 /* NetworkErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -168,6 +170,8 @@
 		1DF35C22243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionTaskSpy.swift; sourceTree = "<group>"; };
 		1DF35C24243D183A00D1EC75 /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
 		1DF35C26243D283500D1EC75 /* NetworkSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionDataTask.swift; sourceTree = "<group>"; };
+		1DF35C28243E65F000D1EC75 /* ModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMock.swift; sourceTree = "<group>"; };
+		1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorMock.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 				1D6DC7AD23F6031C00ED0F06 /* FeedPresenterMock.swift */,
 				1D1A3FC424007254002B76A3 /* MovieClientMock.swift */,
 				1DF35C20243D060600D1EC75 /* NetworkSessionMock.swift */,
+				1DF35C28243E65F000D1EC75 /* ModelMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				1D2DFDFE23FB13EE00D7BD37 /* MoviesResponseNoImageStub.json */,
 				1D2DFDFA23FAF39400D7BD37 /* MoviesResponseStub.json */,
 				1D2DFDFC23FAF45C00D7BD37 /* ModelStub.swift */,
+				1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -1092,6 +1098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DF35C21243D060600D1EC75 /* NetworkSessionMock.swift in Sources */,
+				1DF35C2B243E690200D1EC75 /* NetworkErrorMock.swift in Sources */,
 				1D6DC7AE23F6031C00ED0F06 /* FeedPresenterMock.swift in Sources */,
 				1D2DFDFD23FAF45C00D7BD37 /* ModelStub.swift in Sources */,
 				1D6DC7B023F6047900ED0F06 /* FeedViewDelegateSpy.swift in Sources */,
@@ -1100,6 +1107,7 @@
 				1DF35C1F243D02D300D1EC75 /* APIServiceSpec.swift in Sources */,
 				1D1A3FBC23FF0039002B76A3 /* TesterExtension.swift in Sources */,
 				1D1A3FC924007838002B76A3 /* FavoriteClientMock.swift in Sources */,
+				1DF35C29243E65F000D1EC75 /* ModelMock.swift in Sources */,
 				1DF35C23243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift in Sources */,
 				1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceSpec.swift in Sources */,
 				1D1A3FBA23FEFD35002B76A3 /* PopularsFeedTests.swift in Sources */,
