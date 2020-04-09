@@ -11,6 +11,8 @@ import Foundation
 
 final class FavoriteClientMock: FavoriteClientProtocol {
     
+    private(set) var didCheckFavorites = false
+    
     func setFavorite(movie: Movie) {
         movie.isFavorite = true
     }
@@ -31,6 +33,7 @@ final class FavoriteClientMock: FavoriteClientProtocol {
     }
     
     func checkFavorites(on movies: [Movie]) {
+        didCheckFavorites = true
         // Favorites the first movie
         if let first = movies.first {
             first.isFavorite = true

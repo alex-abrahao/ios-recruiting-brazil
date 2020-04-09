@@ -57,6 +57,11 @@
 		1DF35C29243E65F000D1EC75 /* ModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C28243E65F000D1EC75 /* ModelMock.swift */; };
 		1DF35C2B243E690200D1EC75 /* NetworkErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */; };
 		1DF35C2D243F7C1F00D1EC75 /* MovieEndPointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */; };
+		1DF35C2F243FA47D00D1EC75 /* MovieClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2E243FA47D00D1EC75 /* MovieClientSpec.swift */; };
+		1DF35C31243FA4D500D1EC75 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C30243FA4D500D1EC75 /* NetworkServiceMock.swift */; };
+		1DF35C33243FAEF800D1EC75 /* GenreClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C32243FAEF800D1EC75 /* GenreClientSpy.swift */; };
+		1DF35C35243FC15300D1EC75 /* Movie+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C34243FC15300D1EC75 /* Movie+Equatable.swift */; };
+		1DF35C39243FCF6A00D1EC75 /* Genre+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C38243FCF6A00D1EC75 /* Genre+Equatable.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -174,6 +179,11 @@
 		1DF35C28243E65F000D1EC75 /* ModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMock.swift; sourceTree = "<group>"; };
 		1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorMock.swift; sourceTree = "<group>"; };
 		1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPointSpec.swift; sourceTree = "<group>"; };
+		1DF35C2E243FA47D00D1EC75 /* MovieClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClientSpec.swift; sourceTree = "<group>"; };
+		1DF35C30243FA4D500D1EC75 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		1DF35C32243FAEF800D1EC75 /* GenreClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreClientSpy.swift; sourceTree = "<group>"; };
+		1DF35C34243FC15300D1EC75 /* Movie+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Equatable.swift"; sourceTree = "<group>"; };
+		1DF35C38243FCF6A00D1EC75 /* Genre+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Genre+Equatable.swift"; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -296,9 +306,10 @@
 			children = (
 				1D1A3FC824007838002B76A3 /* FavoriteClientMock.swift */,
 				1D6DC7AD23F6031C00ED0F06 /* FeedPresenterMock.swift */,
-				1D1A3FC424007254002B76A3 /* MovieClientMock.swift */,
-				1DF35C20243D060600D1EC75 /* NetworkSessionMock.swift */,
 				1DF35C28243E65F000D1EC75 /* ModelMock.swift */,
+				1D1A3FC424007254002B76A3 /* MovieClientMock.swift */,
+				1DF35C30243FA4D500D1EC75 /* NetworkServiceMock.swift */,
+				1DF35C20243D060600D1EC75 /* NetworkSessionMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 			children = (
 				5EFC3EEC23A875A900FDE1F8 /* DetailViewDelegateSpy.swift */,
 				1D6DC7AF23F6047900ED0F06 /* FeedViewDelegateSpy.swift */,
+				1DF35C32243FAEF800D1EC75 /* GenreClientSpy.swift */,
 				1DF35C22243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift */,
 			);
 			path = Spies;
@@ -421,6 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				1D1A3FBB23FF0039002B76A3 /* TesterExtension.swift */,
+				1DF35C34243FC15300D1EC75 /* Movie+Equatable.swift */,
+				1DF35C38243FCF6A00D1EC75 /* Genre+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -429,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				1DF35C1E243D02D300D1EC75 /* APIServiceSpec.swift */,
+				1DF35C2E243FA47D00D1EC75 /* MovieClientSpec.swift */,
 				1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */,
 			);
 			path = Network;
@@ -1109,10 +1124,15 @@
 				1D1A3FC524007254002B76A3 /* MovieClientMock.swift in Sources */,
 				1DF35C1F243D02D300D1EC75 /* APIServiceSpec.swift in Sources */,
 				1D1A3FBC23FF0039002B76A3 /* TesterExtension.swift in Sources */,
+				1DF35C39243FCF6A00D1EC75 /* Genre+Equatable.swift in Sources */,
 				1D1A3FC924007838002B76A3 /* FavoriteClientMock.swift in Sources */,
 				1DF35C29243E65F000D1EC75 /* ModelMock.swift in Sources */,
 				1DF35C23243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift in Sources */,
 				1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceSpec.swift in Sources */,
+				1DF35C33243FAEF800D1EC75 /* GenreClientSpy.swift in Sources */,
+				1DF35C2F243FA47D00D1EC75 /* MovieClientSpec.swift in Sources */,
+				1DF35C35243FC15300D1EC75 /* Movie+Equatable.swift in Sources */,
+				1DF35C31243FA4D500D1EC75 /* NetworkServiceMock.swift in Sources */,
 				1D1A3FBA23FEFD35002B76A3 /* PopularsFeedTests.swift in Sources */,
 				1DF35C2D243F7C1F00D1EC75 /* MovieEndPointSpec.swift in Sources */,
 				5EFC3EEB23A870DF00FDE1F8 /* DetailPresenterSpec.swift in Sources */,
