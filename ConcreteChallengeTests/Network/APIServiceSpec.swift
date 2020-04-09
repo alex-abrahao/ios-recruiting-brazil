@@ -53,6 +53,13 @@ final class APIServiceSpec: QuickSpec {
                     expect(components?.queryItems).to(contain(expectedQueryItems))
                 }
                 
+                it("should be of the correct method") {
+                    // Act
+                    sut.performRequest(route: endpoint) { (result: Result<PopularResponse, Error>) in }
+                    // Assert
+                    expect(session.lastRequest?.httpMethod).to(equal(endpoint.method.rawValue))
+                }
+                
                 it("should call resume task") {
                     // Act
                     sut.performRequest(route: endpoint) { (result: Result<PopularResponse, Error>) in }

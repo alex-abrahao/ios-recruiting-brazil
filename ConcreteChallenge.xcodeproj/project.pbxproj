@@ -56,6 +56,7 @@
 		1DF35C27243D283500D1EC75 /* NetworkSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C26243D283500D1EC75 /* NetworkSessionDataTask.swift */; };
 		1DF35C29243E65F000D1EC75 /* ModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C28243E65F000D1EC75 /* ModelMock.swift */; };
 		1DF35C2B243E690200D1EC75 /* NetworkErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */; };
+		1DF35C2D243F7C1F00D1EC75 /* MovieEndPointSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */; };
 		2E88BAC993A8A7154D9FC26D /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910EE706690D4D630F32CCF6 /* Pods_ConcreteChallenge_ConcreteChallengeUITests.framework */; };
 		5E6AACE1239C3DB100564F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AACE0239C3DB100564F6A /* AppDelegate.swift */; };
 		5E6AACEA239C3DB200564F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AACE9239C3DB200564F6A /* Assets.xcassets */; };
@@ -172,6 +173,7 @@
 		1DF35C26243D283500D1EC75 /* NetworkSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionDataTask.swift; sourceTree = "<group>"; };
 		1DF35C28243E65F000D1EC75 /* ModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMock.swift; sourceTree = "<group>"; };
 		1DF35C2A243E690200D1EC75 /* NetworkErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorMock.swift; sourceTree = "<group>"; };
+		1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPointSpec.swift; sourceTree = "<group>"; };
 		286E16E848B818DBA10FEB2E /* Pods-ConcreteChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteChallenge.release.xcconfig"; path = "Target Support Files/Pods-ConcreteChallenge/Pods-ConcreteChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		5E6AACDD239C3DB100564F6A /* Movs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6AACE0239C3DB100564F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				1DF35C1E243D02D300D1EC75 /* APIServiceSpec.swift */,
+				1DF35C2C243F7C1F00D1EC75 /* MovieEndPointSpec.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				1DF35C23243D0EF500D1EC75 /* NetworkSessionTaskSpy.swift in Sources */,
 				1D6DC7AC23F5FBD000ED0F06 /* FeedDataSourceSpec.swift in Sources */,
 				1D1A3FBA23FEFD35002B76A3 /* PopularsFeedTests.swift in Sources */,
+				1DF35C2D243F7C1F00D1EC75 /* MovieEndPointSpec.swift in Sources */,
 				5EFC3EEB23A870DF00FDE1F8 /* DetailPresenterSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
