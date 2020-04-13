@@ -14,7 +14,7 @@ final class MovieClient: MovieClientProtocol {
     var favoriteClient: FavoriteClientProtocol
     var genreClient: GenreClientProtocol
     
-    private(set) var currentPage: Int = 0
+    private(set) var currentPage: Int = 1
     private(set) var totalPages: Int = 500
     
     init(networkService: NetworkService = APIService(),
@@ -28,7 +28,11 @@ final class MovieClient: MovieClientProtocol {
 
     func getPopular(page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         
-        guard page <= totalPages else { return }
+        guard page > 0 && page <= totalPages else {
+            let userInfo: [String : Any] = [NSLocalizedDescriptionKey : "Invalid page request, min page is 1 and max page is \(totalPages)"]
+            completion(.failure(NSError(domain: "MovieClient", code: 1, userInfo: userInfo)))
+            return
+        }
         
         currentPage = page
         

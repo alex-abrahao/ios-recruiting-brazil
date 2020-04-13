@@ -74,7 +74,28 @@ final class MovieClientSpec: QuickSpec {
                     }
                 }
                 
-                it("should treat failure") {
+                it("should not request on page 0") {
+                    sut.getPopular(page: 0) { (result) in
+                        expect(sut.currentPage).toNot(equal(0))
+                        expect(service.didPerformRequest).to(beFalse())
+                        if case Result<[Movie], Error>.success = result {
+                            Nimble.fail("Expected failure, got success")
+                        }
+                    }
+                }
+                
+                it("should not request on page more than max") {
+                    let requestPage = sut.totalPages + 1
+                    sut.getPopular(page: requestPage) { (result) in
+                        expect(sut.currentPage).toNot(equal(requestPage))
+                        expect(service.didPerformRequest).to(beFalse())
+                        if case Result<[Movie], Error>.success = result {
+                            Nimble.fail("Expected failure, got success")
+                        }
+                    }
+                }
+                
+                it("should treat api failure") {
                     let expectedError = NSError(domain: "test", code: 123, userInfo: nil)
                     service.result = .failure(expectedError)
                     sut.getPopular(page: response.page) { (result) in
@@ -118,7 +139,7 @@ final class MovieClientSpec: QuickSpec {
                     }
                 }
                 
-                it("should treat failure") {
+                it("should treat api failure") {
                     let expectedError = NSError(domain: "test", code: 123, userInfo: nil)
                     service.result = .failure(expectedError)
                     sut.search(searchText) { (result) in
@@ -166,7 +187,7 @@ final class MovieClientSpec: QuickSpec {
                     }
                 }
                 
-                it("should treat failure in the completion") {
+                it("should treat api failure in the completion") {
                     let expectedError = NSError(domain: "test", code: 123, userInfo: nil)
                     service.result = .failure(expectedError)
                     sut.getGenreList { (result) in
