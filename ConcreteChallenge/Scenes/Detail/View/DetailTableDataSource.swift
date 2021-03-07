@@ -32,7 +32,7 @@ extension DetailTableDataSource: UITableViewDataSource {
             }
             cell.posterImageView.kf.indicatorType = .activity
             if let imageURL = ImageURLBuilder.url(for: .poster, path: posterPath) {
-                cell.posterImageView.kf.setImage(with: imageURL) { [weak cell] (result) in
+                cell.posterImageView.kf.setImage(with: imageURL, completionHandler:  { [weak cell] (result) in
                     switch result {
                     case .failure(let error):
                         cell?.displayError(.info("Image could not be downloaded"))
@@ -40,7 +40,7 @@ extension DetailTableDataSource: UITableViewDataSource {
                     default:
                         return
                     }
-                }
+                })
             } else {
                 cell.posterImageView.image = nil
                 cell.displayError(.missing("No poster available 😭"))

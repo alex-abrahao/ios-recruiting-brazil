@@ -62,7 +62,7 @@ extension FeedCollectionDataSource: UICollectionViewDataSource {
             feedCell.hideError()
             
             if let imageURL = ImageURLBuilder.url(for: .poster, path: movie.posterPath) {
-                gridCell.filmImageView.kf.setImage(with: imageURL) { [weak gridCell] (result) in
+                gridCell.filmImageView.kf.setImage(with: imageURL, completionHandler:  { [weak gridCell] (result) in
                     switch result {
                     case .failure(let error):
                         gridCell?.displayError(.info("Image could not be downloaded"))
@@ -70,7 +70,7 @@ extension FeedCollectionDataSource: UICollectionViewDataSource {
                     default:
                         break
                     }
-                }
+                })
             } else {
                 gridCell.filmImageView.image = nil
                 gridCell.displayError(.missing("No poster available 😭"))
@@ -88,7 +88,7 @@ extension FeedCollectionDataSource: UICollectionViewDataSource {
             feedCell.hideError()
             
             if let imageURL = ImageURLBuilder.url(for: .backdrop, path: movie.backdropPath) {
-                listCell.filmImageView.kf.setImage(with: imageURL) { [weak listCell] (result) in
+                listCell.filmImageView.kf.setImage(with: imageURL, completionHandler:  { [weak listCell] (result) in
                     switch result {
                     case .failure(let error):
                         listCell?.displayError(.info("Image could not be downloaded"))
@@ -96,7 +96,7 @@ extension FeedCollectionDataSource: UICollectionViewDataSource {
                     default:
                         break
                     }
-                }
+                })
             } else {
                 listCell.filmImageView.image = nil
                 listCell.displayError(.missing("No backdrop available 😭"))

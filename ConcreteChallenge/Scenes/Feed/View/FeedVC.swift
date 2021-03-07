@@ -41,14 +41,7 @@ class FeedVC: UIViewController, FavoriteViewDelegate {
     
     /// An activity indicator to show when the view is loading
     let activityIndicator: UIActivityIndicatorView = {
-        let style: UIActivityIndicatorView.Style
-        if #available(iOS 13.0, *) {
-            style = .whiteLarge
-        } else {
-            // Fallback on earlier versions
-            style = .gray
-        }
-        let view = UIActivityIndicatorView(style: style)
+        let view = UIActivityIndicatorView(style: .large)
         view.hidesWhenStopped = true
         view.accessibilityIdentifier = "activityIndicator"
         return view
